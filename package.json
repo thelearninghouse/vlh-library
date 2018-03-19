@@ -1,0 +1,36 @@
+{
+  "name": "vd-finder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/vlh-forms.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "test-vue-app",
+    "dev": "poi",
+    "build": "poi build ./src/index.js --component VlhForms --no-clear",
+    "library": "poi build ./src/index.js --library VlhForms --no-clear",
+    "build:example": "poi build dev/index.js",
+    "docs": "docsify serve ./docs",
+    "release": "npm run build && npm publish",
+    "prepublish": "npm run build"
+  },
+  "author": {
+    "name": "David Royer",
+    "email": "droyer01@gmail.com"
+  },
+  "poi": {
+    "entry": "dev/main.js",
+    "dist": "dev/dist",
+    "homepage": ""
+  },
+  "keywords": [],
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "node-sass": "^4.7.2",
+    "poi": "^9.6.13",
+    "sass-loader": "^6.0.6"
+  }
+}
