@@ -9,8 +9,8 @@
   "scripts": {
     "test": "test-vue-app",
     "dev": "poi",
-    "build": "poi build ./src/index.js --component VlhForms --no-clear",
-    "library": "poi build ./src/index.js --library VlhForms --no-clear",
+    "build": "poi build ./src/index.js --component VlhLibrary --no-clear",
+    "library": "poi build ./src/index.js --library VlhLibrary",
     "build:example": "poi build dev/index.js",
     "docs": "docsify serve ./docs",
     "release": "npm run build && npm publish",

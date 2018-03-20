@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
-import VdFinder from '../src/index.js'
-Vue.use(VdFinder)
+import VlhLibrary from '../src/index.js'
+Vue.use(VlhLibrary)
 
 new Vue({
     el: '#app',

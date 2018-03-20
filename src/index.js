@@ -6,7 +6,7 @@ import DegreeGridItem from './components/DegreeGridItem.vue'
 import Icon from './components/Icon.vue'
 import './assets/styles/vd-finder.scss'
 
-const VdFinder = {
+const VlhLibrary = {
   install(Vue, options) {
     Vue.component(DegreeGrid.name, DegreeGrid);
     Vue.component(DegreeGridItem.name, DegreeGridItem);
@@ -19,12 +19,17 @@ const VdFinder = {
 
 // Install by default if using the script tag
 if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(VdFinder)
+  window.Vue.use(VlhLibrary)
 }
 
 // export axios;
-export default VdFinder;
+export default VlhLibrary;
 
 export {
-  FilterList
+  FilterList,
+  FilterListItem,
+  FilterResetItem,
+  DegreeGrid,
+  DegreeGridItem,
+  Icon
 }
