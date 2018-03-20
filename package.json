@@ -14,7 +14,9 @@
     "build:example": "poi build dev/index.js",
     "docs": "docsify serve ./docs",
     "release": "npm run build && npm publish",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "styleguide": "vue-styleguidist server",
+    "styleguide:build": "vue-styleguidist build"
   },
   "author": {
     "name": "David Royer",
@@ -32,5 +34,9 @@
     "node-sass": "^4.7.2",
     "poi": "^9.6.13",
     "sass-loader": "^6.0.6"
+  },
+  "devDependencies": {
+    "vue-loader": "^14.2.1",
+    "vue-styleguidist": "^1.4.10"
   }
 }

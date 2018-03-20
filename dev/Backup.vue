@@ -1,49 +1,91 @@
 <template>
 <main id="app" class="content">
+  <nav class="nav">
+    <menu class="nav__controls">
+      <icon class="nav__icon" use="#filter"></icon>
 
-  <div class="degreeFilters">
+      <li v-for="(active, menu) in menus" class="nav__label" :class="{
+            'nav__label--active' : active,
+            'nav__label--filter': activeFilters[menu].length
+          }" @click="setMenu(menu, active)">
+        {{ menu }}
+      </li>
 
-    <div class="filter-list-wrapper list-1">
-      <h2>Degree Levels</h2>
+      <li class="nav__label nav__label--clear" @click="clearAllFilters">Clear all</li>
+    </menu>
 
-      <filter-reset-item
-        @reset="currentDegreeLevelFilter = ''"
-        id="all-levels"
-        :class="{selected: !currentDegreeLevelFilter}"
-        label="All Leves">
-      </filter-reset-item>
-
-      <filter-list-item
-        @selected="updateDegreeLevelFilter"
-        v-for="(option, key) in degreeFilters.degree_levels"
-        :key="key"
-        :class="{selected: currentDegreeLevelFilter == key}"
-        :option="option">
-      </filter-list-item>
-    </div>
-
-    <div class="filter-list-wrapper list-2">
-      <h2>Degree Areas</h2>
-
-      <filter-reset-item
-        @reset="currentDegreeAreaFilter = ''"
-        id="all-areas"
-        :class="{ selected: !currentDegreeAreaFilter }"
-        label="All Areas">
-      </filter-reset-item>
-
-      <FilterListItem
-        @selected="updateDegreeAreaFilter"
-        v-for="(option, key) in degreeFilters.degree_areas"
-        :class="{selected: currentDegreeAreaFilter == key}"
-        :key="key"
-        :option="option"/>
-      </FilterListItem>
-    </div>
+    <label class="nav__label" @click="modal = !modal">About this pen</label>
+  </nav>
+  <div class="degreeFilters levels">
+    <h2>Degree Levels</h2>
+    <ul class="filter-list">
+      <li class="filter-option filter-button">
+        <label class="filter-option__title" for="all-levels-filter">All</label>
+        <input id="all-levels-filter" type="radio" value="" v-model.lazy.number="currentDegreeLevelFilter">
+      </li>
+      <li class="filter-option filter-button" v-for="(option, key) in degreeFilters.degree_levels">
+        <label class="filter-option__title" :for="key" v-text="option.name"></label>
+        <input :id="key" :key="key" type="radio" :value="key" v-model.lazy.number="currentDegreeLevelFilter">
+      </li>
+    </ul>
   </div>
+
+
+  <div class="degreeFilters levels">
+    <h2>Degree Levels</h2>
+    <ul class="filter-list">
+      <li class="filter-option filter-button">
+        <label class="filter-option__title" for="all-levels-filter">All</label>
+        <input id="all-levels-filter" type="radio" value="" v-model.lazy.number="currentDegreeLevelFilter">
+      </li>
+      <li class="filter-option filter-button" v-for="(option, key) in degreeFilters.degree_levels">
+        <label class="filter-option__title" :for="key" v-text="option.name"></label>
+        <input :id="key" :key="key" type="radio" :value="key" v-model.lazy.number="currentDegreeLevelFilter">
+      </li>
+    </ul>
+  </div>
+  <transition-group name="dropdown" tag="section" class="dropdown" :style="dropdown">
+    <menu v-for="(options, filter) in filters" class="filters" v-show="menus[filter]" ref="menu" :key="filter">
+
+      <li v-if="filter === 'rating'" class="filters__rating">
+        <output>
+            <label>Minimum rating:&nbsp;</label>
+            {{ parseFloat(filters.rating).toFixed(1) }}
+          </output>
+
+        <input v-model="filters.rating" class="filters__range" type="range" :min="rating.min" :max="rating.max" step="0.1" />
+      </li>
+
+      <template v-else>
+          <li v-for="(active, option) in options" class="filters__item"
+            :class="{ 'filters__item--active': active }"
+            @click="setFilter(filter, option)">
+            {{ option }}
+          </li>
+        </template>
+    </menu>
+  </transition-group>
+  <!-- <pre>{{degrees}}</pre> -->
+
 
   <DegreeGrid :items="degreeList"/>
 
+  <transition name="modal">
+    <section v-if="modal" class="modal" @click="modal = false">
+      <article class="modal__content" @click.stop>
+        <h4 class="modal__title">For the full tutorial</h4>
+        <h4 class="modal__title">that goes with this pen</h4>
+
+        <h5 class="modal__link" @click="modal = false">
+            <a href="https://snipcart.com/blog/vuejs-transitions-animations" target="_blank">
+              Creating Vue.js Transitions &amp; Animations
+            </a>
+          </h5>
+
+        <button class="modal__close" @click="modal = false">&times;</button>
+      </article>
+    </section>
+  </transition>
 </main>
 </template>
 
@@ -60,7 +102,6 @@ export default {
       companies: [],
       degrees: [],
       currentDegreeLevelFilter: '',
-      currentDegreeAreaFilter: '',
       dropdown: {
         height: 0
       },
@@ -75,9 +116,9 @@ export default {
       },
       degreeFilters: {
         levels: {},
-        areas: {},
+        verticals: {},
         degree_levels: {},
-        degree_areas: {}
+        degree_types: {}
       },
       menus: {
         countries: false,
@@ -109,7 +150,7 @@ export default {
             });
 
             degree_types.forEach(degree_type => {
-              this.$set(this.degreeFilters.degree_areas, degree_type.term_id, degree_type);
+              this.$set(this.degreeFilters.degree_types, degree_type.term_id, degree_type);
             });
 
             levels.forEach(level => {
@@ -117,7 +158,7 @@ export default {
             });
 
             verticals.forEach(vertical => {
-              this.$set(this.degreeFilters.areas, vertical, false);
+              this.$set(this.degreeFilters.verticals, vertical, false);
             });
 
           });
@@ -234,14 +275,6 @@ export default {
     }
   },
   methods: {
-    updateDegreeLevelFilter(val) {
-      this.currentDegreeLevelFilter = val
-    },
-
-    updateDegreeAreaFilter(val) {
-      this.currentDegreeAreaFilter = val
-    },
-
     getDegrees() {
       return axios.get("/degrees?per_page=50");
     },
@@ -332,19 +365,13 @@ export default {
 
 <style lang="scss">
   /* Temporary */
-  .degreeFilters {
-    flex: 1 1 320px;
-  }
-  .degree-grid {
-    flex: 1 1 calc(100% - 360px);
+  .degreeFilters.levels {
+      position: fixed;
+      left: 20px;
+      top: 20px;
+      width: 300px;
   }
   main.content {
-    width: 1440px;
-    display: flex;
-    justify-content: space-between;
-    margin: 4em auto;
-    max-width: 100%;
-    padding: 1.25em;
+    margin-right: 12%;
   }
-
 </style>
