@@ -1,4 +1,7 @@
+// require('./docs-mixin.js');
+
 module.exports = {
+  mixins: ['docs-mixin.js'],
   webpackConfig: {
     module: {
       rules: [
@@ -20,5 +23,7 @@ module.exports = {
         // }
       ]
     }
-  }
+  },
+  showUsage: true,
+	showCode: true
 };

@@ -15,7 +15,7 @@
     "docs": "docsify serve ./docs",
     "release": "npm run build && npm publish",
     "prepublish": "npm run build",
-    "styleguide": "vue-styleguidist server",
+    "docs:vsg": "vue-styleguidist server",
     "styleguide:build": "vue-styleguidist build"
   },
   "author": {

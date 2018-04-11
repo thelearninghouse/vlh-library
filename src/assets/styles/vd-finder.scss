@@ -1,4 +1,6 @@
 @import 'reset';
+@import 'transitions';
+
 .content {
   position: relative;
   font-family: "Nunito", sans-serif;
@@ -18,114 +20,114 @@
   }
 }
 
-.company, .degree {
-  position: relative;
-  width: calc(100% / 2 - 1rem);
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-left: 1rem;
-  margin-top: 1rem;
-  padding-top: 0.75rem;
-  border-radius: 6px;
-  background-color: white;
-  box-shadow: 0 0 0 1px #c5d0d1;
-  backface-visibility: hidden;
-  transform-origin: 90% 50%;
-  z-index: 1;
-  height: 250px;
-
-  @media (min-width: 800px) {
-    width: calc(100% / 3 - 1rem);
-  }
-
-  &-move {
-    transition: all 500ms ease-in-out 100ms;
-  }
-  &-enter-active {
-    // opacity: .5;
-    opacity: 1;
-    transition: all 400ms ease-in-out;
-  }
-
-  &-leave-active {
-    transition: all 150ms ease-in-out 100ms;
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-  }
-
-  &-move {
-    transition: all 600ms ease-in-out 200ms;
-  }
-  &-enter-active {
-    transition: all 400ms ease-in-out;
-  }
-
-  &-leave-active {
-    transition: all 350ms ease-in-out;
-    position: absolute;
-    z-index: 0;
-  }
-
-  &-enter,
-  &-leave-to {
-    opacity: 0;
-  }
-  &-enter {
-    transform: scale(0.9);
-  }
-
-  &__data {
-    line-height: 1.3;
-  }
-  &__label {
-    font-size: 0.8rem;
-  }
-  &__rating {
-    text-align: center;
-  }
-
-  &__info {
-    padding: 0 0.75rem;
-    text-align: center;
-  }
-
-  &__logo {
-    width: 3rem;
-    height: 3rem;
-    margin: 0 auto;
-  }
-
-  &__name {
-    // height: 2.5rem;
-    margin: 0.75rem 0;
-    font-size: 1.3rem;
-    font-weight: 200;
-    text-align: center;
-  }
-
-  &__slogan {
-    height: 2rem;
-    text-align: center;
-    font-weight: 400;
-    text-transform: capitalize;
-  }
-
-  &__details {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1.5rem;
-    padding: 0.5rem 0.75rem;
-    background-color: rgba(#c5d0d1, 0.1);
-    border-top: 1px solid #c5d0d1;
-  }
-
-  &__country:hover {
-    text-decoration: underline;
-    cursor: pointer;
-  }
-}
+// .company, .degree {
+//   position: relative;
+//   width: calc(100% / 2 - 1rem);
+//   display: inline-flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   margin-left: 1rem;
+//   margin-top: 1rem;
+//   padding-top: 0.75rem;
+//   border-radius: 6px;
+//   background-color: white;
+//   box-shadow: 0 0 0 1px #c5d0d1;
+//   backface-visibility: hidden;
+//   transform-origin: 90% 50%;
+//   z-index: 1;
+//   height: 250px;
+//
+//   @media (min-width: 800px) {
+//     width: calc(100% / 3 - 1rem);
+//   }
+//
+//   &-move {
+//     transition: all 500ms ease-in-out 100ms;
+//   }
+//   &-enter-active {
+//     // opacity: .5;
+//     opacity: 1;
+//     transition: all 400ms ease-in-out;
+//   }
+//
+//   &-leave-active {
+//     transition: all 150ms ease-in-out 100ms;
+//     position: absolute;
+//     z-index: -1;
+//     opacity: 0;
+//   }
+//
+//   &-move {
+//     transition: all 600ms ease-in-out 200ms;
+//   }
+//   &-enter-active {
+//     transition: all 400ms ease-in-out;
+//   }
+//
+//   &-leave-active {
+//     transition: all 350ms ease-in-out;
+//     position: absolute;
+//     z-index: 0;
+//   }
+//
+//   &-enter,
+//   &-leave-to {
+//     opacity: 0;
+//   }
+//   &-enter {
+//     transform: scale(0.9);
+//   }
+//
+//   &__data {
+//     line-height: 1.3;
+//   }
+//   &__label {
+//     font-size: 0.8rem;
+//   }
+//   &__rating {
+//     text-align: center;
+//   }
+//
+//   &__info {
+//     padding: 0 0.75rem;
+//     text-align: center;
+//   }
+//
+//   &__logo {
+//     width: 3rem;
+//     height: 3rem;
+//     margin: 0 auto;
+//   }
+//
+//   &__name {
+//     // height: 2.5rem;
+//     margin: 0.75rem 0;
+//     font-size: 1.3rem;
+//     font-weight: 200;
+//     text-align: center;
+//   }
+//
+//   &__slogan {
+//     height: 2rem;
+//     text-align: center;
+//     font-weight: 400;
+//     text-transform: capitalize;
+//   }
+//
+//   &__details {
+//     display: flex;
+//     justify-content: space-between;
+//     margin-top: 1.5rem;
+//     padding: 0.5rem 0.75rem;
+//     background-color: rgba(#c5d0d1, 0.1);
+//     border-top: 1px solid #c5d0d1;
+//   }
+//
+//   &__country:hover {
+//     text-decoration: underline;
+//     cursor: pointer;
+//   }
+// }
 
 .nav {
   display: flex;

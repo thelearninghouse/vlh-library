@@ -1,10 +1,22 @@
 <template>
   <component :is="type" class="degree-grid">
-    <transition-group name="company" tag="ul" class="content__list filter-grid-list">
+
+    <transition-group name="demo" tag="ul" class="degree-grid-list" appear
+      @before-enter="beforeEnter"
+      @after-enter="afterEnter"
+      @enter-cancelled="afterEnter"
+      >
+
       <slot name="filter-grid-items">
-        <degree-grid-item v-for="item in items" :key="item.id" :item="item"></degree-grid-item>
+        <degree-grid-item
+          v-for="(item, index) in items"
+          :data-index="index"
+          :key="item.id"
+          :item="item">
+        </degree-grid-item>
       </slot>
     </transition-group>
+
   </component>
 </template>
 
@@ -34,6 +46,21 @@ export default {
       default: "div",
     },
   },
+  methods: {
+    beforeEnter(el) {
+      el.style.transitionDelay = 15 * el.dataset.index + 'ms'
+    },
+    afterEnter(el) {
+      el.style.transitionDelay = ''
+    },
+    beforeLeave(el) {
+      var { marginLeft, marginTop, width, height } = window.getComputedStyle(el)
+      el.style.left = el.offsetLeft - parseFloat(marginLeft, 10) + 'px'
+      el.style.top = el.offsetTop - parseFloat(marginTop, 10) + 'px'
+      el.style.width = width
+      el.style.height = height
+    }
+  },
   computed: {
     listStyle() {
       return {width: this.width}
@@ -44,10 +71,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.degree-grid-list {
+  perspective: 3000px;
+  perspective-origin: 50% 50%;
+}
 </style>
 
 <docs>
-  ```jsx
-<filter-grid></filter-grid>
+  ```vue
+<DegreeGrid :items="degrees"/>
   ```
 </docs>

@@ -3,6 +3,7 @@
     <button class="filter-button" :id="option.term_id" @click.prevent="updateValue(option.term_id)">
       <span class="filter-option__title" v-html="option.name"></span>
     </button>
+    <slot></slot>
   </div>
 </template>
 <script>
@@ -10,7 +11,7 @@ export default {
   name: 'FilterListItem',
   props: {
     option: {
-      type: Object,
+      type: [Object, Array],
       // required: true
     },
     selectedFilter: {
@@ -40,3 +41,18 @@ export default {
     text-align: left;
   }
 </style>
+
+<docs>
+  ```vue { "className": "checks" }
+const filters = require('../../mockData/filter.js').default;
+
+<div>
+    <filter-list-item
+      v-for="(option, index) in filters"
+      :key="option.term_id"
+      :option="option">
+    </filter-list-item>
+</div>
+  ```
+
+</docs>

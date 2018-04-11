@@ -1,0 +1,20 @@
+.demo-enter-active, .demo-leave-active {
+  transition: transform 850ms ease, opacity 850ms ease, filter 850ms ease;
+  will-change: transform, opacity, filter;
+}
+.demo-move:not(.demo-leave-active) {
+  transition: transform 850ms ease;
+}
+.demo-enter {
+  opacity: 0;
+  filter: blur(5px);
+  transform: scale(0.01);
+}
+.demo-leave-to {
+  opacity: 0;
+  transform: scale(0.01);
+
+}
+.demo-leave-active {
+  position: absolute;
+}

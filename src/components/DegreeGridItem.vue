@@ -1,5 +1,5 @@
 <template>
-  <component :is="type" class="degree filter-grid-item">
+  <component :is="type" class="degree-grid-item">
     <div class="degree__info">
       <h2 class="degree__name" v-html="item.title.rendered"></h2>
       <blockquote class="degree__slogan" v-html="item.slug"></blockquote>
@@ -46,9 +46,47 @@ export default {
   },
   computed: {
   },
+  methods: {
+    beforeEnter(el) {
+      // el.style.transitionDelay = 100 * el.dataset.index + 'ms'
+    },
+    afterEnter(el) {
+      // el.style.transitionDelay = ''
+    },
+    beforeLeave(el) {
+      var { marginLeft, marginTop, width, height } = window.getComputedStyle(el)
+      el.style.left = el.offsetLeft - parseFloat(marginLeft, 10) + 'px'
+      el.style.top = el.offsetTop - parseFloat(marginTop, 10) + 'px'
+      el.style.width = width
+      el.style.height = height
+    }
+  }
 }
 </script>
 
+<style lang="scss" scoped>
+
+.degree-grid-item {
+  display: inline-flex;
+  vertical-align: top;
+  background: #f5f5f5;
+  border: 1px solid #eee;
+  align-items: center;
+  justify-content: center;
+  width: 280px;
+  height: 165px;
+  margin: 10px;
+  border: 1px solid gray;
+  padding: 1em;
+}
+.degree__info {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: stretch;
+}
+</style>
 <docs>
   ```jsx
 <degree-grid-item v-for="item in items" :key="item.id" :item="item"></degree-grid-item>
