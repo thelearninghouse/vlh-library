@@ -10,6 +10,7 @@
 .animated-grid-items-leave-active {
   transition: all 850ms ease;
   will-change: transform, opacity, filter;
+  z-index: 1;
 }
 
 .animated-grid-items-enter {
@@ -25,6 +26,7 @@
 
 .animated-grid-items-leave-active {
   position: absolute;
+  z-index: 0;
 }
 
 .animated-grid-items-move {

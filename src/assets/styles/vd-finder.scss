@@ -1,6 +1,14 @@
 @import 'reset';
 @import 'transitions';
 
+.degree {
+  &-grid {
+    &-item {
+      backface-visibility: hidden;
+      z-index: 1;
+    }
+  }
+}
 .content {
   position: relative;
   font-family: "Nunito", sans-serif;
