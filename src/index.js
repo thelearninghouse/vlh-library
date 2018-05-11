@@ -1,5 +1,6 @@
 import FilterList from './components/FilterList.vue'
 import FilterListItem from './components/FilterListItem.vue'
+import FilterButton from './components/FilterButton.vue'
 import FilterResetItem from './components/FilterResetItem.vue'
 import DegreeGrid from './components/DegreeGrid.vue'
 import DegreeGridItem from './components/DegreeGridItem.vue'
@@ -12,6 +13,7 @@ const VlhLibrary = {
     Vue.component(DegreeGridItem.name, DegreeGridItem);
     Vue.component(FilterList.name, FilterList);
     Vue.component(FilterListItem.name, FilterListItem);
+    Vue.component(FilterButton.name, FilterButton);
     Vue.component(FilterResetItem.name, FilterResetItem);
     Vue.component(Icon.name, Icon);
   }
@@ -28,6 +30,7 @@ export default VlhLibrary;
 export {
   FilterList,
   FilterListItem,
+  FilterButton,
   FilterResetItem,
   DegreeGrid,
   DegreeGridItem,

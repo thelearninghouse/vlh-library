@@ -1,6 +1,6 @@
 <template>
   <div class="filter-option">
-    <button class="filter-button" :id="id" @click.prevent="resetFilter(id)">
+    <button class="filter-button" :id="id" @click.prevent="updateFilter('all')">
       <span class="filter-option__title" v-html="label"></span>
     </button>
   </div>
@@ -15,16 +15,19 @@ export default {
     label: {
       type: String,
       default: 'All'
-    }
+    },
+    selectedFilter: {
+      type: [String, Number]
+    },
   },
   methods: {
     /**
      * Resets filter for respective filter with that id
      * @event reset
      */
-    resetFilter(filterId) {
-      this.$emit('reset', filterId)
-    }
+     updateFilter (selectedOption) {
+       this.$emit('update:selectedFilter', selectedOption)
+     }
   }
 }
 </script>

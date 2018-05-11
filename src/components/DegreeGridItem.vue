@@ -1,7 +1,6 @@
 <template>
   <component :is="type" class="degree-grid-item">
     <div class="degree__info">
-      <!-- <pre>{{item}}</pre> -->
       <h2 class="degree__name" v-html="item.post_title"></h2>
       <blockquote class="degree__slogan" v-html="item.name"></blockquote>
       <ul class="degree__details">

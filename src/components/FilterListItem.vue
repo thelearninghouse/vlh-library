@@ -1,8 +1,27 @@
 <template>
   <div class="filter-option">
-    <button class="filter-button" :id="option.term_id" @click.prevent="updateValue(option.term_id)">
-      <span class="filter-option__title" v-html="option.name"></span>
-    </button>
+    <div
+      key="parentFilter"
+      v-if="option.sub_areas && option.sub_areas.length"
+      class="filter-button filter-parent"
+      @click.prevent.self="updateFilter(option.term_id)">
+      <div class="filter-option__title">
+        <span>{{option.name}}</span>
+        <icon @click.native.stop="showSubOptions = !showSubOptions" :icon="dropdownIcon"></icon>
+      </div>
+      <template v-if="showSubOptions">
+        <FilterButton
+          v-for="(subOption, index) in option.sub_areas"
+          :key="subOption.term_id"
+          class="filter-option"
+          :class="{selected: selectedFilterOption === subOption.term_id}"
+          @click.native="updateFilter(subOption.term_id)"
+          :option="subOption">
+        </FilterButton>
+      </template>
+    </div>
+
+    <FilterButton v-else key="filter" @click.native="updateFilter(option.term_id)" :option="option"></FilterButton>
     <slot></slot>
   </div>
 </template>
@@ -18,33 +37,62 @@ export default {
       type: [String, Number]
     },
     /*
-    * The v-model attribute
+     * The v-model attribute
      */
     value: {
       type: Number
     }
   },
-  methods: {
-    updateValue(value) {
-      console.log('RANN', value);
-      this.$emit('selected', value)
-      // this.$emit('input', Number(value))
+
+  data: () => ({
+    showSubOptions: false
+  }),
+
+  computed: {
+    selectedFilterOption() {
+      return this.selectedFilter
     },
-    updateFilter (selectedOption) {
+    dropdownIcon() {
+      if (this.showSubOptions === true) {
+        return 'IconHide'
+      } else {
+        return 'IconShow'
+      }
+    }
+  },
+
+  methods: {
+    updateFilter(selectedOption) {
+      if (true) {
+
+      }
+      console.log(selectedOption);
       this.$emit('update:selectedFilter', selectedOption)
-      this.$emit('filterSelected')
-    }    
+    },
+    updateFilterFromSub(selectedOption) {
+      this.dropdownIcon = !this.dropdownIcon
+      this.updateFilter(selectedOption)
+    }
   }
 }
 </script>
-<style>
-  p {
-    font-size: 18px;
+<style lang="scss">
+p {
+  font-size: 18px;
+}
+
+.filter-button {
+  text-align: left;
+}
+.filter-option {
+  &__title {
+    position: relative;
   }
-  .filter-button {
-    text-align: left;
-  }
+}
 </style>
+
+
+
 
 <docs>
   ```vue { "className": "checks" }

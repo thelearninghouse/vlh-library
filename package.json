@@ -8,10 +8,10 @@
   ],
   "scripts": {
     "test": "test-vue-app",
-    "dev": "poi",
+    "dev": "poi dev/main.js",
     "build": "poi build ./src/index.js --component VlhLibrary --no-clear",
     "library": "poi build ./src/index.js --library VlhLibrary",
-    "build:example": "poi build dev/index.js",
+    "build:example": "poi build dev/main.js",
     "docs": "docsify serve ./docs",
     "release": "npm run build && npm publish",
     "prepublish": "npm run build",
@@ -33,10 +33,12 @@
     "axios": "^0.18.0",
     "node-sass": "^4.7.2",
     "poi": "^9.6.13",
-    "sass-loader": "^6.0.6"
+    "sass-loader": "^6.0.6",
+    "vue-stash": "^2.0.1-beta"
   },
   "devDependencies": {
     "vue-loader": "^14.2.1",
-    "vue-styleguidist": "^1.4.10"
+    "vue-styleguidist": "^1.4.10",
+    "vue-svg-loader": "^0.5.0"
   }
 }

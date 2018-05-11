@@ -5,39 +5,34 @@
 
     <div class="filter-list-wrapper list-1">
       <h2>Degree Levels</h2>
-
       <filter-reset-item
-        @reset="currentDegreeLevelFilter = 'all'"
-        id="all-levels"
-        :class="{selected: !currentDegreeLevelFilter}"
-        label="All Leves">
+        :selectedFilter.sync="currentDegreeLevelFilter"
+        :class="{selected: currentDegreeLevelFilter === 'all'}"
+        label="All Levels">
       </filter-reset-item>
 
-<!-- :selectedFilter.sync="currentDegreeLevelFilter" -->
-      <filter-list-item
-        @selected="updateDegreeLevelFilter"
+      <FilterListItem
+        :selectedFilter.sync="currentDegreeLevelFilter"
         v-for="(option, index) in wpDegreeLevels"
-        :key="index"
-        :class="{selected: currentDegreeLevelFilter == index}"
+        :key="option.term_id"
+        :class="{selected: currentDegreeLevelFilter === option.term_id}"
         :option="option">
-      </filter-list-item>
+      </FilterListItem>
     </div>
 
     <div class="filter-list-wrapper list-2">
       <h2>Degree Areas</h2>
-
       <filter-reset-item
-        @reset="currentDegreeAreaFilter = 'all'"
-        id="all-areas"
-        :class="{ selected: !currentDegreeAreaFilter }"
+        :selectedFilter.sync="currentDegreeAreaFilter"
+        :class="{ selected: currentDegreeAreaFilter === 'all' }"
         label="All Areas">
       </filter-reset-item>
 
       <FilterListItem
-        @selected="updateDegreeAreaFilter"
+        :selectedFilter.sync="currentDegreeAreaFilter"
         v-for="(option, index) in wpDegreeAreas"
-        :class="{selected: currentDegreeAreaFilter == index}"
-        :key="index"
+        :class="{selected: currentDegreeAreaFilter === option.term_id}"
+        :key="option.term_id"
         :option="option"/>
       </FilterListItem>
     </div>
@@ -49,37 +44,17 @@
 </template>
 
 <script>
-import axios from 'axios'
 import wpData from '../wpDataMock.js'
+import {buildDegreeList} from './helpers.js'
 
-const Degrees = wpData.degrees
+const DegreeList = buildDegreeList(wpData.degrees);
 const DegreeLevels = wpData.degreeLevels
 const DegreeAreas = wpData.degreeAreas
-
-const DegreesArray = Degrees.map((degree, index) => {
-  var levelsArray = [];
-  var areasArray = [];
-
-  if (degree.degree_levels) {
-    levelsArray = degree.degree_levels.map(level => level.term_id )
-  }
-
-  if (degree.degree_areas) {
-    areasArray = degree.degree_areas.map(area => area.term_id )
-  }
-
-  degree['levels'] = levelsArray
-  degree['areas'] = areasArray
-  return degree
-})
-
-axios.defaults.baseURL =
-  "https://onlineuwa.staging.wpengine.com/wp-json/wp/v2/";
 
 export default {
   data() {
     return {
-      wpDegrees: Degrees,
+      wpDegrees: DegreeList,
       wpDegreeLevels: DegreeLevels,
       wpDegreeAreas: DegreeAreas,
       modal: false,
@@ -111,9 +86,6 @@ export default {
         rating: false
       }
     }
-  },
-  created: function() {
-
   },
 
   computed: {
@@ -158,17 +130,6 @@ export default {
     },
 
     filteredDegreesByArea() {
-      // let filteredDegrees = this.wpDegrees.filter(degree => {
-			// 	if (activeDegreeAreaFilter === 'all') {
-			// 		return degree;
-			// 	}
-			// 	let areasOfStudyForDegree = degree.verticals;
-			// 	return areasOfStudyForDegree.includes(activeDegreeAreaFilter.term_id);
-			// });
-			// return filteredDegrees;
-
-      // if (!this.currentDegreeAreaFilter) { return this.wpDegrees}
-
       let filteredDegrees = this.wpDegrees.filter(degree => {
         if (this.currentDegreeAreaFilter === 'all') {
 					return degree;
@@ -189,15 +150,6 @@ export default {
         return DegreeLevels.includes(this.currentDegreeLevelFilter);
       });
       return filteredDegrees
-
-      // if (!this.currentDegreeLevelFilter) { return this.wpDegrees}
-      //
-      // return this.wpDegrees.filter(({levels}) => {
-      //   if (!levels.length) {
-      //     return;
-      //   }
-      //   return levels.includes(this.currentDegreeLevelFilter);
-      // });
     },
 
     activeFilters() {
@@ -256,38 +208,10 @@ export default {
     },
 
     updateDegreeAreaFilter(val) {
+      console.log('got it!!! ', val);
       this.currentDegreeAreaFilter = val
     },
 
-    getDegrees() {
-      return axios.get("/degrees?per_page=50");
-    },
-
-    getDegreeLevels() {
-      return axios.get("/levels?per_page=50");
-    },
-
-    getDegreeVerticals() {
-      return axios.get("/verticals?per_page=50");
-    },
-
-    async getApiData() {
-      const degreesPromise = axios(
-        "https://onlineuwa.staging.wpengine.com/wp-json/wp/v2/degrees?per_page=50"
-      );
-      const verticalsPromise = axios(
-        "https://onlineuwa.staging.wpengine.com/wp-json/wp/v2/verticals?per_page=50"
-      );
-      const levelsPromise = axios(
-        "https://onlineuwa.staging.wpengine.com/wp-json/wp/v2/levels?per_page=50"
-      );
-      // await all three promises to come back and destructure the result into their own variables
-      const [degrees, verticals, levels] = await Promise.all([
-        degreesPromise,
-        verticalsPromise,
-        levelsPromise
-      ]);
-    },
     setFilter(filter, option) {
       if (filter === "countries") {
         this.filters[filter][option] = !this.filters[filter][option];
