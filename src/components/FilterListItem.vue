@@ -1,77 +1,58 @@
 <template>
-  <div class="filter-option">
-    <div
-      key="parentFilter"
-      v-if="option.sub_areas && option.sub_areas.length"
-      class="filter-button filter-parent"
-      @click.prevent.self="updateFilter(option.term_id)">
-      <div class="filter-option__title">
-        <span>{{option.name}}</span>
-        <icon @click.native.stop="showSubOptions = !showSubOptions" :icon="dropdownIcon"></icon>
-      </div>
-      <template v-if="showSubOptions">
-        <FilterButton
-          v-for="(subOption, index) in option.sub_areas"
-          :key="subOption.term_id"
-          class="filter-option"
-          :class="{selected: selectedFilterOption === subOption.term_id}"
-          @click.native="updateFilter(subOption.term_id)"
-          :option="subOption">
-        </FilterButton>
-      </template>
+  <li class="filter-list-item" :class="{'parent': hasSubItems}">
+
+    <div class="label" @click="handleSelected(item)">
+      <span v-html="item.name"></span>
+      <icon v-if="hasSubItems" @click.native.stop="showSubItems = !showSubItems" :icon="dropdownIcon"></icon>
     </div>
 
-    <FilterButton v-else key="filter" @click.native="updateFilter(option.term_id)" :option="option"></FilterButton>
-    <slot></slot>
-  </div>
+    <ul v-if="hasSubItems && showSubItems">
+      <filter-list-item
+        v-for="subItem in item.sub_areas"
+        :selectedItem="selectedItem"
+        :item="subItem"
+        :class="{selected: selectedItem === subItem.term_id}"
+        :handle-selected="handleSelected"
+        :key="subItem.term_id">
+        </filter-list-item>
+    </ul>
+
+  </li>
 </template>
+
 <script>
 export default {
   name: 'FilterListItem',
+
   props: {
-    option: {
-      type: [Object, Array],
+
+    item: {
+      type: [Array, Object],
       // required: true
     },
-    selectedFilter: {
+
+    selectedItem: {
       type: [String, Number]
     },
-    /*
-     * The v-model attribute
-     */
-    value: {
-      type: Number
-    }
+
+    handleSelected: Function
   },
 
   data: () => ({
-    showSubOptions: false
+    showSubItems: false
   }),
 
   computed: {
-    selectedFilterOption() {
-      return this.selectedFilter
+    hasSubItems() {
+      return this.item.sub_areas && this.item.sub_areas.length ? true : false
     },
+
     dropdownIcon() {
-      if (this.showSubOptions === true) {
+      if (this.showSubItems === true) {
         return 'IconHide'
       } else {
         return 'IconShow'
       }
-    }
-  },
-
-  methods: {
-    updateFilter(selectedOption) {
-      if (true) {
-
-      }
-      console.log(selectedOption);
-      this.$emit('update:selectedFilter', selectedOption)
-    },
-    updateFilterFromSub(selectedOption) {
-      this.dropdownIcon = !this.dropdownIcon
-      this.updateFilter(selectedOption)
     }
   }
 }
@@ -80,7 +61,30 @@ export default {
 p {
   font-size: 18px;
 }
+.filter-list {
+  flex-direction: column;
 
+  &-item {
+    width: 100%;
+    margin-top: .25em;
+    margin-bottom: .25em;
+    position: relative;
+
+    &.selected {
+
+      & > .label {
+        background: lightgray !important;
+      }
+    }
+
+    .label {
+      display: block;
+      padding: .5em .25em;
+      cursor: pointer;
+      position: relative;
+    }
+  }
+}
 .filter-button {
   text-align: left;
 }

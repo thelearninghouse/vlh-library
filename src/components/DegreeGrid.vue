@@ -1,7 +1,7 @@
 <template>
   <component :is="type" class="degree-grid">
 
-    <transition-group name="animated-grid-items" tag="ul" class="degree-grid-list" appear>
+    <transition-group name="animated-grid" tag="div" class="degree-grid-list" appear>
       <DegreeGridItem v-for="(item, index) in items" :key="item.ID" :item="item" />
     </transition-group>
 
@@ -14,7 +14,7 @@
  */
 export default {
   name: "DegreeGrid",
-  version: "ready",
+
   props: {
     /**
      * The array of items to be used for the filtering.

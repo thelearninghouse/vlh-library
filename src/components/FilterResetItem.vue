@@ -1,33 +1,30 @@
 <template>
-  <div class="filter-option">
-    <button class="filter-button" :id="id" @click.prevent="updateFilter('all')">
-      <span class="filter-option__title" v-html="label"></span>
-    </button>
+  <div class="filter-list-item">
+    <div class="label" @click="handleReset">
+      <span v-html="label"></span>
+    </div>
   </div>
 </template>
 <script>
 export default {
   name: 'FilterResetItem',
+
   props: {
+
     id: {
       type: String,
     },
+
     label: {
       type: String,
       default: 'All'
     },
-    selectedFilter: {
+
+    selectedItem: {
       type: [String, Number]
     },
-  },
-  methods: {
-    /**
-     * Resets filter for respective filter with that id
-     * @event reset
-     */
-     updateFilter (selectedOption) {
-       this.$emit('update:selectedFilter', selectedOption)
-     }
+
+    handleReset: Function,
   }
 }
 </script>

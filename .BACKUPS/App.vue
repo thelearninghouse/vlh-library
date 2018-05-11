@@ -1,31 +1,46 @@
 <template>
-  <main id="app" class="content">
+<main id="app" class="content">
 
-    <div class="degreeFilters">
-      <div class="filter-list-wrapper">
-        <h2>Degree Levels</h2>
-        <FilterList
-          :selectedFilter="currentDegreeLevelFilter"
-          :list="wpDegreeLevels"
-          @filter-selected="updateFilter"
-          @filter-reset="currentDegreeLevelFilter = 'all'">
-        </FilterList>
-      </div>
+  <div class="degreeFilters">
 
-      <div class="filter-list-wrapper">
-        <h2>Degree Areas</h2>
-        <FilterList
-          :selectedFilter="currentDegreeAreaFilter"
-          :list="wpDegreeAreas"
-          @filter-selected="updateFilter"
-          @filter-reset="currentDegreeAreaFilter = 'all'">
-        </FilterList>
-      </div>
+    <div class="filter-list-wrapper list-1">
+      <h2>Degree Levels</h2>
+      <filter-reset-item
+        :selectedFilter.sync="currentDegreeLevelFilter"
+        :class="{selected: currentDegreeLevelFilter === 'all'}"
+        label="All Levels">
+      </filter-reset-item>
+
+      <FilterListItem
+        :selectedFilter.sync="currentDegreeLevelFilter"
+        v-for="(option, index) in wpDegreeLevels"
+        :key="option.term_id"
+        :class="{selected: currentDegreeLevelFilter === option.term_id}"
+        :option="option">
+      </FilterListItem>
     </div>
 
-    <DegreeGrid :items="degreeList"/>
+    <div class="filter-list-wrapper list-2">
+      <h2>Degree Areas</h2>
+      <filter-reset-item
+        :selectedFilter.sync="currentDegreeAreaFilter"
+        :class="{ selected: currentDegreeAreaFilter === 'all' }"
+        label="All Areas">
+      </filter-reset-item>
 
-  </main>
+      <FilterListItem
+        :selectedFilter.sync="currentDegreeAreaFilter"
+        v-for="(option, index) in wpDegreeAreas"
+        :class="{selected: currentDegreeAreaFilter === option.term_id}"
+        :key="option.term_id"
+        :option="option"/>
+      </FilterListItem>
+    </div>
+  </div>
+
+  <DegreeGrid :items="degreeList"/>
+
+</main>
 </template>
 
 <script>
@@ -187,15 +202,6 @@ export default {
     }
   },
   methods: {
-    updateFilter(filterSelected) {
-      console.log(filterSelected);
-      if (filterSelected.taxonomy === 'degree_vertical') {
-        this.updateDegreeAreaFilter(filterSelected.term_id)
-      } else {
-        this.updateDegreeLevelFilter(filterSelected.term_id)
-      }
-    },
-
     updateDegreeLevelFilter(val) {
       console.log('updateDegreeLevelFilter', val);
       this.currentDegreeLevelFilter = val

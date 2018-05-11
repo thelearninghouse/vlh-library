@@ -1,16 +1,24 @@
 <template>
-  <component :is="tag" class="filter-list">
-    <filter-list-item v-model="option.term_id" v-for="(option, key) in list" :key="option.term_id" :option="option"></filter-list-item>
-  </component>
+  <div class="filter">
+    <ul class="filter-list">
+      <filter-reset-item
+        :class="{selected: selectedFilter === 'all'}"
+        :handle-reset="handleReset">
+      </filter-reset-item>
+      <filter-list-item
+        v-for="(item, index) in list"
+        :selectedItem="selectedFilter"
+        :class="{selected: selectedFilter === item.term_id}"
+        :handle-selected="handleSelected" :key="index" :item="item">
+      </filter-list-item>
+    </ul>
+  </div>
 </template>
+
 <script>
 export default {
   name: 'FilterList',
 
-  data() {
-    return {
-    }
-  },
   props: {
     /*
     * HTML Element to use for this compontent
@@ -25,12 +33,27 @@ export default {
     list: {
       type: [Array, Object],
       required: true
+    },
+
+    selectedFilter: {
+      type: [String, Number]
+      // required: true
+    }
+  },
+
+  methods: {
+    handleSelected (item) {
+      this.$emit('filter-selected', item)
+    },
+
+    handleReset () {
+      this.$emit('filter-reset')
     }
   }
 }
 </script>
 <style>
-p {
-  font-size: 18px;
-}
+  p {
+    font-size: 18px;
+  }
 </style>
