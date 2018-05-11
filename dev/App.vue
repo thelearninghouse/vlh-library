@@ -2,6 +2,7 @@
   <main id="app" class="content">
 
     <div class="degreeFilters">
+
       <div class="filter-list-wrapper">
         <h2>Degree Levels</h2>
         <FilterList
@@ -21,6 +22,7 @@
           @filter-reset="currentDegreeAreaFilter = 'all'">
         </FilterList>
       </div>
+      
     </div>
 
     <DegreeGrid :items="degreeList"/>

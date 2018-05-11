@@ -1,18 +1,16 @@
 <template>
-  <div class="filter">
-    <ul class="filter-list">
-      <filter-reset-item
-        :class="{selected: selectedFilter === 'all'}"
-        :handle-reset="handleReset">
-      </filter-reset-item>
-      <filter-list-item
-        v-for="(item, index) in list"
-        :selectedItem="selectedFilter"
-        :class="{selected: selectedFilter === item.term_id}"
-        :handle-selected="handleSelected" :key="index" :item="item">
-      </filter-list-item>
-    </ul>
-  </div>
+  <ul class="filter-list">
+    <filter-reset-item
+      :class="{selected: selectedFilter === 'all'}"
+      :handle-reset="handleReset">
+    </filter-reset-item>
+    <filter-list-item
+      v-for="(item, index) in list"
+      :selectedItem="selectedFilter"
+      :class="{selected: selectedFilter === item.term_id}"
+      :handle-selected="handleSelected" :key="index" :item="item">
+    </filter-list-item>
+  </ul>
 </template>
 
 <script>

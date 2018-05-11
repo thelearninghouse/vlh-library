@@ -16,7 +16,7 @@
  */
 export default {
   name: "DegreeGrid",
-  version: "ready",
+
   props: {
     /**
      * The array of items to be used for the filtering.

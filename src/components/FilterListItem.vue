@@ -14,9 +14,8 @@
         :class="{selected: selectedItem === subItem.term_id}"
         :handle-selected="handleSelected"
         :key="subItem.term_id">
-        </filter-list-item>
+      </filter-list-item>
     </ul>
-
   </li>
 </template>
 
@@ -28,7 +27,6 @@ export default {
 
     item: {
       type: [Array, Object],
-      // required: true
     },
 
     selectedItem: {
