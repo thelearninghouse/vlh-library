@@ -2,7 +2,7 @@
   <component :is="type" class="degree-grid">
 
     <transition-group name="animated-grid-items" tag="ul" class="degree-grid-list" appear>
-      <DegreeGridItem v-for="(item, index) in items" :key="item.id" :item="item" />
+      <DegreeGridItem v-for="(item, index) in items" :key="item.ID" :item="item" />
     </transition-group>
 
   </component>

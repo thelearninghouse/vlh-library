@@ -1,20 +1,24 @@
 <template>
   <component :is="type" class="degree-grid-item">
     <div class="degree__info">
-      <h2 class="degree__name" v-html="item.title.rendered"></h2>
-      <blockquote class="degree__slogan" v-html="item.slug"></blockquote>
+      <!-- <pre>{{item}}</pre> -->
+      <h2 class="degree__name" v-html="item.post_title"></h2>
+      <blockquote class="degree__slogan" v-html="item.name"></blockquote>
       <ul class="degree__details">
         <li class="degree__data">
-          <label class="degree__label">Verticals</label>
+          <label class="degree__label"><strong>Areas: </strong></label>
           <div class="degree__country">
-            <span v-for="vertical in item.verticals" class="">
-                {{vertical}}
-              </span>
+            <span v-for="area in item.degree_areas" class="">
+              {{area.name}}
+            </span>
           </div>
         </li>
-
+        <br>
         <li class="degree__data">
-          <label class="degree__label">Levels</label>
+          <label class="degree__label"><strong>Levels: </strong></label>
+          <span v-for="level in item.degree_levels" class="">
+            {{level.name}}
+          </span>
         </li>
       </ul>
     </div>

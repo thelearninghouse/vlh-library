@@ -29,7 +29,11 @@ export default {
       console.log('RANN', value);
       this.$emit('selected', value)
       // this.$emit('input', Number(value))
-    }
+    },
+    updateFilter (selectedOption) {
+      this.$emit('update:selectedFilter', selectedOption)
+      this.$emit('filterSelected')
+    }    
   }
 }
 </script>

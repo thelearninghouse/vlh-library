@@ -7,17 +7,18 @@
       <h2>Degree Levels</h2>
 
       <filter-reset-item
-        @reset="currentDegreeLevelFilter = ''"
+        @reset="currentDegreeLevelFilter = 'all'"
         id="all-levels"
         :class="{selected: !currentDegreeLevelFilter}"
         label="All Leves">
       </filter-reset-item>
 
+<!-- :selectedFilter.sync="currentDegreeLevelFilter" -->
       <filter-list-item
         @selected="updateDegreeLevelFilter"
-        v-for="(option, key) in degreeFilters.degree_levels"
-        :key="key"
-        :class="{selected: currentDegreeLevelFilter == key}"
+        v-for="(option, index) in wpDegreeLevels"
+        :key="index"
+        :class="{selected: currentDegreeLevelFilter == index}"
         :option="option">
       </filter-list-item>
     </div>
@@ -26,7 +27,7 @@
       <h2>Degree Areas</h2>
 
       <filter-reset-item
-        @reset="currentDegreeAreaFilter = ''"
+        @reset="currentDegreeAreaFilter = 'all'"
         id="all-areas"
         :class="{ selected: !currentDegreeAreaFilter }"
         label="All Areas">
@@ -34,9 +35,9 @@
 
       <FilterListItem
         @selected="updateDegreeAreaFilter"
-        v-for="(option, key) in degreeFilters.degree_areas"
-        :class="{selected: currentDegreeAreaFilter == key}"
-        :key="key"
+        v-for="(option, index) in wpDegreeAreas"
+        :class="{selected: currentDegreeAreaFilter == index}"
+        :key="index"
         :option="option"/>
       </FilterListItem>
     </div>
@@ -49,6 +50,28 @@
 
 <script>
 import axios from 'axios'
+import wpData from '../wpDataMock.js'
+
+const Degrees = wpData.degrees
+const DegreeLevels = wpData.degreeLevels
+const DegreeAreas = wpData.degreeAreas
+
+const DegreesArray = Degrees.map((degree, index) => {
+  var levelsArray = [];
+  var areasArray = [];
+
+  if (degree.degree_levels) {
+    levelsArray = degree.degree_levels.map(level => level.term_id )
+  }
+
+  if (degree.degree_areas) {
+    areasArray = degree.degree_areas.map(area => area.term_id )
+  }
+
+  degree['levels'] = levelsArray
+  degree['areas'] = areasArray
+  return degree
+})
 
 axios.defaults.baseURL =
   "https://onlineuwa.staging.wpengine.com/wp-json/wp/v2/";
@@ -56,11 +79,14 @@ axios.defaults.baseURL =
 export default {
   data() {
     return {
+      wpDegrees: Degrees,
+      wpDegreeLevels: DegreeLevels,
+      wpDegreeAreas: DegreeAreas,
       modal: false,
       companies: [],
       degrees: [],
-      currentDegreeLevelFilter: '',
-      currentDegreeAreaFilter: '',
+      currentDegreeLevelFilter: 'all',
+      currentDegreeAreaFilter: 'all',
       dropdown: {
         height: 0
       },
@@ -87,46 +113,7 @@ export default {
     }
   },
   created: function() {
-    axios
-      .all([
-        this.getDegrees(),
-        this.getDegreeLevels(),
-        this.getDegreeVerticals()
-      ])
-      .then(
-        axios.spread((degrees, levels, verticals) => {
-          const degreesArray = degrees.data;
-          this.degrees = degreesArray;
 
-          degreesArray.forEach(({
-            degree_levels,
-            degree_types,
-            levels,
-            verticals
-          }) => {
-            degree_levels.forEach(degree_level => {
-              this.$set(this.degreeFilters.degree_levels, degree_level.term_id, degree_level);
-            });
-
-            degree_types.forEach(degree_type => {
-              this.$set(this.degreeFilters.degree_areas, degree_type.term_id, degree_type);
-            });
-
-            levels.forEach(level => {
-              this.$set(this.degreeFilters.levels, level, false);
-            });
-
-            verticals.forEach(vertical => {
-              this.$set(this.degreeFilters.areas, vertical, false);
-            });
-
-          });
-
-
-          // this.degreeLevels = levels.data
-          // this.degreeVerticals = verticals.data
-        })
-      );
   },
 
   computed: {
@@ -157,31 +144,60 @@ export default {
     },
 
     degreeList() {
-      let degreeLevelFilter = this.currentDegreeLevelFilter;
 
-      if (degreeLevelFilter) {
-        return this.degrees.filter(({levels, verticals}) => {
-          if (!levels.length) {
-            return true;
-          }
-          return levels.includes(degreeLevelFilter);
-        });
-      } else {
-        return this.degrees
-      }
+      if ( !this.wpDegrees ) return []
+			let a = new Set(this.filteredDegreesByArea);
+			let b = new Set(this.filteredDegreesByLevel);
+			// let c = new Set(this.currentDegreesBySearch);
+			let intersection = new Set(
+				[...a].filter(x => b.has(x))
+			);
+
+			return [...intersection]
+
+    },
+
+    filteredDegreesByArea() {
+      // let filteredDegrees = this.wpDegrees.filter(degree => {
+			// 	if (activeDegreeAreaFilter === 'all') {
+			// 		return degree;
+			// 	}
+			// 	let areasOfStudyForDegree = degree.verticals;
+			// 	return areasOfStudyForDegree.includes(activeDegreeAreaFilter.term_id);
+			// });
+			// return filteredDegrees;
+
+      // if (!this.currentDegreeAreaFilter) { return this.wpDegrees}
+
+      let filteredDegrees = this.wpDegrees.filter(degree => {
+        if (this.currentDegreeAreaFilter === 'all') {
+					return degree;
+				}
+        let DegreeAreas = degree.areas
+        return DegreeAreas.includes(this.currentDegreeAreaFilter);
+      });
+      return filteredDegrees
     },
 
     filteredDegreesByLevel() {
-      if (this.currentDegreeLevelFilter) {
-        return this.degrees.filter(({levels, verticals}) => {
-          if (!levels.length) {
-            return true;
-          }
-          return levels.includes(this.currentDegreeLevelFilter);
-        });
-      } else {
-        return this.degrees
-      }
+
+      let filteredDegrees = this.wpDegrees.filter(degree => {
+        if (this.currentDegreeLevelFilter === 'all') {
+					return degree;
+				}
+        let DegreeLevels = degree.levels
+        return DegreeLevels.includes(this.currentDegreeLevelFilter);
+      });
+      return filteredDegrees
+
+      // if (!this.currentDegreeLevelFilter) { return this.wpDegrees}
+      //
+      // return this.wpDegrees.filter(({levels}) => {
+      //   if (!levels.length) {
+      //     return;
+      //   }
+      //   return levels.includes(this.currentDegreeLevelFilter);
+      // });
     },
 
     activeFilters() {
@@ -235,6 +251,7 @@ export default {
   },
   methods: {
     updateDegreeLevelFilter(val) {
+      console.log('updateDegreeLevelFilter', val);
       this.currentDegreeLevelFilter = val
     },
 
