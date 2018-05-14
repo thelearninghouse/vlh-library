@@ -1,14 +1,34 @@
 // Not sure but for some reason, without this theres a a tick at the end of animation
 
+.subfilter-list {
+  transition: all 250ms ease-out;
+  z-index: -1;
+  position: relative;
+}
+.accordion-enter,
+.accordion-leave-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 250ms ease-out;
+
+}
+
+.accordion-leave-to {
+  transition: all 250ms ease-out;
+
+  transform: translateY(20px);
+  opacity: 0;
+}
+
 .animated-grid-items-item {
-  transition: all 850ms ease;
+  transition: all 550ms ease;
   display: inline-block;
-  margin-right: 10px;
+  // margin-right: 10px;
 }
 
 .animated-grid-items-enter-active,
 .animated-grid-items-leave-active {
-  transition: all 850ms ease;
+  transition: all 550ms ease;
   will-change: transform, opacity, filter;
   z-index: 1;
 }

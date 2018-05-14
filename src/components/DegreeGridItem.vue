@@ -5,6 +5,7 @@
       <blockquote class="degree__slogan" v-html="item.name"></blockquote>
       <ul class="degree__details">
         <li class="degree__data">
+       
           <label class="degree__label"><strong>Areas: </strong></label>
           <div class="degree__country">
             <span v-for="area in item.degree_areas" class="">

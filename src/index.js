@@ -4,7 +4,7 @@ import FilterResetItem from './components/FilterResetItem.vue'
 import DegreeGrid from './components/DegreeGrid.vue'
 import DegreeGridItem from './components/DegreeGridItem.vue'
 import Icon from './components/Icon.vue'
-import './assets/styles/vd-finder.scss'
+import './assets/styles/styles.scss'
 
 const VlhLibrary = {
   install(Vue, options) {

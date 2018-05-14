@@ -3,8 +3,11 @@
 </template>
 
 <script>
+import Check from '../assets/images/check.svg';
 import IconHide from '../assets/images/icon-hide.svg';
 import IconShow from '../assets/images/icon-show.svg';
+import ShowSubfilters from '../assets/images/show-subfilters.svg';
+import HideSubfilters from '../assets/images/hide-subfilters.svg';
 
 /**
  * Icon
@@ -20,19 +23,10 @@ export default {
       type: [String, Object, Function, Array]
     }
   },
-  components: { IconShow, IconHide },
+  components: { Check, IconShow, IconHide, ShowSubfilters, HideSubfilters },
 }
 </script>
 
 <style lang="scss">
-
-.icon {
-  overflow: hidden;
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  z-index: 999;
-  transform: translateY(-50%);
-}
 
 </style>

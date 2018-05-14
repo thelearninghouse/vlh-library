@@ -2,6 +2,7 @@
   <ul class="filter-list">
     <filter-reset-item
       :class="{selected: selectedFilter === 'all'}"
+      :selectedItem="selectedFilter"
       :handle-reset="handleReset">
     </filter-reset-item>
     <filter-list-item
@@ -15,6 +16,8 @@
 
 <script>
 export default {
+  inject: ['wpData'],
+
   name: 'FilterList',
 
   props: {
@@ -46,6 +49,11 @@ export default {
 
     handleReset () {
       this.$emit('filter-reset')
+    }
+  },
+  computed: {
+    injectedValue() {
+      return this.wpData.degreeLevels
     }
   }
 }

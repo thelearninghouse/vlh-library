@@ -2,7 +2,6 @@
   <main id="app" class="content">
 
     <div class="degreeFilters">
-
       <div class="filter-list-wrapper">
         <h2>Degree Levels</h2>
         <FilterList
@@ -22,11 +21,10 @@
           @filter-reset="currentDegreeAreaFilter = 'all'">
         </FilterList>
       </div>
-      
     </div>
 
     <DegreeGrid :items="degreeList"/>
-
+    <h1 class="no-results" v-if="!degreeList.length">No Matches</h1>
   </main>
 </template>
 
@@ -39,8 +37,19 @@ const DegreeLevels = wpData.degreeLevels
 const DegreeAreas = wpData.degreeAreas
 
 export default {
+  provide() {
+    return {
+      wpData: this.wpData
+    }
+  },
+
   data() {
     return {
+      wpData: {
+        degrees: DegreeList,
+        degreeLevels: DegreeLevels,
+        degreeAreas: DegreeAreas,
+      },
       wpDegrees: DegreeList,
       wpDegreeLevels: DegreeLevels,
       wpDegreeAreas: DegreeAreas,

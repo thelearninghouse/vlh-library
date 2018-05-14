@@ -1,21 +1,23 @@
 <template>
   <li class="filter-list-item" :class="{'parent': hasSubItems}">
-
     <div class="label" @click="handleSelected(item)">
+      <icon class="selected-icon" v-if="selectedItem === item.term_id"  icon="Check"></icon>
       <span v-html="item.name"></span>
-      <icon v-if="hasSubItems" @click.native.stop="showSubItems = !showSubItems" :icon="dropdownIcon"></icon>
+      <icon class="toggle-subitems" v-if="hasSubItems" @click.native.stop="showSubItems = !showSubItems" :icon="dropdownIcon"></icon>
     </div>
 
-    <ul v-if="hasSubItems && showSubItems">
-      <filter-list-item
-        v-for="subItem in item.sub_areas"
-        :selectedItem="selectedItem"
-        :item="subItem"
-        :class="{selected: selectedItem === subItem.term_id}"
-        :handle-selected="handleSelected"
-        :key="subItem.term_id">
-      </filter-list-item>
-    </ul>
+    <transition name="accordion" @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave" @leave="leave" appear>
+      <ul class="subfilter-list" v-if="hasSubItems && showSubItems">
+        <filter-list-item
+          v-for="subItem in item.sub_areas"
+          :selectedItem="selectedItem"
+          :item="subItem"
+          :class="{selected: selectedItem === subItem.term_id}"
+          :handle-selected="handleSelected"
+          :key="subItem.term_id">
+        </filter-list-item>
+      </ul>
+    </transition>
   </li>
 </template>
 
@@ -47,10 +49,25 @@ export default {
 
     dropdownIcon() {
       if (this.showSubItems === true) {
-        return 'IconHide'
+        return 'HideSubfilters'
       } else {
-        return 'IconShow'
+        return 'ShowSubfilters'
       }
+    }
+  },
+
+  methods: {
+    beforeEnter: function(el) {
+      el.style.height = "0";
+    },
+    enter: function(el) {
+      el.style.height = el.scrollHeight + 20 + "px";
+    },
+    beforeLeave: function(el) {
+      el.style.height = el.scrollHeight + 20 + "px";
+    },
+    leave: function(el) {
+      el.style.height = "0";
     }
   }
 }
@@ -64,22 +81,21 @@ p {
 
   &-item {
     width: 100%;
-    margin-top: .25em;
-    margin-bottom: .25em;
     position: relative;
 
     &.selected {
 
       & > .label {
-        background: lightgray !important;
       }
     }
 
     .label {
-      display: block;
-      padding: .5em .25em;
+      padding: .5em .75em .5em .5em;
       cursor: pointer;
       position: relative;
+      font-size: .9em;
+      margin-top: .25em;
+      border-bottom: 2px solid #cecece;
     }
   }
 }
@@ -90,6 +106,15 @@ p {
   &__title {
     position: relative;
   }
+}
+
+.toggle-subitems {
+  overflow: hidden;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  z-index: 999;
+  transform: translateY(-50%);
 }
 </style>
 
