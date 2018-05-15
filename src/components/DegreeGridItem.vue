@@ -1,11 +1,11 @@
 <template>
-  <component :is="type" class="degree-grid-item">
+  <component :is="type" class="degree-grid-item" :class="degreeClasses">
     <div class="degree__info">
       <h2 class="degree__name" v-html="item.post_title"></h2>
       <blockquote class="degree__slogan" v-html="item.name"></blockquote>
       <ul class="degree__details">
         <li class="degree__data">
-       
+
           <label class="degree__label"><strong>Areas: </strong></label>
           <div class="degree__country">
             <span v-for="area in item.degree_areas" class="">
@@ -49,8 +49,30 @@ export default {
     },
   },
   computed: {
+    degreeClasses() {
+      return this.getDegreeClasses(this.item)
+    }
   },
   methods: {
+    getDegreeClasses(degree) {
+			let degreeLevels = degree.degree_levels
+			let degreeTypes = degree.degree_areas
+
+			let levels = degreeLevels.map(level => {
+				return level.slug || ''
+			})
+
+			let types = degreeTypes.map(type => {
+				if (type.slug) {
+					return type.slug
+				} else {
+					return ''
+				}
+			})
+			// return levels
+			return levels.concat(types)
+		},
+
     beforeEnter(el) {
       // el.style.transitionDelay = 100 * el.dataset.index + 'ms'
     },

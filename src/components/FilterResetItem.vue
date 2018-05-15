@@ -1,5 +1,5 @@
 <template>
-  <div class="filter-list-item">
+  <div class="filter-reset filter-item">
     <div class="label" @click="handleReset">
       <icon class="selected-icon" v-if="!selectedItem"  icon="Check"></icon>
       <span v-html="label"></span>

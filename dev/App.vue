@@ -2,6 +2,10 @@
   <main id="app" class="content">
 
     <div class="degreeFilters">
+    <div class="search-filter-wrapper">
+      <SearchFilter v-model="searchFilter"></SearchFilter>
+    </div>
+
       <div class="filter-list-wrapper">
         <h2>Degree Levels</h2>
         <FilterList
@@ -58,6 +62,7 @@ export default {
       degrees: [],
       currentDegreeLevelFilter: null,
       currentDegreeAreaFilter: null,
+      searchFilter: '',
       degreeFilters: {
         levels: {},
         areas: {},

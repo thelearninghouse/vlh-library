@@ -8,6 +8,8 @@ import IconHide from '../assets/images/icon-hide.svg';
 import IconShow from '../assets/images/icon-show.svg';
 import ShowSubfilters from '../assets/images/show-subfilters.svg';
 import HideSubfilters from '../assets/images/hide-subfilters.svg';
+import Search from '../assets/images/search.svg';
+import ClearSearch from '../assets/images/clear-search.svg';
 
 /**
  * Icon

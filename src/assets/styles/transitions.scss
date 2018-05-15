@@ -1,25 +1,37 @@
 // Not sure but for some reason, without this theres a a tick at the end of animation
 
+// Subfilter Dropdowns
 .subfilter-list {
   transition: all 250ms ease-out;
   z-index: -1;
   position: relative;
 }
+
 .accordion-enter,
 .accordion-leave-active {
   opacity: 0;
   transform: translateY(-20px);
   transition: all 250ms ease-out;
-
 }
 
 .accordion-leave-to {
   transition: all 250ms ease-out;
-
   transform: translateY(20px);
   opacity: 0;
 }
 
+// Search Filter
+.search-enter-active,
+.search-leave-active {
+	transition: opacity 0.175s ease-in-out;
+}
+
+.search-enter,
+.search-leave-to {
+	opacity: 0;
+}
+
+// Grid Items
 .animated-grid-items-item {
   transition: all 550ms ease;
   display: inline-block;

@@ -6,13 +6,13 @@
       :handle-reset="handleReset">
     </filter-reset-item>
     <!-- :class="{selected: selectedFilter === item.term_id}" -->
-    <filter-list-item
+    <FilterItem
       v-for="(item, index) in list"
       :selectedItem="selectedFilter"
       :handle-selected="handleSelected"
-      :key="index"
-      :item="item">
-    </filter-list-item>
+      :item="item"
+      :key="item.term_id">
+    </FilterItem>
   </ul>
 </template>
 

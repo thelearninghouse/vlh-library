@@ -1,9 +1,10 @@
 import FilterList from './components/FilterList.vue'
-import FilterListItem from './components/FilterListItem.vue'
+import FilterItem from './components/FilterItem.vue'
 import FilterResetItem from './components/FilterResetItem.vue'
 import DegreeGrid from './components/DegreeGrid.vue'
 import DegreeGridItem from './components/DegreeGridItem.vue'
 import Icon from './components/Icon.vue'
+import SearchFilter from './components/SearchFilter.vue'
 import './assets/styles/styles.scss'
 
 const VlhLibrary = {
@@ -11,9 +12,10 @@ const VlhLibrary = {
     Vue.component(DegreeGrid.name, DegreeGrid);
     Vue.component(DegreeGridItem.name, DegreeGridItem);
     Vue.component(FilterList.name, FilterList);
-    Vue.component(FilterListItem.name, FilterListItem);
+    Vue.component(FilterItem.name, FilterItem);
     Vue.component(FilterResetItem.name, FilterResetItem);
     Vue.component(Icon.name, Icon);
+    Vue.component(SearchFilter.name, SearchFilter);
   }
 };
 
@@ -27,9 +29,10 @@ export default VlhLibrary;
 
 export {
   FilterList,
-  FilterListItem,
+  FilterItem,
   FilterResetItem,
   DegreeGrid,
   DegreeGridItem,
-  Icon
+  Icon,
+  SearchFilter
 }
