@@ -1,7 +1,7 @@
 <template>
-  <li class="filter-list-item" :class="{'parent': hasSubItems}">
+  <li class="filter-list-item" :class="{ 'selected': isSelected(item), 'parent': hasSubItems}">
     <div class="label" @click="handleSelected(item)">
-      <icon class="selected-icon" v-if="selectedItem === item.term_id"  icon="Check"></icon>
+      <icon class="selected-icon" v-if="isSelected(item)" icon="Check"></icon>
       <span v-html="item.name"></span>
       <icon class="toggle-subitems" v-if="hasSubItems" @click.native.stop="showSubItems = !showSubItems" :icon="dropdownIcon"></icon>
     </div>
@@ -12,7 +12,7 @@
           v-for="subItem in item.sub_areas"
           :selectedItem="selectedItem"
           :item="subItem"
-          :class="{selected: selectedItem === subItem.term_id}"
+          :class="{'selected': isSelected(subItem)}"
           :handle-selected="handleSelected"
           :key="subItem.term_id">
         </filter-list-item>
@@ -32,7 +32,7 @@ export default {
     },
 
     selectedItem: {
-      type: [String, Number]
+      type: [Object, String, Number]
     },
 
     handleSelected: Function
@@ -57,6 +57,19 @@ export default {
   },
 
   methods: {
+    isSelected(filterItem) {
+      // console.log(filterItem);
+      if (!this.selectedItem) {
+        return false;
+      } else {
+        return this.selectedItem.term_id === filterItem.term_id ? true: false
+      }
+    },
+
+    childIsSelected(filterItem) {
+      return filterItem.term_id === this.selectedItem.parent
+    },
+
     beforeEnter: function(el) {
       el.style.height = "0";
     },

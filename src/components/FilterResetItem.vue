@@ -1,7 +1,7 @@
 <template>
   <div class="filter-list-item">
     <div class="label" @click="handleReset">
-      <icon class="selected-icon" v-if="selectedItem === 'all'"  icon="Check"></icon>
+      <icon class="selected-icon" v-if="!selectedItem"  icon="Check"></icon>
       <span v-html="label"></span>
     </div>
   </div>
@@ -22,7 +22,7 @@ export default {
     },
 
     selectedItem: {
-      type: [String, Number]
+      type: [Object, String, Number]
     },
 
     handleReset: Function,

@@ -1,15 +1,17 @@
 <template>
   <ul class="filter-list">
     <filter-reset-item
-      :class="{selected: selectedFilter === 'all'}"
+      :class="{selected: !selectedFilter}"
       :selectedItem="selectedFilter"
       :handle-reset="handleReset">
     </filter-reset-item>
+    <!-- :class="{selected: selectedFilter === item.term_id}" -->
     <filter-list-item
       v-for="(item, index) in list"
       :selectedItem="selectedFilter"
-      :class="{selected: selectedFilter === item.term_id}"
-      :handle-selected="handleSelected" :key="index" :item="item">
+      :handle-selected="handleSelected"
+      :key="index"
+      :item="item">
     </filter-list-item>
   </ul>
 </template>
@@ -37,7 +39,7 @@ export default {
     },
 
     selectedFilter: {
-      type: [String, Number]
+      type: [Object, String, Number]
       // required: true
     }
   },

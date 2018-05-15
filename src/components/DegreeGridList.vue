@@ -34,34 +34,8 @@ export default {
     type: {
       type: String,
       default: "div",
-    },
-  },
-  methods: {
-    beforeEnter(el) {
-      console.log('beforeEnter ran');
-      el.style.transitionDelay = 25 * el.dataset.index + 'ms'
-    },
-    afterEnter(el) {
-      console.log('afterEnter ran');
-
-      el.style.transitionDelay = ''
-    },
-    beforeLeave(el) {
-      console.log('beforeLeave ran');
-
-      var { marginLeft, marginTop, width, height } = window.getComputedStyle(el)
-      el.style.left = el.offsetLeft - parseFloat(marginLeft, 10) + 'px'
-      el.style.top = el.offsetTop - parseFloat(marginTop, 10) + 'px'
-      el.style.width = width
-      el.style.height = height
     }
-  },
-  computed: {
-    listStyle() {
-      return {width: this.width}
-    }
-
-  },
+  }
 }
 </script>
 
