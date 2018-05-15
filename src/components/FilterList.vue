@@ -5,7 +5,6 @@
       :selectedItem="selectedFilter"
       :handle-reset="handleReset">
     </filter-reset-item>
-    <!-- :class="{selected: selectedFilter === item.term_id}" -->
     <FilterItem
       v-for="(item, index) in list"
       :selectedItem="selectedFilter"

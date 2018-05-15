@@ -3,7 +3,7 @@
 
     <div class="degreeFilters">
     <div class="search-filter-wrapper">
-      <SearchFilter v-model="searchFilter"></SearchFilter>
+      <SearchFilter v-model="currentDegreeSearchFilter"></SearchFilter>
     </div>
 
       <div class="filter-list-wrapper">
@@ -48,7 +48,6 @@ export default {
       wpData: this.wpData
     }
   },
-
   data() {
     return {
       wpData: {
@@ -62,7 +61,7 @@ export default {
       degrees: [],
       currentDegreeLevelFilter: null,
       currentDegreeAreaFilter: null,
-      searchFilter: '',
+      currentDegreeSearchFilter: '',
       degreeFilters: {
         levels: {},
         areas: {},
@@ -77,34 +76,38 @@ export default {
       if ( !this.wpDegrees ) return []
 			let a = new Set(this.filteredDegreesByArea);
 			let b = new Set(this.filteredDegreesByLevel);
-			// let c = new Set(this.currentDegreesBySearch);
-			let intersection = new Set(
-				[...a].filter(x => b.has(x))
+			let c = new Set(this.filteredDegreesBySearch);
+      let intersection = new Set(
+				[...a].filter(x => b.has(x) && c.has(x))
 			);
 			return [...intersection]
     },
 
+    filteredDegreesBySearch() {
+      if (!this.currentDegreeSearchFilter) return this.wpDegrees
+
+      return this.wpDegrees.filter(degree => {
+				let title = degree.post_title
+				return title.toLowerCase().includes(this.currentDegreeSearchFilter.toLowerCase())
+			})
+		},
+
     filteredDegreesByArea() {
-      let filteredDegrees = this.wpDegrees.filter(degree => {
-        if (!this.currentDegreeAreaFilter) {
-					return degree;
-				}
+      if (!this.currentDegreeAreaFilter) return this.wpDegrees
+
+      return this.wpDegrees.filter(degree => {
         let DegreeAreas = degree.areas
         return DegreeAreas.includes(this.currentDegreeAreaFilter.term_id);
       });
-      return filteredDegrees
     },
 
     filteredDegreesByLevel() {
+      if (!this.currentDegreeLevelFilter) return this.wpDegrees
 
-      let filteredDegrees = this.wpDegrees.filter(degree => {
-        if (!this.currentDegreeLevelFilter) {
-					return degree;
-				}
+      return this.wpDegrees.filter(degree => {
         let DegreeLevels = degree.levels
         return DegreeLevels.includes(this.currentDegreeLevelFilter.term_id);
       });
-      return filteredDegrees
     },
 
     activeDegreeFilters() {

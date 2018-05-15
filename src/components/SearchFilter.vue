@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="search-filter">
-    <label for="degreeGridSearch" class="sr-only">Search For a Degree</label>
-    <input name="degreeGridSearch" :value="value" type="text" class="search-filter-input" placeholder="Click here to search" @input="updateSearch($event.target.value)">
+    <label for="searchFilter" class="sr-only">Search For a Degree</label>
+    <input name="searchFilter" :value="value" type="text" class="search-filter-input" placeholder="Click here to search" @input="debouncedSearch($event.target.value)">
     <div role="button" aria-label="Clear Search" tabindex="0" @click="clearSearch" @keypress.enter="clearSearch" class="search-filter-icon" :class="{clickable: searchQueryExists}">
       <icon class="search-icon" :key="searchIcon" :icon="searchIcon" alt="Search Box"></icon>
     </div>
@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import debounce from './../helpers/debounce.js'
+
 export default {
   name: 'SearchFilter',
 
@@ -31,6 +33,11 @@ export default {
       }
     }
   },
+
+  created() {
+    this.debouncedSearch = debounce(this.updateSearch, 500)
+  },
+
   methods: {
     clearSearch() {
       this.$emit('input', '')
@@ -39,6 +46,7 @@ export default {
     updateSearch(value) {
       this.$emit('input', value)
     }
+
   },
 
 }
