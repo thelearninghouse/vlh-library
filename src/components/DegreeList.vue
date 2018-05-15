@@ -1,13 +1,7 @@
 <template>
-  <component :is="type" class="degree-grid">
-
-    <transition-group name="animated-grid-items" tag="ul" class="degree-grid-list" appear>
-      <slot name="filter-grid-items">
-        <DegreeGridItem v-for="(item, index) in items" :key="item.id" :item="item" />
-      </slot>
-    </transition-group>
-
-  </component>
+  <transition-group name="animated-grid-items" :tag="elementType" class="degree-list" appear>
+    <DegreeItem v-for="(item, index) in items" :item="item" :key="item.ID" />
+  </transition-group>
 </template>
 
 <script>
@@ -15,7 +9,7 @@
  * Filtering for an array of items
  */
 export default {
-  name: "DegreeGrid",
+  name: "DegreeList",
 
   props: {
     /**
@@ -25,22 +19,19 @@ export default {
       type: Array,
       required: true
     },
-    width: {
-      type: String
-    },
     /**
      * The html element name used for the icon
      */
-    type: {
+    elementType: {
       type: String,
       default: "div",
-    }
+    },
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .degree-grid-list {
+  .degree-list {
     perspective: 3000px;
     perspective-origin: 50% 50%;
   }

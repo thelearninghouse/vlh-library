@@ -1,5 +1,5 @@
 <template>
-  <li class="filter-item" :class="{ 'selected': hasSelectedClass, 'parent': hasSubItems}">
+  <component :is="elementType" class="filter-item" :class="{ 'selected': hasSelectedClass, 'parent': hasSubItems}">
     <div class="filter-item-label label" @click="handleSelected(item)">
       <icon class="selected-icon" v-if="isSelected" icon="Check"></icon>
       <span v-html="item.name"></span>
@@ -12,13 +12,13 @@
           v-for="subItem in item.sub_areas"
           :selectedItem="selectedItem"
           :item="subItem"
-          :class="{'selected': subItem.term_id === selectedItem.term_id}"
+          :class="{'selected': subitemIsSelected(subItem) }"
           :handle-selected="handleSelected"
           :key="subItem.term_id">
         </FilterItem>
       </ul>
     </transition>
-  </li>
+  </component>
 </template>
 
 <script>
@@ -29,6 +29,11 @@ export default {
 
     item: {
       type: [Array, Object],
+    },
+
+    elementType: {
+      type: String,
+      default: "li",
     },
 
     selectedItem: {
@@ -71,28 +76,23 @@ export default {
   },
 
   methods: {
-    // isSelected(filterItem) {
-    //   // console.log(filterItem);
-    //   if (!this.selectedItem) {
-    //     return false;
-    //   } else {
-    //     return this.selectedItem.term_id === filterItem.term_id ? true : false
-    //   }
-    // },
-
-    // childIsSelected(filterItem) {
-    //   return filterItem.term_id === this.selectedItem.parent
-    // },
+    subitemIsSelected(subitem) {
+      if ( !this.selectedItem ) return false
+      return subitem.term_id === this.selectedItem.term_id
+    },
 
     beforeEnter: function(el) {
       el.style.height = "0";
     },
+
     enter: function(el) {
       el.style.height = el.scrollHeight + 20 + "px";
     },
+
     beforeLeave: function(el) {
       el.style.height = el.scrollHeight + 20 + "px";
     },
+
     leave: function(el) {
       el.style.height = "0";
     }

@@ -1,14 +1,15 @@
 <template>
-  <div class="filter-reset filter-item">
+  <component :is="elementType" class="filter-item filter-reset">
     <div class="label" @click="handleReset">
-      <icon class="selected-icon" v-if="!selectedItem"  icon="Check"></icon>
+      <icon class="selected-icon" v-if="!selectedItem" icon="Check"></icon>
       <span v-html="label"></span>
     </div>
-  </div>
+  </component>
 </template>
+
 <script>
 export default {
-  name: 'FilterResetItem',
+  name: 'FilterReset',
 
   props: {
 
@@ -21,6 +22,11 @@ export default {
       default: 'All'
     },
 
+    elementType: {
+      type: String,
+      default: "div",
+    },
+
     selectedItem: {
       type: [Object, String, Number]
     },
@@ -30,7 +36,7 @@ export default {
 }
 </script>
 <style>
-p {
-  font-size: 18px;
-}
+  p {
+    font-size: 18px;
+  }
 </style>

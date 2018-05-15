@@ -1,19 +1,19 @@
 import FilterList from './components/FilterList.vue'
 import FilterItem from './components/FilterItem.vue'
-import FilterResetItem from './components/FilterResetItem.vue'
-import DegreeGrid from './components/DegreeGrid.vue'
-import DegreeGridItem from './components/DegreeGridItem.vue'
+import FilterReset from './components/FilterReset.vue'
+import DegreeList from './components/DegreeList.vue'
+import DegreeItem from './components/DegreeItem.vue'
 import Icon from './components/Icon.vue'
 import SearchFilter from './components/SearchFilter.vue'
 import './assets/styles/styles.scss'
 
 const VlhLibrary = {
   install(Vue, options) {
-    Vue.component(DegreeGrid.name, DegreeGrid);
-    Vue.component(DegreeGridItem.name, DegreeGridItem);
+    Vue.component(DegreeList.name, DegreeList);
+    Vue.component(DegreeItem.name, DegreeItem);
     Vue.component(FilterList.name, FilterList);
     Vue.component(FilterItem.name, FilterItem);
-    Vue.component(FilterResetItem.name, FilterResetItem);
+    Vue.component(FilterReset.name, FilterReset);
     Vue.component(Icon.name, Icon);
     Vue.component(SearchFilter.name, SearchFilter);
   }
@@ -30,9 +30,9 @@ export default VlhLibrary;
 export {
   FilterList,
   FilterItem,
-  FilterResetItem,
-  DegreeGrid,
-  DegreeGridItem,
+  FilterReset,
+  DegreeList,
+  DegreeItem,
   Icon,
   SearchFilter
 }

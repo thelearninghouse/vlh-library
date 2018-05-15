@@ -2,9 +2,8 @@
   <main id="app" class="content">
 
     <div class="degreeFilters">
-    <div class="search-filter-wrapper">
+
       <SearchFilter v-model="currentDegreeSearchFilter"></SearchFilter>
-    </div>
 
       <div class="filter-list-wrapper">
         <h2>Degree Levels</h2>
@@ -29,7 +28,7 @@
       </div>
     </div>
 
-    <DegreeGrid :items="degreeList"/>
+    <DegreeList :items="degreeList"/>
     <h1 class="no-results" v-if="!degreeList.length">No Matches</h1>
   </main>
 </template>
@@ -43,11 +42,6 @@ const DegreeLevels = wpData.degreeLevels
 const DegreeAreas = wpData.degreeAreas
 
 export default {
-  provide() {
-    return {
-      wpData: this.wpData
-    }
-  },
   data() {
     return {
       wpData: {
@@ -132,8 +126,6 @@ export default {
     }
   },
 
-  watch: {
-  },
   methods: {
     updateFilter(filterSelected) {
       // console.log(filterSelected);
@@ -161,7 +153,7 @@ export default {
   .degreeFilters {
     flex: 1 1 320px;
   }
-  .degree-grid {
+  .degree-list {
     flex: 1 1 calc(100% - 360px);
   }
   main.content {

@@ -1,10 +1,11 @@
 <template>
-  <ul class="filter-list">
-    <filter-reset-item
+  <component :is="elementType" class="filter-list">
+    <FilterReset
+      element-type="li"
       :class="{selected: !selectedFilter}"
       :selectedItem="selectedFilter"
       :handle-reset="handleReset">
-    </filter-reset-item>
+    </FilterReset>
     <FilterItem
       v-for="(item, index) in list"
       :selectedItem="selectedFilter"
@@ -12,20 +13,18 @@
       :item="item"
       :key="item.term_id">
     </FilterItem>
-  </ul>
+  </component>
 </template>
 
 <script>
 export default {
-  inject: ['wpData'],
-
   name: 'FilterList',
 
   props: {
     /*
     * HTML Element to use for this compontent
      */
-    tag: {
+    elementType: {
       type: String,
       default: 'ul'
     },
@@ -50,11 +49,6 @@ export default {
 
     handleReset () {
       this.$emit('filter-reset')
-    }
-  },
-  computed: {
-    injectedValue() {
-      return this.wpData.degreeLevels
     }
   }
 }
