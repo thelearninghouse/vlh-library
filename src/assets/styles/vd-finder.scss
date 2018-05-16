@@ -1,7 +1,6 @@
 @import 'reset';
 @import 'transitions';
 @import 'demo';
-
 @media (max-width: 799px) {
   .content {
     flex-direction: column;
@@ -23,7 +22,6 @@
   }
 }
 
-
 .degree {
   &-grid {
     &-item {
@@ -31,11 +29,13 @@
       z-index: 1;
     }
   }
+
   &-item {
     backface-visibility: hidden;
     z-index: 1;
   }
 }
+
 .content {
   position: relative;
   font-family: "Nunito", sans-serif;
@@ -55,72 +55,30 @@
   }
 }
 
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  white-space: nowrap;
-  margin: 0 1rem;
-  padding: 2rem 0.5rem 1rem;
-  border-bottom: 1px solid #c5d0d1;
+.filter-list {
 
-  &__controls {
+  &-heading {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    @media (max-width: 800px) {
+      cursor: pointer;
+    }
   }
 
-  &__icon {
-    width: 1rem;
-    height: 1rem;
-    fill: currentColor;
-  }
+  &-status {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-  &__label {
-    position: relative;
-    margin-left: 1rem;
-    text-transform: capitalize;
-    z-index: 1;
-    cursor: pointer;
-
-    &::after {
-      content: "\00d7";
-      display: inline-block;
-      color: transparent;
-      width: 0.5rem;
-      font-weight: 400;
-      transform: scale(0);
-      transition: transform 150ms ease-in-out;
-    }
-
-    &--clear {
-      color: #f68185;
-      opacity: 0;
-      transform: translate3d(-25%, 0, 0);
-      pointer-events: none;
-      transition: all 275ms ease-in-out;
-    }
-
-    &--filter ~ &--clear {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-      pointer-events: auto;
-    }
-
-    &--filter::after,
-    &--active::after {
-      transform: scale(1);
-    }
-
-    &--filter::after {
-      content: "\2022";
-      color: #46d2c4;
-    }
-
-    &--active::after {
-      content: "\00d7";
-      color: #f68185;
-    }
+      .icon {
+        fill: red;
+      }
   }
 }
+
+
 
 .dropdown {
   position: relative;
@@ -143,8 +101,8 @@
     opacity: 0;
   }
 
-  &-leave,
-  &-enter-to {
+  &-enter-to,
+  &-leave {
     opacity: 1;
   }
 

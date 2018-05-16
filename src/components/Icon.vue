@@ -1,5 +1,5 @@
 <template>
-    <component :id="id" class="icon" :is="icon"></component>
+<component :id="id" class="icon" :is="icon"></component>
 </template>
 
 <script>
@@ -10,6 +10,8 @@ import ShowSubfilters from '../assets/images/show-subfilters.svg';
 import HideSubfilters from '../assets/images/hide-subfilters.svg';
 import Search from '../assets/images/search.svg';
 import ClearSearch from '../assets/images/clear-search.svg';
+import ArrowUp from '../assets/images/arrow-up.svg';
+import ArrowDown from '../assets/images/arrow-down.svg';
 
 /**
  * Icon
@@ -25,10 +27,24 @@ export default {
       type: [String, Object, Function, Array]
     }
   },
-  components: { Check, IconShow, IconHide, ShowSubfilters, HideSubfilters },
+  components: {
+    ArrowDown,
+    ArrowUp,
+    Check,
+    ClearSearch,
+    HideSubfilters,
+    IconShow,
+    IconHide,
+    Search,
+    ShowSubfilters
+  },
 }
 </script>
 
 <style lang="scss">
-
+.icon {
+    &-button {
+        cursor: pointer;
+    }
+}
 </style>

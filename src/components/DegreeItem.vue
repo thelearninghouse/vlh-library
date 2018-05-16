@@ -2,9 +2,7 @@
   <component :is="elementType" class="degree-item" :class="[degreeClasses, {open: showSummary}]">
     <div class="degree-item-header">
       <h2 class="header-text" v-html="item.post_title"></h2>
-      <!-- <div @click.native.stop="showSummary = !showSummary" class="summary-toggle"> -->
       <icon @click.native.stop="showSummary = !showSummary" class="summary-toggle" icon="ShowSubfilters"></icon>
-      <!-- </div> -->
     </div>
     <div v-if="showSummary" class="degree-item-summary">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur officia laboriosam delectus est, beatae nemo eius suscipit debitis autem possimus, enim eum quae voluptatibus vel accusamus aliquam libero, sint fugiat perspiciatis excepturi. Dolorum quibusdam voluptatibus error dolore, laboriosam tempora deleniti.

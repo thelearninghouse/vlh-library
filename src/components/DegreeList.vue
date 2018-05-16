@@ -1,6 +1,6 @@
 <template>
   <transition-group name="animated-grid-items" :tag="elementType" class="degree-list">
-    <DegreeItem v-for="(item, index) in items" :item="item" :key="item.ID" />
+    <DegreeItem v-for="item in items" :item="item" :key="item.ID" />
   </transition-group>
 </template>
 
@@ -37,6 +37,7 @@ export default {
     display: flex;
     flex-flow: row wrap;
     align-content: start;
+    align-items: start;
   }
 </style>
 

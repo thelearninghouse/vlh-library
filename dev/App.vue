@@ -1,13 +1,23 @@
 <template>
   <main id="app" class="content">
-
     <div class="degreeFilters">
 
       <SearchFilter v-model="currentDegreeSearchFilter"></SearchFilter>
 
       <div class="filter-list-wrapper">
-        <h2>Degree Levels</h2>
-        <FilterList :selected-filter.sync="currentDegreeLevelFilter">
+
+        <h2 class="filter-list-heading" @click.stop="handleFilterHeadingClick('showDegreeLevelFilter')">
+          Degree Levels
+          <icon v-if="mobile" icon="arrow-down"></icon>
+        </h2>
+        <div class="filter-list-status" v-if="currentDegreeLevelFilter && mobile">
+          <span v-html="currentDegreeLevelFilter.name"></span>
+          <icon class="icon-button" @click.native="currentDegreeLevelFilter = null" icon="clear-search"></icon>
+        </div>
+
+        <FilterList
+          :visible.sync="showDegreeLevelFilter"
+          :selected-filter.sync="currentDegreeLevelFilter">
           <FilterReset label="All Levels"></FilterReset>
           <FilterItem
             v-for="item in wpDegreeLevels"
@@ -15,12 +25,22 @@
             :key="item.term_id">
           </FilterItem>
         </FilterList>
-        <span v-if="currentDegreeLevelFilter" v-html="currentDegreeLevelFilter.name"></span>
+
       </div>
 
       <div class="filter-list-wrapper">
-        <h2>Degree Areas</h2>
-        <FilterList :selected-filter.sync="currentDegreeAreaFilter">
+        <h2 class="filter-list-heading" @click="handleFilterHeadingClick('showDegreeAreaFilter')" >
+          Degree Areas
+          <icon v-if="mobile" icon="arrow-down"></icon>
+        </h2>
+        <div class="filter-list-status" v-if="currentDegreeAreaFilter && mobile">
+          <span v-html="currentDegreeAreaFilter.name"></span>
+          <icon class="icon-button" @click.native="currentDegreeAreaFilter = null" icon="clear-search"></icon>
+        </div>
+
+        <FilterList
+          :visible.sync="showDegreeAreaFilter"
+          :selected-filter.sync="currentDegreeAreaFilter">
           <FilterReset label="All Levels"></FilterReset>
           <FilterItem
             v-for="item in wpDegreeAreas"
@@ -28,7 +48,7 @@
             :key="item.term_id">
           </FilterItem>
         </FilterList>
-        <span v-if="currentDegreeAreaFilter" v-html="currentDegreeAreaFilter.name"></span>
+
       </div>
     </div>
 
@@ -60,6 +80,8 @@ export default {
       currentDegreeLevelFilter: null,
       currentDegreeAreaFilter: null,
       currentDegreeSearchFilter: '',
+      showDegreeLevelFilter: true,
+      showDegreeAreaFilter: true,
       degreeFilters: {
         levels: {},
         areas: {},
@@ -131,6 +153,11 @@ export default {
   },
 
   methods: {
+    handleFilterHeadingClick(filterListVisibility) {
+    if (!this.mobile) return
+    this[filterListVisibility] = !this[filterListVisibility]
+    },
+
     updateFilter(filterSelected) {
       // console.log(filterSelected);
       if (filterSelected.taxonomy === 'degree_vertical') {

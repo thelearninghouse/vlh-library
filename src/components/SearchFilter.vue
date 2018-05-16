@@ -27,9 +27,9 @@ export default {
 
     searchIcon() {
       if (this.searchQueryExists) {
-        return 'HideSubfilters'
+        return 'clear-search'
       } else {
-        return 'ShowSubfilters'
+        return 'search'
       }
     }
   },

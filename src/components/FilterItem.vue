@@ -1,7 +1,7 @@
 <template>
   <component :is="elementType" class="filter-item" :class="{ 'selected': hasSelectedClass, 'parent': hasSubItems}">
     <div class="filter-item-label label" @click="updateSelected">
-      <icon class="selected-icon" v-if="isSelected" icon="Check"></icon>
+      <icon class="selected-icon" v-if="isSelected" icon="check"></icon>
       <span v-html="item.name"></span>
       <icon class="toggle-subitems" v-if="hasSubItems" @click.native.stop="showSubItems = !showSubItems" :icon="dropdownIcon"></icon>
     </div>
@@ -35,11 +35,6 @@ export default {
       type: String,
       default: "li",
     },
-
-    // selectedFilter: {
-    //   type: [Object, String, Number]
-    // },
-
     handleSelected: Function
   },
 
