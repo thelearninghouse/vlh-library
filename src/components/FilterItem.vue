@@ -1,6 +1,6 @@
 <template>
   <component :is="elementType" class="filter-item" :class="{ 'selected': hasSelectedClass, 'parent': hasSubItems}">
-    <div class="filter-item-label label" @click="handleSelected(item)">
+    <div class="filter-item-label label" @click="updateSelected">
       <icon class="selected-icon" v-if="isSelected" icon="Check"></icon>
       <span v-html="item.name"></span>
       <icon class="toggle-subitems" v-if="hasSubItems" @click.native.stop="showSubItems = !showSubItems" :icon="dropdownIcon"></icon>
@@ -10,7 +10,7 @@
       <ul class="subfilter-list" v-if="hasSubItems && showSubItems">
         <FilterItem
           v-for="subItem in item.sub_areas"
-          :selectedItem="selectedItem"
+          :selectedFilter="selectedFilter"
           :item="subItem"
           :class="{'selected': subitemIsSelected(subItem) }"
           :handle-selected="handleSelected"
@@ -24,7 +24,7 @@
 <script>
 export default {
   name: 'FilterItem',
-
+  inject: ['filterState'],
   props: {
 
     item: {
@@ -36,9 +36,9 @@ export default {
       default: "li",
     },
 
-    selectedItem: {
-      type: [Object, String, Number]
-    },
+    // selectedFilter: {
+    //   type: [Object, String, Number]
+    // },
 
     handleSelected: Function
   },
@@ -48,9 +48,17 @@ export default {
   }),
 
   computed: {
+    filterListState() {
+      return this.filterState
+    },
+
+    selectedFilter() {
+      return this.filterState.active
+    },
+
     isSelected() {
-      if ( !this.selectedItem ) return false
-      return this.selectedItem.term_id === this.item.term_id
+      if ( !this.selectedFilter ) return false
+      return this.selectedFilter.term_id === this.item.term_id
     },
 
     hasSubItems() {
@@ -58,8 +66,8 @@ export default {
     },
 
     childIsSelected() {
-      if ( !this.selectedItem ) return false
-      return this.item.term_id === this.selectedItem.parent
+      if ( !this.selectedFilter ) return false
+      return this.item.term_id === this.selectedFilter.parent
     },
 
     hasSelectedClass() {
@@ -76,9 +84,13 @@ export default {
   },
 
   methods: {
+    updateSelected() {
+      this.filterState.active = this.item
+    },
+
     subitemIsSelected(subitem) {
-      if ( !this.selectedItem ) return false
-      return subitem.term_id === this.selectedItem.term_id
+      if ( !this.selectedFilter ) return false
+      return subitem.term_id === this.selectedFilter.term_id
     },
 
     beforeEnter: function(el) {

@@ -1,24 +1,30 @@
 <template>
   <component :is="elementType" class="filter-list">
-    <FilterReset
-      element-type="li"
-      :class="{selected: !selectedFilter}"
-      :selectedItem="selectedFilter"
-      :handle-reset="handleReset">
-    </FilterReset>
-    <FilterItem
-      v-for="(item, index) in list"
-      :selectedItem="selectedFilter"
-      :handle-selected="handleSelected"
-      :item="item"
-      :key="item.term_id">
-    </FilterItem>
+    <slot></slot>
   </component>
 </template>
 
 <script>
 export default {
   name: 'FilterList',
+  provide() {
+    return {
+      filterState: this.filterState
+    }
+  },
+
+  data: () => ({
+    filterState: {
+      active: null,
+      test: 1
+    }
+  }),
+
+  watch: {
+    'filterState.active': function (newFilter, oldFilter) {
+      this.$emit('update:selectedFilter', newFilter)
+    }
+  },
 
   props: {
     /*
@@ -33,7 +39,7 @@ export default {
      */
     list: {
       type: [Array, Object],
-      required: true
+      // required: true
     },
 
     selectedFilter: {

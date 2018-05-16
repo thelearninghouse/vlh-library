@@ -1,7 +1,13 @@
 <template>
-  <component :is="elementType" class="degree-item" :class="degreeClasses">
-    <div class="degree__info">
-      <h2 class="degree__name" v-html="item.post_title"></h2>
+  <component :is="elementType" class="degree-item" :class="[degreeClasses, {open: showSummary}]">
+    <div class="degree-item-header">
+      <h2 class="header-text" v-html="item.post_title"></h2>
+      <!-- <div @click.native.stop="showSummary = !showSummary" class="summary-toggle"> -->
+      <icon @click.native.stop="showSummary = !showSummary" class="summary-toggle" icon="ShowSubfilters"></icon>
+      <!-- </div> -->
+    </div>
+    <div v-if="showSummary" class="degree-item-summary">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur officia laboriosam delectus est, beatae nemo eius suscipit debitis autem possimus, enim eum quae voluptatibus vel accusamus aliquam libero, sint fugiat perspiciatis excepturi. Dolorum quibusdam voluptatibus error dolore, laboriosam tempora deleniti.
     </div>
   </component>
 </template>
@@ -29,6 +35,10 @@ export default {
       default: "li",
     },
   },
+
+  data: () => ({
+    showSummary: false
+  }),
 
   computed: {
     degreeClasses() {
@@ -65,20 +75,35 @@ export default {
   vertical-align: top;
   background: #f5f5f5;
   border: 1px solid #eee;
-  align-items: center;
-  justify-content: center;
+  // align-items: center;
+  // justify-content: center;
   height: 80px;
   width: 320px;
   margin: 10px;
   border: 1px solid gray;
   padding: 1em;
+  flex-flow: row wrap;
+
+  &.open {
+    height: auto;
+  }
 }
-.degree__info {
+.degree-item-header {
   width: 100%;
-  height: 100%;
+  // height: 100%;
   display: flex;
   flex-flow: row wrap;
-  align-content: stretch;
+  // align-content: stretch;
+  justify-content: space-between;
+  // align-items: center;
+  margin-bottom: .75em;
+  .header-text {
+    width: 85%;
+  }
+}
+
+.summary-toggle {
+    cursor: pointer;
 }
 </style>
 

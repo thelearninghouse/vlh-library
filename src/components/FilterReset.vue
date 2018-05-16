@@ -1,7 +1,7 @@
 <template>
-  <component :is="elementType" class="filter-item filter-reset">
-    <div class="label" @click="handleReset">
-      <icon class="selected-icon" v-if="!selectedItem" icon="Check"></icon>
+  <component :is="elementType" class="filter-item filter-reset" :class="{selected: isSelected}">
+    <div class="label" @click="updateSelected">
+      <icon class="selected-icon" v-if="isSelected" icon="Check"></icon>
       <span v-html="label"></span>
     </div>
   </component>
@@ -10,6 +10,8 @@
 <script>
 export default {
   name: 'FilterReset',
+
+  inject: ['filterState'],
 
   props: {
 
@@ -25,13 +27,27 @@ export default {
     elementType: {
       type: String,
       default: "div",
+    }
+  },
+
+  computed: {
+    filterListState() {
+      return this.filterState
     },
 
-    selectedItem: {
-      type: [Object, String, Number]
+    selectedFilter() {
+      return this.filterState.active
     },
 
-    handleReset: Function,
+    isSelected() {
+      return this.selectedFilter === null
+    }
+  },
+
+  methods: {
+    updateSelected() {
+      this.filterState.active = null
+    }
   }
 }
 </script>

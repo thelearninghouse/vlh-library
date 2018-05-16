@@ -7,22 +7,26 @@
 
       <div class="filter-list-wrapper">
         <h2>Degree Levels</h2>
-        <FilterList
-          :selectedFilter="currentDegreeLevelFilter"
-          :list="wpDegreeLevels"
-          @filter-selected="updateFilter"
-          @filter-reset="currentDegreeLevelFilter = null">
+        <FilterList :selected-filter.sync="currentDegreeLevelFilter">
+          <FilterReset label="All Levels"></FilterReset>
+          <FilterItem
+            v-for="item in wpDegreeLevels"
+            :item="item"
+            :key="item.term_id">
+          </FilterItem>
         </FilterList>
         <span v-if="currentDegreeLevelFilter" v-html="currentDegreeLevelFilter.name"></span>
       </div>
 
       <div class="filter-list-wrapper">
         <h2>Degree Areas</h2>
-        <FilterList
-          :selectedFilter="currentDegreeAreaFilter"
-          :list="wpDegreeAreas"
-          @filter-selected="updateFilter"
-          @filter-reset="currentDegreeAreaFilter = null">
+        <FilterList :selected-filter.sync="currentDegreeAreaFilter">
+          <FilterReset label="All Levels"></FilterReset>
+          <FilterItem
+            v-for="item in wpDegreeAreas"
+            :item="item"
+            :key="item.term_id">
+          </FilterItem>
         </FilterList>
         <span v-if="currentDegreeAreaFilter" v-html="currentDegreeAreaFilter.name"></span>
       </div>
