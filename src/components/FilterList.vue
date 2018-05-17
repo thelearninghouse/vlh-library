@@ -1,9 +1,9 @@
 <template>
-  <accordion-transition>
+  <transition name="slide-fade">
     <component v-show="visible" :is="elementType" class="filter-list">
       <slot></slot>
     </component>
-  </accordion-transition>
+  </transition>
 </template>
 
 <script>
@@ -44,6 +44,10 @@ export default {
     }
   }),
 
+  created() {
+    this.handleMobile();
+  },
+
   watch: {
     'filterState.active': function (newFilter, oldFilter) {
       this.$emit('update:selectedFilter', newFilter)
@@ -57,6 +61,12 @@ export default {
     },
 
     mobile: function (newValue, oldValue) {
+      this.handleMobile();
+    }
+  },
+
+  methods: {
+    handleMobile() {
       if (this.mobile) {
         this.$emit('update:visible', false)
       } else {
@@ -69,7 +79,7 @@ export default {
 <style>
   .filter-list {
     overflow: hidden;
-    transition: .3s ease;
+    /* transition: .3s ease; */
   }
   p {
     font-size: 18px;

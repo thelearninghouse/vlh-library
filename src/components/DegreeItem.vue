@@ -1,19 +1,19 @@
 <template>
   <component :is="elementType" class="degree-item" :class="[degreeClasses, {open: showSummary}]">
-    <div class="degree-item-header">
-      <h2 class="text" v-html="item.post_title"></h2>
-      <icon @click.native.stop="showSummary = !showSummary" class="icon-button" icon="ShowSubfilters" color="gray"></icon>
-    </div>
-
-    <accordion-transition>
-      <div v-if="showSummary" class="degree-item-content">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur officia laboriosam delectus est, beatae nemo eius suscipit debitis autem possimus, enim eum quae voluptatibus vel accusamus aliquam libero, sint fugiat perspiciatis excepturi. Dolorum quibusdam voluptatibus error dolore, laboriosam tempora deleniti.</p>
-        <div class="degree-item-cta">
-          <a href="#">View Info</a>
-        </div>
+    <slot v-bind="item">
+      <div class="degree-item-header">
+        <h2 class="text" v-html="item.post_title"></h2>
+        <icon @click.native.stop="showSummary = !showSummary" class="icon-button" icon="show-subfilters" size="30px" color="gray"></icon>
       </div>
-    </accordion-transition>
-
+      <accordion-transition>
+        <div v-if="showSummary" class="degree-item-content">
+          <p>{{item.summary}}</p>
+          <div class="degree-item-cta">
+            <a :href="`/${item.post_name}`">View Info</a>
+          </div>
+        </div>
+      </accordion-transition>
+    </slot>
   </component>
 </template>
 
@@ -52,29 +52,29 @@ export default {
   },
   methods: {
     getDegreeClasses(degree) {
-			let degreeLevels = degree.degree_levels
-			let degreeTypes = degree.degree_areas
+      let degreeLevels = degree.degree_levels
+      let degreeTypes = degree.degree_areas
 
-			let levels = degreeLevels.map(level => {
-				return level.slug || ''
-			})
+      let levels = degreeLevels.map(level => {
+        return level.slug || ''
+      })
 
-			let types = degreeTypes.map(type => {
-				if (type.slug) {
-					return type.slug
-				} else {
-					return ''
-				}
-			})
+      let types = degreeTypes.map(type => {
+        if (type.slug) {
+          return type.slug
+        } else {
+          return ''
+        }
+      })
 
-			return levels.concat(types)
-		}
+      return levels.concat(types)
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .degree-item {
+.degree-item {
     display: inline-flex;
     vertical-align: top;
     background: #f5f5f5;
@@ -86,29 +86,29 @@ export default {
     flex-flow: row wrap;
 
     &-header {
-      width: 100%;
-      height: 35px;
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: space-between;
-      margin-bottom: .75em;
+        width: 100%;
+        height: 35px;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        margin-bottom: 0.75em;
 
-      .text {
-        width: 85%;
-      }
+        .text {
+            width: 85%;
+        }
     }
 
     &-content {
-      transition: all 350ms ease-out;
-      z-index: -1;
-      position: relative;
-      overflow: hidden;
+        transition: all 350ms ease-out;
+        z-index: -1;
+        position: relative;
+        overflow: hidden;
     }
 
     &-cta {
-      margin-top: 1em;;
+        margin-top: 1em;
     }
-  }
+}
 </style>
 
 <docs>

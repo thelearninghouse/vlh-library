@@ -1,6 +1,6 @@
 <template>
   <transition-group name="animated-grid-items" :tag="elementType" class="degree-list">
-    <DegreeItem v-for="item in items" :item="item" :key="item.ID" />
+    <slot></slot>
   </transition-group>
 </template>
 
@@ -17,7 +17,7 @@ export default {
      */
     items: {
       type: Array,
-      required: true
+      // required: true
     },
     /**
      * The html element name used for the icon

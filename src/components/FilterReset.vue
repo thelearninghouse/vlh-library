@@ -1,7 +1,7 @@
 <template>
   <component :is="elementType" class="filter-item filter-reset" :class="{selected: isSelected}">
     <div class="label" @click="updateSelected">
-      <icon class="selected-icon" v-if="isSelected" icon="Check"></icon>
+      <icon class="selected-icon" v-if="isSelected" icon="check"></icon>
       <span v-html="label"></span>
     </div>
   </component>
@@ -26,7 +26,7 @@ export default {
 
     elementType: {
       type: String,
-      default: "div",
+      default: "li",
     }
   },
 

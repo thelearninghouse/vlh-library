@@ -25,6 +25,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 34,
@@ -79,6 +80,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 33,
@@ -133,6 +135,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 8,
@@ -187,6 +190,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 6,
@@ -241,6 +245,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 32,
@@ -307,6 +312,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 27,
@@ -385,6 +391,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 24,
@@ -439,6 +446,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 31,
@@ -517,6 +525,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 33,
@@ -571,6 +580,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 7,
@@ -637,6 +647,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 26,
@@ -703,6 +714,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 32,
@@ -781,6 +793,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 27,
@@ -859,6 +872,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 28,
@@ -937,6 +951,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 29,
@@ -1015,6 +1030,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 26,
@@ -1093,6 +1109,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 31,
@@ -1171,6 +1188,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 31,
@@ -1249,6 +1267,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 7,
@@ -1315,6 +1334,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 7,
@@ -1381,6 +1401,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 7,
@@ -1447,6 +1468,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 7,
@@ -1513,6 +1535,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 7,
@@ -1591,6 +1614,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 32,
@@ -1681,6 +1705,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 32,
@@ -1759,6 +1784,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 32,
@@ -1849,6 +1875,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 32,
@@ -1927,6 +1954,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 27,
@@ -2005,6 +2033,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 27,
@@ -2095,6 +2124,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 7,
@@ -2173,6 +2203,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 28,
@@ -2263,6 +2294,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 7,
@@ -2329,6 +2361,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 29,
@@ -2419,6 +2452,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 30,
@@ -2509,6 +2543,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 26,
@@ -2599,6 +2634,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 31,
@@ -2677,6 +2713,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 31,
@@ -2755,6 +2792,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 31,
@@ -2845,6 +2883,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 31,
@@ -2935,6 +2974,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 25,
@@ -3001,6 +3041,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 20,
@@ -3067,6 +3108,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 8,
@@ -3121,6 +3163,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 20,
@@ -3199,6 +3242,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 8,
@@ -3253,6 +3297,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 23,
@@ -3307,6 +3352,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 8,
@@ -3361,6 +3407,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 8,
@@ -3415,6 +3462,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 8,
@@ -3469,6 +3517,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 30,
@@ -3535,6 +3584,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 7,
@@ -3601,6 +3651,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 6,
@@ -3655,6 +3706,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 30,
@@ -3733,6 +3785,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 28,
@@ -3799,6 +3852,7 @@ const wpData = {
       "post_mime_type": "",
       "comment_count": "0",
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "degree_areas": [
         {
           "term_id": 7,
@@ -3853,6 +3907,7 @@ const wpData = {
       "parent": 0,
       "count": 2,
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "sub_areas": []
     },
     {
@@ -3866,6 +3921,7 @@ const wpData = {
       "parent": 0,
       "count": 1,
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "sub_areas": []
     },
     {
@@ -3879,6 +3935,7 @@ const wpData = {
       "parent": 0,
       "count": 2,
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "sub_areas": []
     },
     {
@@ -3892,6 +3949,7 @@ const wpData = {
       "parent": 0,
       "count": 6,
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "sub_areas": []
     },
     {
@@ -3905,6 +3963,7 @@ const wpData = {
       "parent": 0,
       "count": 1,
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "sub_areas": []
     },
     {
@@ -3918,6 +3977,7 @@ const wpData = {
       "parent": 0,
       "count": 1,
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "sub_areas": []
     },
     {
@@ -3931,6 +3991,7 @@ const wpData = {
       "parent": 0,
       "count": 1,
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "sub_areas": []
     },
     {
@@ -3944,6 +4005,7 @@ const wpData = {
       "parent": 0,
       "count": 40,
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "sub_areas": [
         {
           "term_id": 20,
@@ -4056,6 +4118,7 @@ const wpData = {
       "parent": 0,
       "count": 9,
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "display_order": "1"
     },
     {
@@ -4069,6 +4132,7 @@ const wpData = {
       "parent": 0,
       "count": 23,
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "display_order": "2"
     },
     {
@@ -4082,6 +4146,7 @@ const wpData = {
       "parent": 0,
       "count": 12,
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "display_order": "4"
     },
     {
@@ -4095,6 +4160,7 @@ const wpData = {
       "parent": 0,
       "count": 9,
       "filter": "raw",
+      "summary": "This is the program summary. It's a few short sentences describing the program/degree.",
       "display_order": "5"
     }
   ]

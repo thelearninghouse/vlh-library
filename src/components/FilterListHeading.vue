@@ -1,6 +1,6 @@
 <template>
   <div v-on="$listeners" class="filter-list-heading" @click="$emit('toggle-filter-visibility')">
-    <slot name="header"></slot>
+    <h2 class="heading" v-html="heading"></h2>
     <icon v-if="mobile" icon="arrow-down" :color="iconDropdownColor"></icon>
     <div v-if="!mobile && selectedFilter" @click="$emit('update:selectedFilter', null)" class="filter-clear">
       <slot name="filter-clear">
@@ -13,14 +13,18 @@
 
 <script>
 export default {
-  name: 'VFilterHeading',
+  name: 'FilterListHeading',
 
   props: {
     selectedFilter: {
       type: [Object, String]
       // required: true
     },
+
+    heading: String,
+
     iconDropdownColor: String,
+
     iconResetColor: String,
   }
 }

@@ -23,9 +23,9 @@
     z-index: 999;
     left: 0;
     right: 0;
-
+    top: 110px;
     &-wrapper {
-      width: 45%;
+      width: 48%;
     }
   }
 
@@ -80,6 +80,15 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      display: flex;
+      height: 35px;
+      margin-top: .25em;
+      align-items: flex-start;
+
+      .text {
+        font-size: 12px;
+        margin-top: 5px;
+      }
 
       .icon {
         fill: red;

@@ -10,25 +10,24 @@
           :selectedFilter.sync="currentDegreeLevelFilter"
           icon-dropdown-color="#cc1f1b"
           icon-reset-color="gray"
-        >
-          <h2 slot="header">Degree Levels</h2>
+          heading="Degree Levels">
         </filter-list-heading>
 
         <div class="filter-list-status" v-if="currentDegreeLevelFilter && mobile">
-          <span v-html="currentDegreeLevelFilter.name"></span>
-          <icon class="icon-button" @click.native="currentDegreeLevelFilter = null" icon="clear-search" color="black"></icon>
+          <span class="text" v-html="currentDegreeLevelFilter.name"></span>
+          <icon class="icon-button" @click.native="currentDegreeLevelFilter = null" icon="clear-search" color="black" size="22px"></icon>
         </div>
 
-        <FilterList
-          :visible.sync="showDegreeLevelFilter"
-          :selected-filter.sync="currentDegreeLevelFilter">
-          <FilterReset label="All Levels"></FilterReset>
-          <FilterItem
-            v-for="item in wpDegreeLevels"
-            :item="item"
-            :key="item.term_id">
-          </FilterItem>
-        </FilterList>
+          <filter-list
+            :visible.sync="showDegreeLevelFilter"
+            :selected-filter.sync="currentDegreeLevelFilter">
+            <filter-reset label="All Levels"></filter-reset>
+            <filter-item
+              v-for="item in wpDegreeLevels"
+              :item="item"
+              :key="item.term_id">
+            </filter-item>
+          </filter-list>
       </div>
 
       <div class="filter-list-wrapper">
@@ -37,30 +36,41 @@
           :selectedFilter.sync="currentDegreeAreaFilter"
           icon-dropdown-color="#cc1f1b"
           icon-reset-color="gray"
-        >
-          <h2 slot="header">Degree Levels</h2>
+          heading="Degree Areas">
         </filter-list-heading>
 
         <div class="filter-list-status" v-if="currentDegreeAreaFilter && mobile">
-          <span v-html="currentDegreeAreaFilter.name"></span>
-          <icon class="icon-button" @click.native="currentDegreeAreaFilter = null" icon="clear-search" color="black"></icon>
+          <span class="text" v-html="currentDegreeAreaFilter.name"></span>
+          <icon class="icon-button" @click.native="currentDegreeAreaFilter = null" icon="clear-search" color="black" size="22px"></icon>
         </div>
 
-        <FilterList
+        <filter-list
           :visible.sync="showDegreeAreaFilter"
           :selected-filter.sync="currentDegreeAreaFilter">
-          <FilterReset label="All Levels"></FilterReset>
+          <filter-reset label="All Levels"></filter-reset>
           <FilterItem
             v-for="item in wpDegreeAreas"
             :item="item"
             :key="item.term_id">
           </FilterItem>
-        </FilterList>
-
+        </filter-list>
       </div>
     </div>
 
-    <DegreeList :items="degreeList"/>
+    <degree-list>
+      <degree-item v-for="degree in degreeList" :item="degree" :key="degree.ID" />
+    </degree-list>
+
+<!-- Customize using scoped slots -->
+    <!-- <DegreeList>
+      <DegreeItem v-for="degree in degreeList" :item="degree" :key="degree.ID">
+        <template slot-scope="degree">
+          <h3 v-html="degree.post_title"></h3>
+          <div>{{degree.summary}}</div>
+        </template>
+      </DegreeItem>
+    </DegreeList> -->
+
     <h1 class="no-results" v-if="!degreeList.length">No Matches</h1>
   </main>
 </template>
@@ -88,14 +98,8 @@ export default {
       currentDegreeLevelFilter: null,
       currentDegreeAreaFilter: null,
       currentDegreeSearchFilter: '',
-      showDegreeLevelFilter: true,
-      showDegreeAreaFilter: true,
-      degreeFilters: {
-        levels: {},
-        areas: {},
-        degree_levels: {},
-        degree_areas: {}
-      }
+      showDegreeLevelFilter: false,
+      showDegreeAreaFilter: false
     }
   },
 
@@ -213,5 +217,6 @@ export default {
     align-items: center;
     cursor: pointer;
   }
+
 
 </style>

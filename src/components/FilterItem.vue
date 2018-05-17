@@ -3,7 +3,7 @@
     <div class="filter-item-label label" @click="updateSelected">
       <icon class="selected-icon" v-if="isSelected" icon="check"></icon>
       <span v-html="item.name"></span>
-      <icon class="toggle-subitems" v-if="hasSubItems" @click.native.stop="showSubItems = !showSubItems" :icon="dropdownIcon"></icon>
+      <icon class="toggle-subitems" v-if="hasSubItems" @click.native.stop="showSubItems = !showSubItems" :icon="dropdownIcon" color="#222"></icon>
     </div>
 
     <accordion-transition>

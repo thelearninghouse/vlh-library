@@ -1,5 +1,5 @@
 <template>
-<component :id="id" class="icon" :is="icon" :style="{fill: color}"></component>
+  <component :id="id" class="icon" :is="icon" :style="{fill: color, width: size, height: size}"></component>
 </template>
 
 <script>
@@ -29,6 +29,10 @@ export default {
     color: {
       type: String,
       default: '#fff'
+    },
+    size: {
+      type: String,
+      default: '24px'
     }
   },
   components: {
