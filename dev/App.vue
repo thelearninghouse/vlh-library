@@ -5,41 +5,41 @@
       <search-filter v-model="currentDegreeSearchFilter"></search-filter>
 
       <div class="filter-list-wrapper">
-        <filter-heading
+        <filter-list-heading
           @toggle-filter-visibility="handleFilterHeadingClick('showDegreeLevelFilter', 'showDegreeAreaFilter')"
           :selectedFilter.sync="currentDegreeLevelFilter"
           icon-dropdown-color="#cc1f1b"
           icon-reset-color="gray"
         >
           <h2 slot="header">Degree Levels</h2>
-        </filter-heading>
+        </filter-list-heading>
 
         <div class="filter-list-status" v-if="currentDegreeLevelFilter && mobile">
           <span v-html="currentDegreeLevelFilter.name"></span>
           <icon class="icon-button" @click.native="currentDegreeLevelFilter = null" icon="clear-search" color="black"></icon>
         </div>
 
-          <FilterList
-            :visible.sync="showDegreeLevelFilter"
-            :selected-filter.sync="currentDegreeLevelFilter">
-            <FilterReset label="All Levels"></FilterReset>
-            <FilterItem
-              v-for="item in wpDegreeLevels"
-              :item="item"
-              :key="item.term_id">
-            </FilterItem>
-          </FilterList>
+        <FilterList
+          :visible.sync="showDegreeLevelFilter"
+          :selected-filter.sync="currentDegreeLevelFilter">
+          <FilterReset label="All Levels"></FilterReset>
+          <FilterItem
+            v-for="item in wpDegreeLevels"
+            :item="item"
+            :key="item.term_id">
+          </FilterItem>
+        </FilterList>
       </div>
 
       <div class="filter-list-wrapper">
-        <filter-heading
+        <filter-list-heading
           @toggle-filter-visibility="handleFilterHeadingClick('showDegreeAreaFilter', 'showDegreeLevelFilter')"
           :selectedFilter.sync="currentDegreeAreaFilter"
           icon-dropdown-color="#cc1f1b"
           icon-reset-color="gray"
         >
           <h2 slot="header">Degree Levels</h2>
-        </filter-heading>
+        </filter-list-heading>
 
         <div class="filter-list-status" v-if="currentDegreeAreaFilter && mobile">
           <span v-html="currentDegreeAreaFilter.name"></span>

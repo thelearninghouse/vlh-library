@@ -1,6 +1,6 @@
 import FilterList from './components/FilterList.vue'
 import FilterItem from './components/FilterItem.vue'
-import FilterHeading from './components/FilterHeading.vue'
+import FilterListHeading from './components/FilterListHeading.vue'
 import FilterReset from './components/FilterReset.vue'
 import DegreeList from './components/DegreeList.vue'
 import DegreeItem from './components/DegreeItem.vue'
@@ -16,7 +16,7 @@ const VlhLibrary = {
     Vue.component(DegreeItem.name, DegreeItem);
     Vue.component(FilterList.name, FilterList);
     Vue.component(FilterItem.name, FilterItem);
-    Vue.component(FilterHeading.name, FilterHeading);
+    Vue.component(FilterListHeading.name, FilterListHeading);
     Vue.component(FilterReset.name, FilterReset);
     Vue.component(Icon.name, Icon);
     Vue.component(SearchFilter.name, SearchFilter);
@@ -35,7 +35,7 @@ export {
   AccordionTransition,
   FilterList,
   FilterItem,
-  FilterHeading,
+  FilterListHeading,
   FilterReset,
   DegreeList,
   DegreeItem,
