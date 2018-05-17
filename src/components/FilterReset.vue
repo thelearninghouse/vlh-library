@@ -51,8 +51,16 @@ export default {
   }
 }
 </script>
+
 <style>
   p {
     font-size: 18px;
   }
 </style>
+
+<docs>
+
+  ```vue
+<filter-reset label="All Levels"></filter-reset>
+  ```
+</docs>

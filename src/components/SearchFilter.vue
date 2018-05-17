@@ -77,3 +77,10 @@ export default {
   }
 }
 </style>
+
+<docs>
+
+  ```vue
+<search-filter v-model="currentSearchFilter"></search-filter>
+  ```
+</docs>

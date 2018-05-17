@@ -1,7 +1,7 @@
 <template>
-  <transition-group name="animated-grid-items" :tag="elementType" class="degree-list">
-    <slot></slot>
-  </transition-group>
+<transition-group name="animated-grid-items" :tag="elementType" class="degree-list">
+  <slot></slot>
+</transition-group>
 </template>
 
 <script>
@@ -20,7 +20,7 @@ export default {
       // required: true
     },
     /**
-     * The html element name used for the icon
+     * The html element to use
      */
     elementType: {
       type: String,
@@ -31,18 +31,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .degree-list {
+.degree-list {
     perspective: 3000px;
     perspective-origin: 50% 50%;
     display: flex;
     flex-flow: row wrap;
     align-content: start;
     align-items: start;
-  }
+}
 </style>
 
 <docs>
   ```vue
-<DegreeGrid :items="degrees"/>
+<degree-list :items="degrees"/>
   ```
 </docs>

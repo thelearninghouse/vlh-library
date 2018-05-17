@@ -112,7 +112,7 @@ export default {
 </style>
 
 <docs>
-  ```jsx
+  ```vue
 <degree-item v-for="item in items" :key="item.ID" :item="item"></degree-item>
   ```
 </docs>

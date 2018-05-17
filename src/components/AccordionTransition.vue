@@ -6,7 +6,7 @@
 <script>
 export default {
   name: 'AccordionTransition',
-  
+
   methods: {
     beforeEnter: function(el) {
       el.style.height = "0";
@@ -53,3 +53,11 @@ export default {
   animation-name: fadeOut;
 }
 </style>
+
+<docs>
+  ```vue
+<accordion-transtion>
+  <!-- Put something here -->
+</accordion-transtion>
+  ```
+</docs>

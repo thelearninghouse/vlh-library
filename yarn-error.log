@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/droyer/.nvm/versions/node/v8.7.0/bin/node /Users/droyer/.yarn/bin/yarn.js build example
+  /Users/droyer/.nvm/versions/node/v8.7.0/bin/node /Users/droyer/.yarn/bin/yarn.js docs:vsg
 
 PATH: 
   /Users/droyer/.yarn/bin:/Users/droyer/.nvm/versions/node/v8.7.0/bin:/users/droyer/go/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -15,10 +15,10 @@ Platform:
 
 npm manifest: 
   {
-    "name": "vd-finder",
+    "name": "vlh-library",
     "version": "1.0.0",
     "description": "",
-    "main": "dist/vlh-forms.js",
+    "main": "dist/vlh-library.js",
     "files": [
       "dist"
     ],
@@ -8454,7 +8454,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c poi build ./src/index.js --component VlhLibrary --no-clear example
+  Arguments: -c vue-styleguidist server
   Directory: /Users/droyer/Learning House/vd-finder
   Output:
   

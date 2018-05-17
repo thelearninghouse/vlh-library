@@ -1,8 +1,8 @@
 {
-  "name": "vd-finder",
+  "name": "vlh-library",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/vlh-forms.js",
+  "main": "dist/vlh-library.js",
   "files": [
     "dist"
   ],

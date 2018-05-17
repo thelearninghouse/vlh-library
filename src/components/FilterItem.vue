@@ -138,19 +138,14 @@ p {
 </style>
 
 
-
-
 <docs>
-  ```vue { "className": "checks" }
-const filters = require('../../mockData/filter.js').default;
+```vue { "className": "checks" }
 
-<div>
-    <FilterItem
-      v-for="(option, index) in filters"
-      :key="option.term_id"
-      :option="option">
-    </FilterItem>
-</div>
-  ```
+<filter-item
+  v-for="filter in degreeLevels"
+  :key="filter.term_id"
+  :item="filter">
+</filter-item>
+```
 
 </docs>
