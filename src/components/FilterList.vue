@@ -76,9 +76,13 @@ export default {
   }
 }
 </script>
-<style>
+<style lang="scss">
+  ul {
+    padding-left: 0;
+  }
   .filter-list {
     overflow: hidden;
+    list-style-type: none;
     /* transition: .3s ease; */
   }
   p {

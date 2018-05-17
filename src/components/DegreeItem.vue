@@ -3,7 +3,7 @@
     <slot v-bind="item">
       <div class="degree-item-header">
         <h2 class="text" v-html="item.post_title"></h2>
-        <icon @click.native.stop="showSummary = !showSummary" class="icon-button" icon="show-subfilters" size="30px" color="gray"></icon>
+        <icon @click.native.stop="showSummary = !showSummary" class="icon-button" :icon="toggleContentIcon" size="30px" color="#222"></icon>
       </div>
       <accordion-transition>
         <div v-if="showSummary" class="degree-item-content">
@@ -48,6 +48,14 @@ export default {
   computed: {
     degreeClasses() {
       return this.getDegreeClasses(this.item)
+    },
+
+    toggleContentIcon() {
+      if (this.showSummary) {
+        return 'remove-circle-outline'
+      } else {
+        return 'add-circle-outline'
+      }
     }
   },
   methods: {
@@ -86,27 +94,33 @@ export default {
     flex-flow: row wrap;
 
     &-header {
-        width: 100%;
-        height: 35px;
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
-        margin-bottom: 0.75em;
+      width: 100%;
+      height: 35px;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      align-items: center;
 
-        .text {
-            width: 85%;
-        }
+      .text {
+          width: 85%;
+      }
     }
 
     &-content {
-        transition: all 350ms ease-out;
-        z-index: -1;
-        position: relative;
-        overflow: hidden;
+      transition: all 350ms ease-out;
+      z-index: -1;
+      position: relative;
+      overflow: hidden;
     }
 
     &-cta {
         margin-top: 1em;
+    }
+
+    &.open {
+      .degree-item-content {
+        padding-top: 1em;;
+      }
     }
 }
 </style>

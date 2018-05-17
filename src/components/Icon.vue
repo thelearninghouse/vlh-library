@@ -12,6 +12,8 @@ import Search from '../assets/images/search.svg';
 import ClearSearch from '../assets/images/clear-search.svg';
 import ArrowUp from '../assets/images/arrow-up.svg';
 import ArrowDown from '../assets/images/arrow-down.svg';
+import AddCircleOutline from '../assets/images/add-circle-outline.svg';
+import RemoveCircleOutline from '../assets/images/remove-circle-outline.svg';
 
 /**
  * Icon
@@ -44,7 +46,9 @@ export default {
     IconShow,
     IconHide,
     Search,
-    ShowSubfilters
+    ShowSubfilters,
+    AddCircleOutline,
+    RemoveCircleOutline
   },
 }
 </script>
