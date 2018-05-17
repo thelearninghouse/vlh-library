@@ -1,6 +1,4 @@
 @import 'vd-finder';
-@tailwind preflight;
-@tailwind utilities;
 .sr-only {
   border: 0;
   clip: rect(1px, 1px, 1px, 1px);
@@ -23,19 +21,14 @@
 
 .filter-item {
   .label {
-    @apply .bg-white .text-grey-darkest .font-semibold;
     display: flex;
     align-items: center;
     height: 45px;
-
-    &:hover {
-      @apply .bg-grey-light;
-    }
   }
 
   &.selected {
     & > .label {
-      @apply .bg-red-dark text-white;
+      // @apply .bg-red-dark text-white;
     }
   }
 

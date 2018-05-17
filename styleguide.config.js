@@ -14,18 +14,7 @@ module.exports = {
         {
 					test: /\.svg$/,
 					use: ['vue-svg-loader']
-				},
-
-        // Babel loader, will use your project’s .babelrc
-        // {
-        //   test: /\.js?$/,
-        //   exclude: /node_modules/,
-        //   loader: "babel-loader"
-        // },
-        // {
-        //   test: /\.css$/,
-        //   loader: "style-loader!css-loader"
-        // }
+				}
       ]
     }
   },

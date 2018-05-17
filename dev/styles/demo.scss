@@ -1,0 +1,34 @@
+@import 'reset';
+@tailwind preflight;
+@tailwind utilities;
+
+.filter-list {
+  background: white;
+  &-wrapper {
+      margin-top: 2.5em;
+  }
+}
+
+.filter-item {
+  .label {
+    @apply .bg-white .text-grey-darkest .font-semibold;
+    display: flex;
+    align-items: center;
+    height: 45px;
+
+    &:hover {
+      @apply .bg-grey-light;
+    }
+  }
+
+  &.selected {
+    & > .label {
+      @apply .bg-red-dark text-white;
+    }
+  }
+
+  &.parent {
+    // position: relative;
+    // z-index: 9999;
+  }
+}
