@@ -1,6 +1,6 @@
 {
   "name": "vlh-library",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "dist/vlh-library.js",
   "files": [
@@ -30,14 +30,13 @@
   "keywords": [],
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
-    "node-sass": "^4.7.2",
     "poi": "^9.6.13",
-    "sass-loader": "^6.0.6",
-    "tailwindcss": "^0.5.3",
     "vue-stash": "^2.0.1-beta"
   },
   "devDependencies": {
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1",
+    "tailwindcss": "^0.5.3",
     "vue-loader": "^14.2.1",
     "vue-styleguidist": "^1.4.10",
     "vue-svg-loader": "^0.5.0"

@@ -1,6 +1,9 @@
-import Vue from 'vue'
+/* eslint-disable no-console */
 
-Vue.mixin({
+/**
+ * @mixin
+ */
+export default {
   data: () => ({
     mobile: false,
   }),
@@ -20,4 +23,4 @@ Vue.mixin({
       }
     }
   }
-})
+};

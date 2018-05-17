@@ -86,15 +86,9 @@ const DegreeAreas = wpData.degreeAreas
 export default {
   data() {
     return {
-      wpData: {
-        degrees: DegreeList,
-        degreeLevels: DegreeLevels,
-        degreeAreas: DegreeAreas,
-      },
       wpDegrees: DegreeList,
       wpDegreeLevels: DegreeLevels,
       wpDegreeAreas: DegreeAreas,
-      degrees: [],
       currentDegreeLevelFilter: null,
       currentDegreeAreaFilter: null,
       currentDegreeSearchFilter: '',
@@ -140,34 +134,11 @@ export default {
         let DegreeLevels = degree.levels
         return DegreeLevels.includes(this.currentDegreeLevelFilter.term_id);
       });
-    },
-
-    activeDegreeFilters() {
-      let {
-        levels,
-        verticals
-      } = this.degreeFilters;
-
-
-      return {
-        levels: this.filteredDegreesByLevel,
-        verticals: this.degrees
-      };
-
-      return this.degrees.filter(({levels, verticals}) => {
-        if (!levels.length) {
-          return true;
-        }
-        return levels.includes(degreeLevelFilter);
-      });
-
     }
   },
 
   methods: {
     handleFilterHeadingClick(filterList, otherFilterList) {
-      console.log('RANNN');
-      console.log(filterList);
       if (!this.mobile) return
       if (otherFilterList) {
         this[otherFilterList] = false
@@ -177,18 +148,10 @@ export default {
 
     updateFilter(filterSelected) {
       if (filterSelected.taxonomy === 'degree_vertical') {
-        this.updateDegreeAreaFilter(filterSelected)
+        this.currentDegreeAreaFilter = filterSelected
       } else {
-        this.updateDegreeLevelFilter(filterSelected)
+        this.currentDegreeLevelFilter = filterSelected
       }
-    },
-
-    updateDegreeLevelFilter(val) {
-      this.currentDegreeLevelFilter = val
-    },
-
-    updateDegreeAreaFilter(val) {
-      this.currentDegreeAreaFilter = val
     }
   }
 }

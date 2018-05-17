@@ -7,6 +7,7 @@ import DegreeItem from './components/DegreeItem.vue'
 import Icon from './components/Icon.vue'
 import SearchFilter from './components/SearchFilter.vue'
 import AccordionTransition from './components/AccordionTransition.vue'
+import mqMixin from './mixins/mqMixin.js'
 import './assets/styles/styles.scss'
 
 const VlhLibrary = {
@@ -20,6 +21,8 @@ const VlhLibrary = {
     Vue.component(FilterReset.name, FilterReset);
     Vue.component(Icon.name, Icon);
     Vue.component(SearchFilter.name, SearchFilter);
+
+    Vue.mixin(mqMixin)
   }
 };
 
