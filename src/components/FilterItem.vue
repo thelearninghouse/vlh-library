@@ -1,8 +1,8 @@
 <template>
   <component :is="elementType" class="filter-item" :class="{ 'selected': hasSelectedClass, 'parent': hasSubItems}">
-    <div class="filter-item-label label" @click="updateSelected">
-      <icon class="selected-icon" v-if="isSelected" icon="check"></icon>
-      <span v-html="item.name"></span>
+    <div class="filter-item-content" @click="updateSelected">
+      <icon class="selected-indicator" v-if="isSelected" icon="check"></icon>
+      <span class="title" v-html="item.name"></span>
       <icon class="toggle-subitems" v-if="hasSubItems" @click.native.stop="showSubItems = !showSubItems" :icon="dropdownIcon" color="#222"></icon>
     </div>
 
@@ -13,7 +13,6 @@
           :selectedFilter="selectedFilter"
           :item="subItem"
           :class="{'selected': subitemIsSelected(subItem) }"
-          :handle-selected="handleSelected"
           :key="subItem.term_id">
         </FilterItem>
       </ul>
@@ -101,14 +100,8 @@ p {
   .filter-item {
     width: 100%;
     position: relative;
-
-    &.selected {
-
-      & > .label {
-      }
-    }
-
-    .label {
+    
+    &-content {
       padding: .5em .75em .5em .5em;
       cursor: pointer;
       position: relative;

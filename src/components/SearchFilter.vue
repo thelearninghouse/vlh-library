@@ -1,9 +1,9 @@
 <template lang="html">
   <div class="search-filter">
     <label for="searchFilter" class="sr-only">Search For a Degree</label>
-    <input name="searchFilter" :value="value" type="text" class="search-filter-input" placeholder="Click here to search" @input="debouncedSearch($event.target.value)">
-    <div role="button" aria-label="Clear Search" tabindex="0" @click="clearSearch" @keypress.enter="clearSearch" class="search-filter-icon" :class="{clickable: searchQueryExists}">
-      <icon class="search-icon" :key="searchIcon" :icon="searchIcon" alt="Search Box"></icon>
+    <input v-bind="$attrs" name="searchFilter" :value="value" type="text" class="search-filter-input"  @input="debouncedSearch($event.target.value)">
+    <div role="button" aria-label="Clear Search" tabindex="0" @click="clearSearch" @keypress.enter="clearSearch" class="search-icon-wrapper" :class="{clickable: searchQueryExists}">
+      <icon size="24px" class="search-icon" :key="searchFilterIcon" :icon="searchFilterIcon" alt="Search Box"></icon>
     </div>
   </div>
 </template>
@@ -12,6 +12,7 @@
 import debounce from './../helpers/debounce.js'
 
 export default {
+  inheritAttrs: false,
   name: 'SearchFilter',
 
   props: {
@@ -25,7 +26,7 @@ export default {
 			return this.value !== ''
 		},
 
-    searchIcon() {
+    searchFilterIcon() {
       if (this.searchQueryExists) {
         return 'clear-search'
       } else {
@@ -67,13 +68,15 @@ export default {
     padding: .25em .5em;
   }
 
-  &-icon {
-    height: 40px;
-    display: flex;
-    align-items: center;
-    width: 40px;
-    justify-content: center;
-    background: #cc1f1b;
+  .search {
+    &-icon-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #cc1f1b;
+      width: 40px;
+      height: 40px;
+    }
   }
 }
 </style>

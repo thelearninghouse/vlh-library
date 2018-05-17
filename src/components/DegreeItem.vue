@@ -1,12 +1,12 @@
 <template>
-  <component :is="elementType" class="degree-item" :class="[degreeClasses, {open: showSummary}]">
+  <component :is="elementType" class="degree-item" :class="[degreeClasses, {open: showContent}]">
     <slot v-bind="item">
       <div class="degree-item-header">
-        <h2 class="text" v-html="item.post_title"></h2>
-        <icon @click.native.stop="showSummary = !showSummary" class="icon-button" :icon="toggleContentIcon" size="30px" color="#222"></icon>
+        <h2 class="title" v-html="item.post_title"></h2>
+        <icon class="icon-button" @click.native.stop="showContent = !showContent" :icon="toggleContentIcon" size="30px" color="#222"></icon>
       </div>
       <accordion-transition>
-        <div v-if="showSummary" class="degree-item-content">
+        <div v-if="showContent" class="degree-item-content">
           <p>{{item.summary}}</p>
           <div class="degree-item-cta">
             <a :href="`/${item.post_name}`">View Info</a>
@@ -42,7 +42,7 @@ export default {
   },
 
   data: () => ({
-    showSummary: false
+    showContent: false
   }),
 
   computed: {
@@ -51,7 +51,7 @@ export default {
     },
 
     toggleContentIcon() {
-      if (this.showSummary) {
+      if (this.showContent) {
         return 'remove-circle-outline'
       } else {
         return 'add-circle-outline'
@@ -101,8 +101,8 @@ export default {
       justify-content: space-between;
       align-items: center;
 
-      .text {
-          width: 85%;
+      .title {
+        width: 85%;
       }
     }
 

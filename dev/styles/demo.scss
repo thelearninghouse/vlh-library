@@ -10,7 +10,7 @@
 }
 
 .filter-item {
-  .label {
+  &-content {
     @apply .bg-white .text-grey-darkest .font-semibold;
     display: flex;
     align-items: center;
@@ -22,7 +22,7 @@
   }
 
   &.selected {
-    & > .label {
+    & > .filter-item-content {
       @apply .bg-red-dark text-white;
     }
   }
@@ -35,7 +35,7 @@
 
 .degree-item {
   &-header {
-    .text {
+    .title {
       font-size: 16px;
       font-weight: 400;
     }

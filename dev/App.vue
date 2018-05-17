@@ -2,10 +2,11 @@
   <main id="app" class="content">
     <div class="degree-filters">
 
-      <search-filter v-model="currentDegreeSearchFilter"></search-filter>
+      <search-filter placeholder="Click here to search" v-model="currentDegreeSearchFilter"></search-filter>
 
       <div class="filter-list-wrapper">
         <filter-list-heading
+          :list-visibility="showDegreeLevelFilter"
           @toggle-filter-visibility="handleFilterHeadingClick('showDegreeLevelFilter', 'showDegreeAreaFilter')"
           :selectedFilter.sync="currentDegreeLevelFilter"
           icon-dropdown-color="#cc1f1b"
@@ -21,7 +22,7 @@
           <filter-list
             :visible.sync="showDegreeLevelFilter"
             :selected-filter.sync="currentDegreeLevelFilter">
-            <filter-reset label="All Levels"></filter-reset>
+            <filter-reset title="All Levels"></filter-reset>
             <filter-item
               v-for="item in degreeLevels"
               :item="item"
@@ -32,6 +33,7 @@
 
       <div class="filter-list-wrapper">
         <filter-list-heading
+          :list-visibility="showDegreeAreaFilter"
           @toggle-filter-visibility="handleFilterHeadingClick('showDegreeAreaFilter', 'showDegreeLevelFilter')"
           :selectedFilter.sync="currentDegreeAreaFilter"
           icon-dropdown-color="#cc1f1b"
@@ -47,7 +49,7 @@
         <filter-list
           :visible.sync="showDegreeAreaFilter"
           :selected-filter.sync="currentDegreeAreaFilter">
-          <filter-reset label="All Levels"></filter-reset>
+          <filter-reset title="All Levels"></filter-reset>
           <FilterItem
             v-for="item in degreeAreas"
             :item="item"

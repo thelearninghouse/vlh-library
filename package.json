@@ -1,6 +1,6 @@
 {
   "name": "vlh-library",
-  "version": "0.0.31",
+  "version": "0.0.4",
   "description": "",
   "main": "dist/vlh-library.js",
   "files": [

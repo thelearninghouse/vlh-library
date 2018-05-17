@@ -1,7 +1,7 @@
 <template>
-  <div v-on="$listeners" class="filter-list-heading" @click="$emit('toggle-filter-visibility')">
+  <div v-on="$listeners" class="filter-list-heading" @click="handleToggle">
     <h2 class="heading" v-html="heading"></h2>
-    <icon v-if="mobile" icon="arrow-down" :color="iconDropdownColor"></icon>
+    <icon v-if="mobile" :icon="currentIcon" :color="iconDropdownColor"></icon>
     <div v-if="!mobile && selectedFilter" @click="$emit('update:selectedFilter', null)" class="filter-clear">
       <slot name="filter-clear">
         Clear
@@ -15,6 +15,10 @@
 export default {
   name: 'FilterListHeading',
 
+  data: () => ({
+    currentIcon: 'arrow-down'
+  }),
+
   props: {
     selectedFilter: {
       type: [Object, String]
@@ -22,10 +26,32 @@ export default {
     },
 
     heading: String,
-
+    listVisibility: Boolean,
     iconDropdownColor: String,
 
     iconResetColor: String,
+  },
+
+  computed: {
+    listToggleIcon() {
+      // this.
+    }
+  },
+
+  methods: {
+    handleToggle() {
+      this.$emit('toggle-filter-visibility')
+    }
+  },
+
+  watch: {
+    listVisibility: function(newValue, oldValue) {
+      if (newValue === true) {
+        this.currentIcon = 'arrow-up'
+      } else {
+        this.currentIcon = 'arrow-down'
+      }
+    }
   }
 }
 </script>
