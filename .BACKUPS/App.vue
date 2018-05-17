@@ -1,48 +1,71 @@
 <template>
-<main id="app" class="content">
+  <main id="app" class="content">
+    <div class="degree-filters">
 
-  <div class="degreeFilters">
+      <search-filter v-model="currentDegreeSearchFilter"></search-filter>
 
-    <div class="filter-list-wrapper list-1">
-      <h2>Degree Levels</h2>
-      <filter-reset-item
-        :selectedFilter.sync="currentDegreeLevelFilter"
-        :class="{selected: currentDegreeLevelFilter === 'all'}"
-        label="All Levels">
-      </filter-reset-item>
+      <div class="filter-list-wrapper">
+        <filter-heading
+          @toggle-filter-visibility="handleFilterHeadingClick"
+          :selectedFilter.sync="currentDegreeLevelFilter">
+        </filter-heading>
 
-      <AccordionTransition>
-        <FilterListItem
-          :selectedFilter.sync="currentDegreeLevelFilter"
-          v-for="(option, index) in wpDegreeLevels"
-          :key="option.term_id"
-          :class="{selected: currentDegreeLevelFilter === option.term_id}"
-          :option="option">
-        </FilterListItem>
-      </AccordionTransition>
+        <!-- <h2 class="filter-list-heading" @click="handleFilterHeadingClick('showDegreeLevelFilter', 'showDegreeAreaFilter')">
+          Degree Levels
+          <icon v-if="mobile" icon="arrow-down" color="#cc1f1b"></icon>
+          <div v-if="!mobile && currentDegreeLevelFilter" @click="currentDegreeLevelFilter = null" class="filter-clear">
+            Clear
+            <icon icon="clear-search" class="icon-button" color="black"></icon>
+          </div>
+        </h2> -->
+        <div class="filter-list-status" v-if="currentDegreeLevelFilter && mobile">
+          <span v-html="currentDegreeLevelFilter.name"></span>
+          <icon class="icon-button" @click.native="currentDegreeLevelFilter = null" icon="clear-search" color="black"></icon>
+        </div>
+
+          <FilterList
+            :visible.sync="showDegreeLevelFilter"
+            :selected-filter.sync="currentDegreeLevelFilter">
+            <FilterReset label="All Levels"></FilterReset>
+            <FilterItem
+              v-for="item in wpDegreeLevels"
+              :item="item"
+              :key="item.term_id">
+            </FilterItem>
+          </FilterList>
+      </div>
+
+      <div class="filter-list-wrapper">
+        <h2 class="filter-list-heading" @click="handleFilterHeadingClick('showDegreeAreaFilter', 'showDegreeLevelFilter')" >
+          Degree Areas
+          <icon v-if="mobile" icon="arrow-down" color="#cc1f1b"></icon>
+          <button v-if="!mobile && currentDegreeAreaFilter" class="filter-clear" @click="currentDegreeAreaFilter = null">
+            Clear
+            <icon icon="clear-search" class="icon-button" color="black"></icon>
+          </button>
+        </h2>
+        <div class="filter-list-status" v-if="currentDegreeAreaFilter && mobile">
+          <span v-html="currentDegreeAreaFilter.name"></span>
+          <icon class="icon-button" @click.native="currentDegreeAreaFilter = null" icon="clear-search" color="black"></icon>
+        </div>
+
+        <FilterList
+          :visible.sync="showDegreeAreaFilter"
+          :selected-filter.sync="currentDegreeAreaFilter">
+          <FilterReset label="All Levels"></FilterReset>
+          <FilterItem
+            v-for="item in wpDegreeAreas"
+            :item="item"
+            :key="item.term_id">
+          </FilterItem>
+        </FilterList>
+
+      </div>
     </div>
 
-    <div class="filter-list-wrapper list-2">
-      <h2>Degree Areas</h2>
-      <filter-reset-item
-        :selectedFilter.sync="currentDegreeAreaFilter"
-        :class="{ selected: currentDegreeAreaFilter === 'all' }"
-        label="All Areas">
-      </filter-reset-item>
-
-      <FilterListItem
-        :selectedFilter.sync="currentDegreeAreaFilter"
-        v-for="(option, index) in wpDegreeAreas"
-        :class="{selected: currentDegreeAreaFilter === option.term_id}"
-        :key="option.term_id"
-        :option="option"/>
-      </FilterListItem>
-    </div>
-  </div>
-
-  <DegreeGrid :items="degreeList"/>
-
-</main>
+    <DegreeList :items="degreeList"/>
+    <h1 class="no-results" v-if="!degreeList.length">No Matches</h1>
+  </main>
 </template>
 
 <script>
@@ -56,115 +79,66 @@ const DegreeAreas = wpData.degreeAreas
 export default {
   data() {
     return {
+      wpData: {
+        degrees: DegreeList,
+        degreeLevels: DegreeLevels,
+        degreeAreas: DegreeAreas,
+      },
       wpDegrees: DegreeList,
       wpDegreeLevels: DegreeLevels,
       wpDegreeAreas: DegreeAreas,
-      modal: false,
-      companies: [],
       degrees: [],
-      currentDegreeLevelFilter: 'all',
-      currentDegreeAreaFilter: 'all',
-      dropdown: {
-        height: 0
-      },
-      rating: {
-        min: 10,
-        max: 0
-      },
-      filters: {
-        countries: {},
-        categories: {},
-        rating: 0
-      },
+      currentDegreeLevelFilter: null,
+      currentDegreeAreaFilter: null,
+      currentDegreeSearchFilter: '',
+      showDegreeLevelFilter: true,
+      showDegreeAreaFilter: true,
       degreeFilters: {
         levels: {},
         areas: {},
         degree_levels: {},
         degree_areas: {}
-      },
-      menus: {
-        countries: false,
-        categories: false,
-        rating: false
       }
     }
   },
 
   computed: {
-    activeMenu() {
-      return Object.keys(this.menus).reduce(
-        ($, set, i) => (this.menus[set] ? i : $), -1
-      );
-    },
-
-    valueCheck() {
-      return this.currentDegreeLevelFilter + 3;
-    },
-    list() {
-      let {
-        countries,
-        categories
-      } = this.activeFilters;
-
-      return this.companies.filter(({
-        country,
-        keywords,
-        rating
-      }) => {
-        if (rating < this.filters.rating) return false;
-        if (countries.length && !~countries.indexOf(country)) return false;
-        return (!categories.length || categories.every(cat => ~keywords.indexOf(cat)));
-      });
-    },
-
     degreeList() {
-
       if ( !this.wpDegrees ) return []
 			let a = new Set(this.filteredDegreesByArea);
 			let b = new Set(this.filteredDegreesByLevel);
-			// let c = new Set(this.currentDegreesBySearch);
-			let intersection = new Set(
-				[...a].filter(x => b.has(x))
+			let c = new Set(this.filteredDegreesBySearch);
+      let intersection = new Set(
+				[...a].filter(x => b.has(x) && c.has(x))
 			);
-
 			return [...intersection]
-
     },
 
+    filteredDegreesBySearch() {
+      if (!this.currentDegreeSearchFilter) return this.wpDegrees
+
+      return this.wpDegrees.filter(degree => {
+				let title = degree.post_title
+				return title.toLowerCase().includes(this.currentDegreeSearchFilter.toLowerCase())
+			})
+		},
+
     filteredDegreesByArea() {
-      let filteredDegrees = this.wpDegrees.filter(degree => {
-        if (this.currentDegreeAreaFilter === 'all') {
-					return degree;
-				}
+      if (!this.currentDegreeAreaFilter) return this.wpDegrees
+
+      return this.wpDegrees.filter(degree => {
         let DegreeAreas = degree.areas
-        return DegreeAreas.includes(this.currentDegreeAreaFilter);
+        return DegreeAreas.includes(this.currentDegreeAreaFilter.term_id);
       });
-      return filteredDegrees
     },
 
     filteredDegreesByLevel() {
+      if (!this.currentDegreeLevelFilter) return this.wpDegrees
 
-      let filteredDegrees = this.wpDegrees.filter(degree => {
-        if (this.currentDegreeLevelFilter === 'all') {
-					return degree;
-				}
+      return this.wpDegrees.filter(degree => {
         let DegreeLevels = degree.levels
-        return DegreeLevels.includes(this.currentDegreeLevelFilter);
+        return DegreeLevels.includes(this.currentDegreeLevelFilter.term_id);
       });
-      return filteredDegrees
-    },
-
-    activeFilters() {
-      let {
-        countries,
-        categories
-      } = this.filters;
-
-      return {
-        countries: Object.keys(countries).filter(c => countries[c]),
-        categories: Object.keys(categories).filter(c => categories[c]),
-        rating: this.filters.rating > this.rating.min ? [this.filters.rating] : []
-      };
     },
 
     activeDegreeFilters() {
@@ -189,85 +163,32 @@ export default {
     }
   },
 
-  watch: {
-    activeMenu(index, from) {
-      if (index === from) return;
-
-      this.$nextTick(() => {
-        if (!this.$refs.menu || !this.$refs.menu[index]) {
-          this.dropdown.height = 0;
-        } else {
-          this.dropdown.height = `${this.$refs.menu[index].clientHeight +
-            16}px`;
-        }
-      });
-    }
-  },
   methods: {
+    handleFilterHeadingClick({filterList, otherFilterList}) {
+      console.log('RANNN');
+      console.log(filterList);
+      if (!this.mobile) return
+      if (otherFilterList) {
+        this[otherFilterList] = false
+      }
+      this[filterList] = !this[filterList]
+    },
+
+    updateFilter(filterSelected) {
+      if (filterSelected.taxonomy === 'degree_vertical') {
+        this.updateDegreeAreaFilter(filterSelected)
+      } else {
+        this.updateDegreeLevelFilter(filterSelected)
+      }
+    },
+
     updateDegreeLevelFilter(val) {
-      console.log('updateDegreeLevelFilter', val);
       this.currentDegreeLevelFilter = val
     },
 
     updateDegreeAreaFilter(val) {
-      console.log('got it!!! ', val);
       this.currentDegreeAreaFilter = val
-    },
-
-    setFilter(filter, option) {
-      if (filter === "countries") {
-        this.filters[filter][option] = !this.filters[filter][option];
-      } else {
-        setTimeout(() => {
-          this.clearFilter(filter, option, this.filters[filter][option]);
-        }, 100);
-      }
-    },
-
-    clearFilter(filter, except, active) {
-      if (filter === "rating") {
-        this.filters[filter] = this.rating.min;
-      } else {
-        Object.keys(this.filters[filter]).forEach(option => {
-          this.filters[filter][option] = except === option && !active;
-        });
-      }
-    },
-
-    clearAllFilters() {
-      Object.keys(this.filters).forEach(this.clearFilter);
-    },
-
-    setMenu(menu, active) {
-      Object.keys(this.menus).forEach(tab => {
-        this.menus[tab] = !active && tab === menu;
-      });
     }
-  },
-  beforeMount() {
-    fetch("https://s3-us-west-2.amazonaws.com/s.cdpn.io/450744/mock-data.json")
-      .then(response => response.json())
-      .then(companies => {
-        this.companies = companies;
-
-        companies.forEach(({
-          country,
-          keywords,
-          rating
-        }) => {
-          this.$set(this.filters.countries, country, false);
-
-          if (this.rating.max < rating) this.rating.max = rating;
-          if (this.rating.min > rating) {
-            this.rating.min = rating;
-            this.filters.rating = rating;
-          }
-
-          keywords.forEach(category => {
-            this.$set(this.filters.categories, category, false);
-          });
-        });
-      });
   }
 }
 </script>
@@ -275,10 +196,10 @@ export default {
 
 <style lang="scss">
   /* Temporary */
-  .degreeFilters {
+  .degree-filters {
     flex: 1 1 320px;
   }
-  .degree-grid {
+  .degree-list {
     flex: 1 1 calc(100% - 360px);
   }
   main.content {
@@ -288,6 +209,12 @@ export default {
     margin: 4em auto;
     max-width: 100%;
     padding: 1.25em;
+  }
+
+  .filter-clear {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
   }
 
 </style>

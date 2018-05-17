@@ -5,15 +5,15 @@
       <search-filter v-model="currentDegreeSearchFilter"></search-filter>
 
       <div class="filter-list-wrapper">
+        <filter-heading
+          @toggle-filter-visibility="handleFilterHeadingClick('showDegreeLevelFilter', 'showDegreeAreaFilter')"
+          :selectedFilter.sync="currentDegreeLevelFilter"
+          icon-dropdown-color="#cc1f1b"
+          icon-reset-color="gray"
+        >
+          <h2 slot="header">Degree Levels</h2>
+        </filter-heading>
 
-        <h2 class="filter-list-heading" @click="handleFilterHeadingClick('showDegreeLevelFilter', 'showDegreeAreaFilter')">
-          Degree Levels
-          <icon v-if="mobile" icon="arrow-down" color="#cc1f1b"></icon>
-          <div v-if="!mobile && currentDegreeLevelFilter" @click="currentDegreeLevelFilter = null" class="filter-clear">
-            Clear
-            <icon icon="clear-search" class="icon-button" color="black"></icon>
-          </div>
-        </h2>
         <div class="filter-list-status" v-if="currentDegreeLevelFilter && mobile">
           <span v-html="currentDegreeLevelFilter.name"></span>
           <icon class="icon-button" @click.native="currentDegreeLevelFilter = null" icon="clear-search" color="black"></icon>
@@ -32,14 +32,15 @@
       </div>
 
       <div class="filter-list-wrapper">
-        <h2 class="filter-list-heading" @click="handleFilterHeadingClick('showDegreeAreaFilter', 'showDegreeLevelFilter')" >
-          Degree Areas
-          <icon v-if="mobile" icon="arrow-down" color="#cc1f1b"></icon>
-          <button v-if="!mobile && currentDegreeAreaFilter" class="filter-clear" @click="currentDegreeAreaFilter = null">
-            Clear
-            <icon icon="clear-search" class="icon-button" color="black"></icon>
-          </button>
-        </h2>
+        <filter-heading
+          @toggle-filter-visibility="handleFilterHeadingClick('showDegreeAreaFilter', 'showDegreeLevelFilter')"
+          :selectedFilter.sync="currentDegreeAreaFilter"
+          icon-dropdown-color="#cc1f1b"
+          icon-reset-color="gray"
+        >
+          <h2 slot="header">Degree Levels</h2>
+        </filter-heading>
+
         <div class="filter-list-status" v-if="currentDegreeAreaFilter && mobile">
           <span v-html="currentDegreeAreaFilter.name"></span>
           <icon class="icon-button" @click.native="currentDegreeAreaFilter = null" icon="clear-search" color="black"></icon>
@@ -160,10 +161,12 @@ export default {
   },
 
   methods: {
-    handleFilterHeadingClick(filterList, OtherFilterList) {
+    handleFilterHeadingClick(filterList, otherFilterList) {
+      console.log('RANNN');
+      console.log(filterList);
       if (!this.mobile) return
-      if (OtherFilterList) {
-        this[OtherFilterList] = false
+      if (otherFilterList) {
+        this[otherFilterList] = false
       }
       this[filterList] = !this[filterList]
     },

@@ -33,7 +33,7 @@ export default {
     },
 
     selectedFilter: {
-      type: [Object, String, Number]
+      type: [Object, String]
       // required: true
     }
   },
