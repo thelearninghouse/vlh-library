@@ -8,6 +8,7 @@ import Icon from './components/Icon.vue'
 import SearchFilter from './components/SearchFilter.vue'
 import AccordionTransition from './components/AccordionTransition.vue'
 import mqMixin from './mixins/mqMixin.js'
+import degreeMixin from './mixins/degreeMixin.js'
 import './assets/styles/styles.scss'
 
 const VlhLibrary = {
@@ -43,5 +44,6 @@ export {
   DegreeList,
   DegreeItem,
   Icon,
-  SearchFilter
+  SearchFilter,
+  degreeMixin
 }

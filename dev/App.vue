@@ -23,7 +23,7 @@
             :selected-filter.sync="currentDegreeLevelFilter">
             <filter-reset label="All Levels"></filter-reset>
             <filter-item
-              v-for="item in wpDegreeLevels"
+              v-for="item in degreeLevels"
               :item="item"
               :key="item.term_id">
             </filter-item>
@@ -49,7 +49,7 @@
           :selected-filter.sync="currentDegreeAreaFilter">
           <filter-reset label="All Levels"></filter-reset>
           <FilterItem
-            v-for="item in wpDegreeAreas"
+            v-for="item in degreeAreas"
             :item="item"
             :key="item.term_id">
           </FilterItem>
@@ -78,81 +78,14 @@
 <script>
 import wpData from '../wpDataMock.js'
 import {buildDegreeList} from './helpers.js'
-
-const DegreeList = buildDegreeList(wpData.degrees);
-const DegreeLevels = wpData.degreeLevels
-const DegreeAreas = wpData.degreeAreas
+import {degreeMixin} from '../src/index.js'
 
 export default {
-  data() {
-    return {
-      wpDegrees: DegreeList,
-      wpDegreeLevels: DegreeLevels,
-      wpDegreeAreas: DegreeAreas,
-      currentDegreeLevelFilter: null,
-      currentDegreeAreaFilter: null,
-      currentDegreeSearchFilter: '',
-      showDegreeLevelFilter: false,
-      showDegreeAreaFilter: false
-    }
-  },
-
-  computed: {
-    degreeList() {
-      if ( !this.wpDegrees ) return []
-			let a = new Set(this.filteredDegreesByArea);
-			let b = new Set(this.filteredDegreesByLevel);
-			let c = new Set(this.filteredDegreesBySearch);
-      let intersection = new Set(
-				[...a].filter(x => b.has(x) && c.has(x))
-			);
-			return [...intersection]
-    },
-
-    filteredDegreesBySearch() {
-      if (!this.currentDegreeSearchFilter) return this.wpDegrees
-
-      return this.wpDegrees.filter(degree => {
-				let title = degree.post_title
-				return title.toLowerCase().includes(this.currentDegreeSearchFilter.toLowerCase())
-			})
-		},
-
-    filteredDegreesByArea() {
-      if (!this.currentDegreeAreaFilter) return this.wpDegrees
-
-      return this.wpDegrees.filter(degree => {
-        let DegreeAreas = degree.areas
-        return DegreeAreas.includes(this.currentDegreeAreaFilter.term_id);
-      });
-    },
-
-    filteredDegreesByLevel() {
-      if (!this.currentDegreeLevelFilter) return this.wpDegrees
-
-      return this.wpDegrees.filter(degree => {
-        let DegreeLevels = degree.levels
-        return DegreeLevels.includes(this.currentDegreeLevelFilter.term_id);
-      });
-    }
-  },
-
-  methods: {
-    handleFilterHeadingClick(filterList, otherFilterList) {
-      if (!this.mobile) return
-      if (otherFilterList) {
-        this[otherFilterList] = false
-      }
-      this[filterList] = !this[filterList]
-    },
-
-    updateFilter(filterSelected) {
-      if (filterSelected.taxonomy === 'degree_vertical') {
-        this.currentDegreeAreaFilter = filterSelected
-      } else {
-        this.currentDegreeLevelFilter = filterSelected
-      }
-    }
+  mixins: [degreeMixin],
+  mounted() {
+    this.degrees = buildDegreeList(wpData.degrees);
+    this.degreeLevels = wpData.degreeLevels
+    this.degreeAreas = wpData.degreeAreas
   }
 }
 </script>
@@ -162,6 +95,9 @@ export default {
   /* Temporary */
   .degree-filters {
     flex: 1 1 320px;
+    @media (min-width: 800px) {
+      max-width: 320px;
+    }
   }
   .degree-list {
     flex: 1 1 calc(100% - 360px);

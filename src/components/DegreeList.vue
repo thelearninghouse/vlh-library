@@ -1,5 +1,5 @@
 <template>
-<transition-group name="animated-grid-items" :tag="elementType" class="degree-list">
+<transition-group name="animated-grid-items" :tag="elementType" class="degree-list" appear>
   <slot></slot>
 </transition-group>
 </template>

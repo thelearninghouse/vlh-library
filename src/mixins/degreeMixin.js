@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 
+import buildDegreeList from '../helpers/buildDegreeList.js'
 /**
  * @mixin
  */
@@ -71,11 +72,5 @@ export default {
         this.currentDegreeLevelFilter = filterSelected
       }
     }
-  },
-
-  mounted() {
-    this.degrees = buildDegreeList(wpData.degrees);
-    this.degreeLevels = wpData.degreeLevels
-    this.degreeAreas = wpData.degreeAreas
   }
 };
