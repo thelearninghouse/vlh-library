@@ -1,41 +1,48 @@
 <template>
   <main id="app" class="content">
-    <div class="degreeFilters">
+    <div class="degree-filters">
 
-      <SearchFilter v-model="currentDegreeSearchFilter"></SearchFilter>
+      <search-filter v-model="currentDegreeSearchFilter"></search-filter>
 
       <div class="filter-list-wrapper">
 
-        <h2 class="filter-list-heading" @click.stop="handleFilterHeadingClick('showDegreeLevelFilter')">
+        <h2 class="filter-list-heading" @click="handleFilterHeadingClick('showDegreeLevelFilter', 'showDegreeAreaFilter')">
           Degree Levels
-          <icon v-if="mobile" icon="arrow-down"></icon>
+          <icon v-if="mobile" icon="arrow-down" color="#cc1f1b"></icon>
+          <div v-if="!mobile && currentDegreeLevelFilter" @click="currentDegreeLevelFilter = null" class="filter-clear">
+            Clear
+            <icon icon="clear-search" class="icon-button" color="black"></icon>
+          </div>
         </h2>
         <div class="filter-list-status" v-if="currentDegreeLevelFilter && mobile">
           <span v-html="currentDegreeLevelFilter.name"></span>
-          <icon class="icon-button" @click.native="currentDegreeLevelFilter = null" icon="clear-search"></icon>
+          <icon class="icon-button" @click.native="currentDegreeLevelFilter = null" icon="clear-search" color="black"></icon>
         </div>
 
-        <FilterList
-          :visible.sync="showDegreeLevelFilter"
-          :selected-filter.sync="currentDegreeLevelFilter">
-          <FilterReset label="All Levels"></FilterReset>
-          <FilterItem
-            v-for="item in wpDegreeLevels"
-            :item="item"
-            :key="item.term_id">
-          </FilterItem>
-        </FilterList>
-
+          <FilterList
+            :visible.sync="showDegreeLevelFilter"
+            :selected-filter.sync="currentDegreeLevelFilter">
+            <FilterReset label="All Levels"></FilterReset>
+            <FilterItem
+              v-for="item in wpDegreeLevels"
+              :item="item"
+              :key="item.term_id">
+            </FilterItem>
+          </FilterList>
       </div>
 
       <div class="filter-list-wrapper">
-        <h2 class="filter-list-heading" @click="handleFilterHeadingClick('showDegreeAreaFilter')" >
+        <h2 class="filter-list-heading" @click="handleFilterHeadingClick('showDegreeAreaFilter', 'showDegreeLevelFilter')" >
           Degree Areas
-          <icon v-if="mobile" icon="arrow-down"></icon>
+          <icon v-if="mobile" icon="arrow-down" color="#cc1f1b"></icon>
+          <button v-if="!mobile && currentDegreeAreaFilter" class="filter-clear" @click="currentDegreeAreaFilter = null">
+            Clear
+            <icon icon="clear-search" class="icon-button" color="black"></icon>
+          </button>
         </h2>
         <div class="filter-list-status" v-if="currentDegreeAreaFilter && mobile">
           <span v-html="currentDegreeAreaFilter.name"></span>
-          <icon class="icon-button" @click.native="currentDegreeAreaFilter = null" icon="clear-search"></icon>
+          <icon class="icon-button" @click.native="currentDegreeAreaFilter = null" icon="clear-search" color="black"></icon>
         </div>
 
         <FilterList
@@ -153,13 +160,15 @@ export default {
   },
 
   methods: {
-    handleFilterHeadingClick(filterListVisibility) {
-    if (!this.mobile) return
-    this[filterListVisibility] = !this[filterListVisibility]
+    handleFilterHeadingClick(filterList, OtherFilterList) {
+      if (!this.mobile) return
+      if (OtherFilterList) {
+        this[OtherFilterList] = false
+      }
+      this[filterList] = !this[filterList]
     },
 
     updateFilter(filterSelected) {
-      // console.log(filterSelected);
       if (filterSelected.taxonomy === 'degree_vertical') {
         this.updateDegreeAreaFilter(filterSelected)
       } else {
@@ -181,7 +190,7 @@ export default {
 
 <style lang="scss">
   /* Temporary */
-  .degreeFilters {
+  .degree-filters {
     flex: 1 1 320px;
   }
   .degree-list {
@@ -194,6 +203,12 @@ export default {
     margin: 4em auto;
     max-width: 100%;
     padding: 1.25em;
+  }
+
+  .filter-clear {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
   }
 
 </style>

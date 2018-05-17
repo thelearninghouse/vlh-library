@@ -1,7 +1,9 @@
 <template>
-  <component v-show="visible" :is="elementType" class="filter-list">
-    <slot></slot>
-  </component>
+  <accordion-transition>
+    <component v-show="visible" :is="elementType" class="filter-list">
+      <slot></slot>
+    </component>
+  </accordion-transition>
 </template>
 
 <script>
@@ -38,10 +40,8 @@ export default {
 
   data: () => ({
     filterState: {
-      active: null,
-      test: 1
-    },
-    // visible: true
+      active: null
+    }
   }),
 
   watch: {
@@ -52,6 +52,10 @@ export default {
       }
     },
 
+    selectedFilter: function (newFilter, oldFilter) {
+      this.filterState.active = newFilter
+    },
+
     mobile: function (newValue, oldValue) {
       if (this.mobile) {
         this.$emit('update:visible', false)
@@ -59,20 +63,14 @@ export default {
         this.$emit('update:visible', true)
       }
     }
-  },
-
-  methods: {
-    handleSelected (item) {
-      this.$emit('filter-selected', item)
-    },
-
-    handleReset () {
-      this.$emit('filter-reset')
-    }
   }
 }
 </script>
 <style>
+  .filter-list {
+    overflow: hidden;
+    transition: .3s ease;
+  }
   p {
     font-size: 18px;
   }

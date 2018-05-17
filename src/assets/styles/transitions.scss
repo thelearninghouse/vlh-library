@@ -2,11 +2,12 @@
 
 // Subfilter Dropdowns
 .subfilter-list {
-  transition: all 250ms ease-out;
-  z-index: -1;
+  transition: all 350ms ease-out;
+  // z-index: -1;
   position: relative;
+  overflow: hidden;
 }
-
+//
 .accordion-enter,
 .accordion-leave-active {
   opacity: 0;

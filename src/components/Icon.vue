@@ -1,5 +1,5 @@
 <template>
-<component :id="id" class="icon" :is="icon"></component>
+<component :id="id" class="icon" :is="icon" :style="{fill: color}"></component>
 </template>
 
 <script>
@@ -25,6 +25,10 @@ export default {
     },
     icon: {
       type: [String, Object, Function, Array]
+    },
+    color: {
+      type: String,
+      default: '#fff'
     }
   },
   components: {

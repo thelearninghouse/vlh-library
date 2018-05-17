@@ -11,13 +11,15 @@
         label="All Levels">
       </filter-reset-item>
 
-      <FilterListItem
-        :selectedFilter.sync="currentDegreeLevelFilter"
-        v-for="(option, index) in wpDegreeLevels"
-        :key="option.term_id"
-        :class="{selected: currentDegreeLevelFilter === option.term_id}"
-        :option="option">
-      </FilterListItem>
+      <AccordionTransition>
+        <FilterListItem
+          :selectedFilter.sync="currentDegreeLevelFilter"
+          v-for="(option, index) in wpDegreeLevels"
+          :key="option.term_id"
+          :class="{selected: currentDegreeLevelFilter === option.term_id}"
+          :option="option">
+        </FilterListItem>
+      </AccordionTransition>
     </div>
 
     <div class="filter-list-wrapper list-2">

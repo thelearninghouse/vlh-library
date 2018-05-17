@@ -1,12 +1,19 @@
 <template>
   <component :is="elementType" class="degree-item" :class="[degreeClasses, {open: showSummary}]">
     <div class="degree-item-header">
-      <h2 class="header-text" v-html="item.post_title"></h2>
-      <icon @click.native.stop="showSummary = !showSummary" class="summary-toggle" icon="ShowSubfilters"></icon>
+      <h2 class="text" v-html="item.post_title"></h2>
+      <icon @click.native.stop="showSummary = !showSummary" class="icon-button" icon="ShowSubfilters" color="gray"></icon>
     </div>
-    <div v-if="showSummary" class="degree-item-summary">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur officia laboriosam delectus est, beatae nemo eius suscipit debitis autem possimus, enim eum quae voluptatibus vel accusamus aliquam libero, sint fugiat perspiciatis excepturi. Dolorum quibusdam voluptatibus error dolore, laboriosam tempora deleniti.
-    </div>
+
+    <accordion-transition>
+      <div v-if="showSummary" class="degree-item-content">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur officia laboriosam delectus est, beatae nemo eius suscipit debitis autem possimus, enim eum quae voluptatibus vel accusamus aliquam libero, sint fugiat perspiciatis excepturi. Dolorum quibusdam voluptatibus error dolore, laboriosam tempora deleniti.</p>
+        <div class="degree-item-cta">
+          <a href="#">View Info</a>
+        </div>
+      </div>
+    </accordion-transition>
+
   </component>
 </template>
 
@@ -59,7 +66,7 @@ export default {
 					return ''
 				}
 			})
-			// return levels
+
 			return levels.concat(types)
 		}
   }
@@ -67,42 +74,41 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .degree-item {
+    display: inline-flex;
+    vertical-align: top;
+    background: #f5f5f5;
+    border: 1px solid #eee;
+    width: 320px;
+    margin: 10px;
+    border: 1px solid gray;
+    padding: 1em;
+    flex-flow: row wrap;
 
-.degree-item {
-  display: inline-flex;
-  vertical-align: top;
-  background: #f5f5f5;
-  border: 1px solid #eee;
-  // align-items: center;
-  // justify-content: center;
-  height: 80px;
-  width: 320px;
-  margin: 10px;
-  border: 1px solid gray;
-  padding: 1em;
-  flex-flow: row wrap;
+    &-header {
+      width: 100%;
+      height: 35px;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      margin-bottom: .75em;
 
-  &.open {
-    height: auto;
+      .text {
+        width: 85%;
+      }
+    }
+
+    &-content {
+      transition: all 350ms ease-out;
+      z-index: -1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    &-cta {
+      margin-top: 1em;;
+    }
   }
-}
-.degree-item-header {
-  width: 100%;
-  // height: 100%;
-  display: flex;
-  flex-flow: row wrap;
-  // align-content: stretch;
-  justify-content: space-between;
-  // align-items: center;
-  margin-bottom: .75em;
-  .header-text {
-    width: 85%;
-  }
-}
-
-.summary-toggle {
-    cursor: pointer;
-}
 </style>
 
 <docs>

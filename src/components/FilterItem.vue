@@ -6,7 +6,7 @@
       <icon class="toggle-subitems" v-if="hasSubItems" @click.native.stop="showSubItems = !showSubItems" :icon="dropdownIcon"></icon>
     </div>
 
-    <transition name="accordion" @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave" @leave="leave" appear>
+    <accordion-transition>
       <ul class="subfilter-list" v-if="hasSubItems && showSubItems">
         <FilterItem
           v-for="subItem in item.sub_areas"
@@ -17,7 +17,8 @@
           :key="subItem.term_id">
         </FilterItem>
       </ul>
-    </transition>
+    </accordion-transition>
+
   </component>
 </template>
 
@@ -86,22 +87,6 @@ export default {
     subitemIsSelected(subitem) {
       if ( !this.selectedFilter ) return false
       return subitem.term_id === this.selectedFilter.term_id
-    },
-
-    beforeEnter: function(el) {
-      el.style.height = "0";
-    },
-
-    enter: function(el) {
-      el.style.height = el.scrollHeight + 20 + "px";
-    },
-
-    beforeLeave: function(el) {
-      el.style.height = el.scrollHeight + 20 + "px";
-    },
-
-    leave: function(el) {
-      el.style.height = "0";
     }
   }
 }
