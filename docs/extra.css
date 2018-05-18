@@ -1,0 +1,32 @@
+nav li {
+    margin-bottom: 1em !important;
+}
+
+nav li a {
+    font-size: 1.15em !important;
+}
+
+.CodeMirror.CodeMirror pre {
+    font-size: 15px !important;
+    padding: .5em !important;
+}
+
+table * {
+    font-size: 15px !important;
+}
+
+.rsg--root-10 {
+    margin-bottom: 4em!important;;
+    padding-bottom: 4em!important;
+    border-bottom: 1px solid #c4c4c4!important;
+}
+
+.rsg--sidebar-4 {
+  /* width: 250px !important; */
+}
+
+/* @media (min-width: 541px) {
+  .rsg--hasSidebar-2 {
+      padding-left: 250px !important;
+  }
+} */
