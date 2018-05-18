@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VlhLibrary from '../src/index.js'
-// import './stsyles/demo.scss'
+import './styles/demo.scss'
 
 Vue.use(VlhLibrary)
 
