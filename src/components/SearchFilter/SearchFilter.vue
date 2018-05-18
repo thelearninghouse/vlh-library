@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import debounce from './../helpers/debounce.js'
+import debounce from './../../helpers/debounce.js'
 
 export default {
   inheritAttrs: false,
@@ -81,10 +81,3 @@ export default {
   }
 }
 </style>
-
-<docs>
-
-  ```vue
-<search-filter v-model="currentSearchFilter"></search-filter>
-  ```
-</docs>

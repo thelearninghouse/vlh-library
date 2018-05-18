@@ -63,3 +63,11 @@ export default {
     cursor: pointer;
   }
 </style>
+
+<docs>
+
+```vue
+<filter-list-heading heading="Degree Levels"></filter-list-heading>
+```
+
+</docs>

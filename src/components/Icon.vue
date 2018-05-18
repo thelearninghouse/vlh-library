@@ -17,7 +17,7 @@ import RemoveCircleOutline from '../assets/images/remove-circle-outline.svg';
 
 /**
  * Icon
- *
+ * These are SVG icons
  */
 export default {
   name: 'Icon',
@@ -25,13 +25,24 @@ export default {
     id: {
       type: String
     },
+    /**
+    * The icon to use.
+    *
+    */
     icon: {
-      type: [String, Object, Function, Array]
+      type: String,
+      required: true
     },
+    /**
+     * The color to use for the icon
+    */
     color: {
       type: String,
       default: '#fff'
     },
+    /**
+    * The size of the icon.
+    */
     size: {
       type: String,
       default: '24px'

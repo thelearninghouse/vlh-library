@@ -5013,7 +5013,7 @@ const items = [{
       "templated": true
     }]
   }
-}]
+}];
 export default {
   data() {
     return {

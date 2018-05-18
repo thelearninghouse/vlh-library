@@ -1,5 +1,5 @@
-/* eslint-disable no-console */
-
+// src/mixins/degreeMixin.js
+//
 import buildDegreeList from '../helpers/buildDegreeList.js'
 /**
  * @mixin
@@ -17,6 +17,9 @@ export default {
   }),
 
   computed: {
+		/**
+     * The array of degrees that is formed by all the filters
+     */
     degreeList() {
       if ( !this.degrees ) return []
 			let a = new Set(this.filteredDegreesByArea);
