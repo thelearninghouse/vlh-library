@@ -1,4 +1,4 @@
-@import 'vd-finder';
+@import 'vlh-library';
 .sr-only {
   border: 0;
   clip: rect(1px, 1px, 1px, 1px);
@@ -20,7 +20,7 @@
 }
 
 .filter-item {
-  .label {
+  .title {
     display: flex;
     align-items: center;
     height: 45px;
@@ -36,4 +36,22 @@
     // position: relative;
     // z-index: 9999;
   }
+}
+
+#vlh-filtering {
+  max-width: 1440px;
+  display: flex;
+  justify-content: space-between;
+  margin: 4em auto;
+  padding: .75em;
+}
+
+.degree-filters {
+  flex: 0 1 320px;
+  @media (min-width: 800px) {
+    max-width: 320px;
+  }
+}
+.degree-list {
+  flex: 0 1 calc(100% - 375px);
 }

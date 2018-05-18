@@ -62,10 +62,11 @@ export default {
   align-content: start;
 
   &-input {
-    height: 40px;
-    width: 100%;
+    height: 45px;
+    width: calc(100% - 45px);
     background: #eee;
     padding: .25em .5em;
+    box-sizing: border-box;
   }
 
   .search {
@@ -74,8 +75,8 @@ export default {
       align-items: center;
       justify-content: center;
       background: #cc1f1b;
-      width: 40px;
-      height: 40px;
+      width: 45px;
+      height: 45px;
     }
   }
 }

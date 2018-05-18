@@ -3,7 +3,7 @@
     <div class="filter-item-content" @click="updateSelected">
       <icon class="selected-indicator" v-if="isSelected" icon="check"></icon>
       <span class="title" v-html="item.name"></span>
-      <icon class="toggle-subitems" v-if="hasSubItems" @click.native.stop="showSubItems = !showSubItems" :icon="dropdownIcon" color="#222"></icon>
+      <icon class="toggle-subitems" v-if="hasSubItems" @click.native.stop="showSubItems = !showSubItems" :icon="dropdownIcon" size="32" color="#222"></icon>
     </div>
 
     <accordion-transition>
@@ -94,14 +94,18 @@ export default {
 p {
   font-size: 18px;
 }
+
 .filter-list {
   flex-direction: column;
 
   .filter-item {
     width: 100%;
     position: relative;
-    
+
     &-content {
+      display: flex;
+      align-items: center;
+      height: 45px;
       padding: .5em .75em .5em .5em;
       cursor: pointer;
       position: relative;

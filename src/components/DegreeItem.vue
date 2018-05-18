@@ -103,6 +103,8 @@ export default {
 
       .title {
         width: 85%;
+        font-size: 1em;
+        font-weight: normal;
       }
     }
 

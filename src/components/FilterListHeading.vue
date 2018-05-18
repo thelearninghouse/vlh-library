@@ -1,7 +1,7 @@
 <template>
   <div v-on="$listeners" class="filter-list-heading" @click="handleToggle">
     <h2 class="heading" v-html="heading"></h2>
-    <icon v-if="mobile" :icon="currentIcon" :color="iconDropdownColor"></icon>
+    <icon v-if="mobile" :icon="currentIcon" :color="iconDropdownColor" size="30px"></icon>
     <div v-if="!mobile && selectedFilter" @click="$emit('update:selectedFilter', null)" class="filter-clear">
       <slot name="filter-clear">
         Clear
@@ -56,5 +56,10 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="scss">
+  .filter-clear {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
 </style>

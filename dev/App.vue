@@ -1,5 +1,5 @@
 <template>
-  <main id="app" class="content">
+  <div id="vlh-filtering">
     <div class="degree-filters">
 
       <search-filter placeholder="Click here to search" v-model="currentDegreeSearchFilter"></search-filter>
@@ -63,18 +63,8 @@
       <degree-item v-for="degree in degreeList" :item="degree" :key="degree.ID" />
     </degree-list>
 
-<!-- Customize using scoped slots -->
-    <!-- <DegreeList>
-      <DegreeItem v-for="degree in degreeList" :item="degree" :key="degree.ID">
-        <template slot-scope="degree">
-          <h3 v-html="degree.post_title"></h3>
-          <div>{{degree.summary}}</div>
-        </template>
-      </DegreeItem>
-    </DegreeList> -->
-
     <h1 class="no-results" v-if="!degreeList.length">No Matches</h1>
-  </main>
+  </div>
 </template>
 
 <script>
@@ -95,29 +85,5 @@ export default {
 
 <style lang="scss">
   /* Temporary */
-  .degree-filters {
-    flex: 1 1 320px;
-    @media (min-width: 800px) {
-      max-width: 320px;
-    }
-  }
-  .degree-list {
-    flex: 1 1 calc(100% - 360px);
-  }
-  main.content {
-    width: 1440px;
-    display: flex;
-    justify-content: space-between;
-    margin: 4em auto;
-    max-width: 100%;
-    padding: 1.25em;
-  }
-
-  .filter-clear {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-  }
-
 
 </style>

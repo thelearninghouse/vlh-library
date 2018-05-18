@@ -12,10 +12,7 @@
 .filter-item {
   &-content {
     @apply .bg-white .text-grey-darkest .font-semibold;
-    display: flex;
-    align-items: center;
-    height: 45px;
-
+    
     &:hover {
       @apply .bg-grey-light;
     }
@@ -25,11 +22,6 @@
     & > .filter-item-content {
       @apply .bg-red-dark text-white;
     }
-  }
-
-  &.parent {
-    // position: relative;
-    // z-index: 9999;
   }
 }
 

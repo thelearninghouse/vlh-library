@@ -79,6 +79,7 @@ export default {
 <style lang="scss">
   ul {
     padding-left: 0;
+    background: white;
   }
   .filter-list {
     overflow: hidden;
