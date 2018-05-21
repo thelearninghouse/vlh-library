@@ -5,7 +5,7 @@ import buildDegreeList from '../helpers/buildDegreeList.js'
  * @mixin
  */
 export default {
-	data: () => ({
+  data: () => ({
     degrees: [],
     degreeLevels: [],
     degreeAreas: [],
@@ -17,28 +17,28 @@ export default {
   }),
 
   computed: {
-		/**
+    /**
      * The array of degrees that is formed by all the filters
      */
     degreeList() {
-      if ( !this.degrees ) return []
-			let a = new Set(this.filteredDegreesByArea);
-			let b = new Set(this.filteredDegreesByLevel);
-			let c = new Set(this.filteredDegreesBySearch);
+      if (!this.degrees) return []
+      let a = new Set(this.filteredDegreesByArea);
+      let b = new Set(this.filteredDegreesByLevel);
+      let c = new Set(this.filteredDegreesBySearch);
       let intersection = new Set(
-				[...a].filter(x => b.has(x) && c.has(x))
-			);
-			return [...intersection]
+        [...a].filter(x => b.has(x) && c.has(x))
+      );
+      return [...intersection]
     },
 
     filteredDegreesBySearch() {
       if (!this.currentDegreeSearchFilter) return this.degrees
 
       return this.degrees.filter(degree => {
-				let title = degree.post_title
-				return title.toLowerCase().includes(this.currentDegreeSearchFilter.toLowerCase())
-			})
-		},
+        let title = degree.post_title
+        return title.toLowerCase().includes(this.currentDegreeSearchFilter.toLowerCase())
+      })
+    },
 
     filteredDegreesByArea() {
       if (!this.currentDegreeAreaFilter) return this.degrees

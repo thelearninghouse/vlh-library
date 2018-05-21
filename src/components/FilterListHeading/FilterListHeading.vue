@@ -67,7 +67,7 @@ export default {
 <docs>
 
 ```vue
-<filter-list-heading heading="Degree Levels"></filter-list-heading>
+<filter-list-heading heading="Degree Levels 2"></filter-list-heading>
 ```
 
 </docs>

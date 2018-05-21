@@ -9,7 +9,7 @@ const ResolveFix = {
 
 module.exports = {
 	components: 'src/components/**/[A-Z]*.vue',
-  mixins: ['docs-mixin.js'],
+  mixins: ['src/mixins/degreeMixin.js', 'docs-mixin.js'],
 	require: [
 		path.join(__dirname, 'docs-helpers/extra.css')
 	],
@@ -37,7 +37,7 @@ module.exports = {
 				{
 					test: /\.svg$/,
 					use: ['vue-svg-loader']
-				}				
+				}
 			],
       // rules: [
       //   // Vue loader

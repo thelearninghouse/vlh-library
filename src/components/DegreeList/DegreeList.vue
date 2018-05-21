@@ -40,9 +40,3 @@ export default {
     align-items: start;
 }
 </style>
-
-<docs>
-  ```vue
-<degree-list :items="degrees"/>
-  ```
-</docs>

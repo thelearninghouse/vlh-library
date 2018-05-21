@@ -71,11 +71,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-
-```vue
-<icon class="icon-button" icon="clear-search" color="blue" size="22px"></icon>
-```
-
-</docs>
