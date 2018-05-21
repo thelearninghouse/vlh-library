@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import debounce from './../../helpers/debounce.js'
+import debounce from '@/helpers/debounce.js'
 
 export default {
   inheritAttrs: false,

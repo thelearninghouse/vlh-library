@@ -1,6 +1,6 @@
 Search Filter Info:
 
-```vue
+```jsx
 let currentSearchFilter = 'Search Text'
 
 <search-filter v-model="currentSearchFilter"></search-filter>

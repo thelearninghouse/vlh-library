@@ -1,5 +1,12 @@
 // require('./docs-mixin.js');
-var path = require('path')
+const Path = require('path')
+const ResolveFix = {
+      extensions: [".js", ".vue"],
+      alias: {
+        "@": Path.resolve(__dirname, "./src")
+      }
+    };
+
 module.exports = {
 	components: 'src/components/**/[A-Z]*.vue',
   mixins: ['docs-mixin.js'],
@@ -7,6 +14,7 @@ module.exports = {
 		// path.join(__dirname, './dist/vlh-library.css')
 	],
   webpackConfig: {
+		resolve: ResolveFix,
     module: {
       rules: [
         // Vue loader
@@ -23,5 +31,6 @@ module.exports = {
     }
   },
   showUsage: true,
-	showCode: true
+	showCode: true,
+	styleguideDir: "docs",
 };
