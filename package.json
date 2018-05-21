@@ -12,11 +12,10 @@
     "build": "poi build ./src/index.js --component VlhLibrary",
     "library": "poi build ./src/index.js --library VlhLibrary",
     "build:example": "poi build dev/main.js --dist demo",
-    "docs": "docsify serve ./docs",
     "release": "npm run build && npm publish",
     "prepublish": "npm run build",
-    "docs:vsg": "vue-styleguidist server",
-    "styleguide:build": "vue-styleguidist build"
+    "docs": "vue-styleguidist server",
+    "build:docs": "vue-styleguidist build"
   },
   "author": {
     "name": "David Royer",
@@ -34,6 +33,7 @@
     "vue-stash": "^2.0.1-beta"
   },
   "devDependencies": {
+    "dog-names": "^1.0.2",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "tailwindcss": "^0.5.3",
