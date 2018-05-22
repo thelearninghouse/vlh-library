@@ -16,8 +16,8 @@
     >
       <icon class="selected-indicator" v-if="isSelected" icon="check"></icon>
       <span class="title" v-html="item.name"></span>
-      <button aria-label="Toggle Subfilters" class="toggle-subitems" @click.stop="showSubItems = !showSubItems"  v-if="hasSubItems">
-        <icon :icon="dropdownIcon" size="32" color="#222"></icon>
+      <button aria-label="Toggle Subfilters" class="toggle-subitems" @keyup.enter.stop @click.stop="showSubItems = !showSubItems"  v-if="hasSubItems">
+        <icon :icon="dropdownIcon" size="32px" color="#222"></icon>
       </button>
     </div>
 
@@ -28,7 +28,6 @@
           :item="subItem"
           :key="subItem.term_id">
         </FilterItem>
-                  <!-- :class="{'subfilter-selected': subitemIsSelected(subItem) }" -->
       </ul>
     </accordion-transition>
 

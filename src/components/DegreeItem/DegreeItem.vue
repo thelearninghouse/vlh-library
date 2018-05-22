@@ -1,19 +1,26 @@
 <template>
   <component :is="elementType" class="degree-item" :class="[degreeClasses, {open: showContent}]">
-    <slot :degree="item" :degreeClasses="degreeClasses" :toggleIcon="toggleContentIcon" :showContent="showContent">
-      <div class="degree-item-header">
-        <h2 class="title" v-html="item.post_title"></h2>
-        <icon class="icon-button" @click.native.stop="showContent = !showContent" slot="" :icon="toggleContentIcon" size="30px" color="#222"></icon>
-      </div>
-      <accordion-transition>
-        <div v-if="showContent" class="degree-item-content">
-          <p>{{item.summary}}</p>
-          <div class="degree-item-cta">
-            <a :href="`/${item.post_name}`">View Info</a>
-          </div>
+    <a class="degree-item-link" :href="item.url">
+      <slot :degree="item">
+        <div class="degree-item-header">
+          <h2 class="title" v-html="item.post_title"></h2>
+          <button
+            aria-label="Show Summary Info"
+            role="button" class="icon-button"
+            @click.prevent="showContent = !showContent">
+            <icon role="presentation" :icon="toggleContentIcon" size="30px" color="#222"></icon>
+          </button>
         </div>
-      </accordion-transition>
-    </slot>
+        <accordion-transition>
+          <div v-if="showContent" class="degree-item-content">
+            <p>{{item.summary}}</p>
+            <div class="degree-item-cta">
+              View Info
+            </div>
+          </div>
+        </accordion-transition>
+      </slot>
+    </a>
   </component>
 </template>
 
@@ -59,6 +66,10 @@ export default {
     }
   },
   methods: {
+    handleLink(event) {
+      console.log(event);
+    },
+
     getDegreeClasses(degree) {
       let degreeLevels = degree.degree_levels
       let degreeTypes = degree.degree_areas
@@ -90,9 +101,14 @@ export default {
     width: 320px;
     margin: 10px;
     border: 1px solid gray;
-    padding: 1em;
     flex-flow: row wrap;
 
+    &-link {
+      padding: 1em;
+      display: block;
+      width: inherit;
+      height: inherit;
+    }
     &-header {
       width: 100%;
       height: 35px;
