@@ -6,7 +6,7 @@
           <h2 class="title" v-html="item.post_title"></h2>
           <button
             aria-label="Show Summary Info"
-            role="button" class="icon-button"
+            class="button-icon"
             @click.prevent="showContent = !showContent">
             <icon role="presentation" :icon="toggleContentIcon" size="30px" color="#222"></icon>
           </button>
@@ -105,10 +105,9 @@ export default {
 
     &-link {
       padding: 1em;
-      display: block;
-      width: inherit;
-      height: inherit;
+      width: 100%;
     }
+
     &-header {
       width: 100%;
       height: 35px;
@@ -121,6 +120,8 @@ export default {
         width: 85%;
         font-size: 1em;
         font-weight: normal;
+        margin-top: 0;
+        margin-bottom: 0;
       }
     }
 
@@ -139,6 +140,12 @@ export default {
       .degree-item-content {
         padding-top: 1em;;
       }
+    }
+
+    .button-icon {
+      background: none;
+      padding: 0;
+      border-radius: 50%;
     }
 }
 </style>
