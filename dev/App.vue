@@ -53,11 +53,11 @@
           :visible.sync="showDegreeAreaFilter"
           :selected-filter.sync="currentDegreeAreaFilter">
           <filter-reset reset-id="reset-areas" title="All Areas"></filter-reset>
-          <FilterItem
+          <filter-item
             v-for="item in degreeAreas"
             :item="item"
             :key="item.term_id">
-          </FilterItem>
+          </filter-item>
         </filter-list>
       </div>
     </div>
