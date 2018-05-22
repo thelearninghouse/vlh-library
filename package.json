@@ -1,6 +1,6 @@
 {
   "name": "vlh-library",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Vue Components Library for Learning House Marketing Sites.",
   "main": "dist/vlh-library.js",
   "files": [

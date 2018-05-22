@@ -95,13 +95,11 @@ export default {
 }
 </script>
 <style lang="scss">
-  ul {
-    padding-left: 0;
-    background: white;
-  }
   .filter-list {
     overflow: hidden;
     list-style-type: none;
+    padding-left: 0;
+    background: white;
     /* transition: .3s ease; */
   }
   p {
