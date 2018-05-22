@@ -20,9 +20,11 @@
         </div>
 
           <filter-list
+            aria-label="Degree Levels Filter"
+            filter-reset-id="all-levels"
             :visible.sync="showDegreeLevelFilter"
             :selected-filter.sync="currentDegreeLevelFilter">
-            <filter-reset title="All Levels"></filter-reset>
+            <filter-reset  title="All Levels"></filter-reset>
             <filter-item
               v-for="item in degreeLevels"
               :item="item"
@@ -47,9 +49,10 @@
         </div>
 
         <filter-list
+          filter-reset-id="all-degrees"
           :visible.sync="showDegreeAreaFilter"
           :selected-filter.sync="currentDegreeAreaFilter">
-          <filter-reset title="All Levels"></filter-reset>
+          <filter-reset reset-id="reset-areas" title="All Areas"></filter-reset>
           <FilterItem
             v-for="item in degreeAreas"
             :item="item"
@@ -62,7 +65,15 @@
     <degree-list>
       <degree-item v-for="degree in degreeList" :item="degree" :key="degree.ID" />
     </degree-list>
-
+    <!-- <degree-list>
+      <degree-item v-for="degree in degreeList" :item="degree" :key="degree.ID" class="degree-item">
+        <template slot-scope="{degree, degreeClasses, showContent, toggleIcon}">
+          <h2 v-html="degree.post_title"></h2>
+          <button @click.stop="testSlotMethod">Toggle Show Content</button>
+          <div>{{showContent}}</div>
+        </template>
+      </degree-item>
+    </degree-list> -->
     <h1 class="no-results" v-if="!degreeList.length">No Matches</h1>
   </div>
 </template>
@@ -78,6 +89,11 @@ export default {
     this.degrees = buildDegreeList(wpData.degrees);
     this.degreeLevels = wpData.degreeLevels
     this.degreeAreas = wpData.degreeAreas
+  },
+  methods: {
+    testSlotMethod() {
+      alert('fired!')
+    }
   }
 }
 </script>

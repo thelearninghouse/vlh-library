@@ -1,20 +1,34 @@
 <template>
-  <component :is="elementType" class="filter-item" :class="{ 'selected': hasSelectedClass, 'parent': hasSubItems}">
-    <div class="filter-item-content" @click="updateSelected">
+  <component
+    role="presentation"
+    :is="elementType"
+    class="filter-item"
+    :class="{ 'selected': hasSelectedClass, 'parent': hasSubItems}"
+  >
+    <div
+      :id="`button-${item.slug}`"
+      tabindex="0"
+      role="button"
+      class="filter-item-content"
+      @keyup.enter="updateSelected"
+      @click="updateSelected"
+      :aria-pressed="isSelected ? 'true' : 'false'"
+    >
       <icon class="selected-indicator" v-if="isSelected" icon="check"></icon>
       <span class="title" v-html="item.name"></span>
-      <icon class="toggle-subitems" v-if="hasSubItems" @click.native.stop="showSubItems = !showSubItems" :icon="dropdownIcon" size="32" color="#222"></icon>
+      <button aria-label="Toggle Subfilters" class="toggle-subitems" @click.stop="showSubItems = !showSubItems"  v-if="hasSubItems">
+        <icon :icon="dropdownIcon" size="32" color="#222"></icon>
+      </button>
     </div>
 
     <accordion-transition>
       <ul class="subfilter-list" v-if="hasSubItems && showSubItems">
         <FilterItem
           v-for="subItem in item.sub_areas"
-          :selectedFilter="selectedFilter"
           :item="subItem"
-          :class="{'selected': subitemIsSelected(subItem) }"
           :key="subItem.term_id">
         </FilterItem>
+                  <!-- :class="{'subfilter-selected': subitemIsSelected(subItem) }" -->
       </ul>
     </accordion-transition>
 

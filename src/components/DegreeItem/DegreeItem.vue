@@ -1,9 +1,9 @@
 <template>
   <component :is="elementType" class="degree-item" :class="[degreeClasses, {open: showContent}]">
-    <slot v-bind="item">
+    <slot :degree="item" :degreeClasses="degreeClasses" :toggleIcon="toggleContentIcon" :showContent="showContent">
       <div class="degree-item-header">
         <h2 class="title" v-html="item.post_title"></h2>
-        <icon class="icon-button" @click.native.stop="showContent = !showContent" :icon="toggleContentIcon" size="30px" color="#222"></icon>
+        <icon class="icon-button" @click.native.stop="showContent = !showContent" slot="" :icon="toggleContentIcon" size="30px" color="#222"></icon>
       </div>
       <accordion-transition>
         <div v-if="showContent" class="degree-item-content">

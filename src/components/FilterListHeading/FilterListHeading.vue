@@ -2,7 +2,13 @@
   <div v-on="$listeners" class="filter-list-heading" @click="handleToggle">
     <h2 class="heading" v-html="heading"></h2>
     <icon v-if="mobile" :icon="currentIcon" :color="iconDropdownColor" size="30px"></icon>
-    <div v-if="!mobile && selectedFilter" @click="$emit('update:selectedFilter', null)" class="filter-clear">
+    <div
+      v-if="!mobile && selectedFilter"
+      role="button"
+      tabindex="0"
+      @click="$emit('update:selectedFilter', null)"
+      @keyup.enter="$emit('update:selectedFilter', null)"
+      class="filter-clear">
       <slot name="filter-clear">
         Clear
         <icon icon="clear-search" class="icon-button" :color="iconResetColor"></icon>

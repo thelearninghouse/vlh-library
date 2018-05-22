@@ -1,6 +1,19 @@
 <template>
-  <component :is="elementType" class="filter-item filter-reset" :class="{selected: isSelected}">
-    <div class="filter-item-content" @click="updateSelected">
+  <component
+    role="presentation"
+    :is="elementType"
+    class="filter-item filter-reset"
+    :class="{selected: isSelected}"
+  >
+    <div
+      :id="`button-${filterId}`"
+      tabindex="0"
+      role="button"
+      class="filter-item-content"
+      @keyup.enter="updateSelected"
+      @click="updateSelected"
+      :aria-pressed="isSelected ? 'true' : 'false'"
+    >
       <icon class="selected-indicator" v-if="isSelected" icon="check"></icon>
       <span class="title" v-html="title"></span>
     </div>
@@ -9,9 +22,10 @@
 
 <script>
 export default {
+  // inheritAttrs: false,
   name: 'FilterReset',
 
-  inject: ['filterState'],
+  inject: ['filterState', 'filterResetId'],
 
   props: {
     /**
@@ -27,6 +41,10 @@ export default {
       type: String,
       default: 'All'
     },
+
+    resetId: {
+      type: String
+    },
     /**
      * The HTML element to use
      */
@@ -39,6 +57,10 @@ export default {
   computed: {
     filterListState() {
       return this.filterState
+    },
+
+    filterId() {
+      return this.filterResetId
     },
 
     selectedFilter() {
@@ -66,7 +88,7 @@ export default {
     font-size: 18px;
   }
 </style>
-<!-- 
+<!--
 <docs>
 
 ```vue

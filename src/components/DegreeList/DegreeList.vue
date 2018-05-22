@@ -1,7 +1,7 @@
 <template>
-<transition-group name="animated-grid-items" :tag="elementType" class="degree-list" appear>
-  <slot></slot>
-</transition-group>
+  <transition-group id="degree-list-id" aria-live="false" name="animated-grid-items" :tag="elementType" class="degree-list" appear>
+    <slot></slot>
+  </transition-group>
 </template>
 
 <script>
@@ -15,7 +15,7 @@ export default {
     /**
      * The array of items to be used for the filtering.
      */
-    items: {
+    degrees: {
       type: Array,
       // required: true
     },
@@ -24,7 +24,7 @@ export default {
      */
     elementType: {
       type: String,
-      default: "div",
+      default: "ul",
     },
   }
 }

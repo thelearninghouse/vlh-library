@@ -1,6 +1,13 @@
 <template>
   <transition name="slide-fade">
-    <component v-show="visible" :is="elementType" class="filter-list">
+    <component
+      aria-controls="degree-list-id"
+      role="toolbar"
+      tabindex="0"
+      :aria-activedescendant="activeDecendant"
+      v-show="visible"
+      :is="elementType"
+      class="filter-list">
       <slot></slot>
     </component>
   </transition>
@@ -12,7 +19,8 @@ export default {
 
   provide() {
     return {
-      filterState: this.filterState
+      filterState: this.filterState,
+      filterResetId: this.filterResetId
     }
   },
 
@@ -34,6 +42,10 @@ export default {
 
     selectedFilter: {
       type: [Object, String]
+      // required: true
+    },
+    filterResetId: {
+      type: String
       // required: true
     }
   },
@@ -62,6 +74,12 @@ export default {
 
     mobile: function (newValue, oldValue) {
       this.handleMobile();
+    }
+  },
+
+  computed: {
+    activeDecendant() {
+      return this.selectedFilter ? `button-${this.selectedFilter.slug}` : `button-${this.filterResetId}`
     }
   },
 
