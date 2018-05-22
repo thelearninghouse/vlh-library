@@ -1,6 +1,6 @@
 {
   "name": "vlh-library",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Vue Components Library for Learning House Marketing Sites.",
   "main": "dist/vlh-library.js",
   "files": [
@@ -28,13 +28,10 @@
   },
   "keywords": [],
   "license": "ISC",
-  "dependencies": {
-    "poi": "^9.6.13",
-    "vue-stash": "^2.0.1-beta"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "dog-names": "^1.0.2",
     "node-sass": "^4.9.0",
+    "poi": "^9.6.13",
     "sass-loader": "^7.0.1",
     "tailwindcss": "^0.5.3",
     "vue-loader": "^14.2.1",
