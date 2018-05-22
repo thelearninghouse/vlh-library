@@ -97,10 +97,8 @@ export default {
     display: inline-flex;
     vertical-align: top;
     background: #f5f5f5;
-    border: 1px solid #eee;
     width: 320px;
     margin: 10px;
-    border: 1px solid gray;
     flex-flow: row wrap;
 
     &-link {

@@ -33,7 +33,7 @@
           </filter-list>
       </div>
 
-      <div class="filter-list-wrapper">
+      <div id="filter-areas" class="filter-list-wrapper">
         <filter-list-heading
           :list-visibility="showDegreeAreaFilter"
           @toggle-filter-visibility="handleFilterHeadingClick('showDegreeAreaFilter', 'showDegreeLevelFilter')"

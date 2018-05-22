@@ -2,7 +2,7 @@
   <component
     role="presentation"
     :is="elementType"
-    class="filter-item filter-reset"
+    class="filter-item filter-reset all"
     :class="{selected: isSelected}"
   >
     <div
@@ -14,7 +14,9 @@
       @click="updateSelected"
       :aria-pressed="isSelected ? 'true' : 'false'"
     >
-      <icon class="selected-indicator" v-if="isSelected" icon="check"></icon>
+      <span class="selected-indicator">
+        <icon class="selected-indicator-icon" v-if="isSelected" icon="check"></icon>
+      </span>
       <span class="title" v-html="title"></span>
     </div>
   </component>

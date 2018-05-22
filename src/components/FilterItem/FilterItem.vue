@@ -2,8 +2,7 @@
   <component
     role="presentation"
     :is="elementType"
-    class="filter-item"
-    :class="{ 'selected': hasSelectedClass, 'parent': hasSubItems}"
+    :class="['filter-item', item.slug, { 'selected': hasSelectedClass, 'parent': hasSubItems}]"
   >
     <div
       :id="`button-${item.slug}`"
@@ -14,7 +13,9 @@
       @click="updateSelected"
       :aria-pressed="isSelected ? 'true' : 'false'"
     >
-      <icon class="selected-indicator" v-if="isSelected" icon="check"></icon>
+      <span class="selected-indicator">
+        <icon class="selected-indicator-icon" v-if="isSelected" icon="check"></icon>
+      </span>
       <span class="title" v-html="item.name"></span>
       <button aria-label="Toggle Subfilters" class="toggle-subitems" @keyup.enter.stop @click.stop="showSubItems = !showSubItems"  v-if="hasSubItems">
         <icon :icon="dropdownIcon" size="32px" color="#222"></icon>

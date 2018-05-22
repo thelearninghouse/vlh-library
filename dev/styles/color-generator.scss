@@ -1,0 +1,57 @@
+$degreeAreas: (
+  "all": #11181F,
+  "biology": #966208,
+  "business": #0366C9,
+  "communications": #177D74,
+  "general-studies": #743F10,
+  "psychology-counseling": #8A27B4,
+  "public-safety": #666666,
+  "school-administration": #510915,
+  "science-environment": #CC00B1,
+  "teaching": #A81D32
+);
+@each $degree_name, $degree_color in $degreeAreas {
+  .degree-item.#{$degree_name} {
+    border-left: 5px solid $degree_color;
+
+    &:focus,
+    &:hover {}
+  }
+
+  #filter-areas {
+    .filter-item {
+      .selected-indicator {
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 10px;
+      }
+
+      &.selected {
+        .selected-indicator {
+          border: 2px solid white !important;
+        }
+      }
+
+      &.#{$degree_name} {
+        .selected-indicator {
+          background: $degree_color;
+        }
+
+        &.selected {
+          // font-weight: 600;
+
+          & > .filter-item-content {
+            background-color: $degree_color;
+          }
+
+          .selected-indicator {
+            background: transparent;
+          }
+        }
+      }
+    }
+  }
+}
