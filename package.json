@@ -15,7 +15,8 @@
     "release": "npm run build && npm publish",
     "prepublish": "npm run build",
     "docs": "vue-styleguidist server",
-    "build:docs": "vue-styleguidist build"
+    "build:docs": "vue-styleguidist build",
+    "deploy": "yarn build:example && netlify deploy"
   },
   "author": {
     "name": "David Royer",

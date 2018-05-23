@@ -97,13 +97,23 @@ export default {
     display: inline-flex;
     vertical-align: top;
     background: #f5f5f5;
-    width: 320px;
     margin: 10px;
     flex-flow: row wrap;
+    width: 100%;
+    flex: 1 1 45%;
+    min-width: 280px;
+    max-width: 375px;
 
+    @media (min-width: 800px) {
+      width: 320px;
+      flex: none;
+      min-width: 320px;
+    }
     &-link {
       padding: 1em;
       width: 100%;
+      text-decoration: none;
+      color: initial;
     }
 
     &-header {

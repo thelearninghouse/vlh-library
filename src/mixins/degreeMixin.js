@@ -1,11 +1,14 @@
 // src/mixins/degreeMixin.js
-//
-import buildDegreeList from '../helpers/buildDegreeList.js'
+
+import buildDegreeList from '@/helpers/buildDegreeList.js'
+import delay from '@/helpers/delay'
+
 /**
  * @mixin
  */
 export default {
   data: () => ({
+    ready: false,
     degrees: [],
     degreeLevels: [],
     degreeAreas: [],
@@ -60,6 +63,31 @@ export default {
   },
 
   methods: {
+    checkForUrlHash() {
+      if (location.hash) {
+        this.$nextTick()
+        .then(() => {
+          this.setInitialFilter();
+        })
+      } else {
+        this.ready = true
+      }
+    },
+
+    setInitialFilter() {
+      let filterId = location.hash.replace('#', '');
+      let initialFilterButton = document.getElementById(`button-${filterId}`)
+      initialFilterButton.click();
+
+      delay(100).then(()=> {
+        this.ready = true
+      });
+    },
+
+    createDegreeList(degreesArray) {
+      return buildDegreeList(degreesArray)
+    },
+
     handleFilterHeadingClick(filterList, otherFilterList) {
       if (!this.mobile) return
       if (otherFilterList) {

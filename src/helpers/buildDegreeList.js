@@ -1,4 +1,4 @@
-export function buildDegreeList(Degrees) {
+function buildDegreeList(Degrees) {
   return Degrees.map((degree, index) => {
     var levelsArray = [];
     var areasArray = [];
@@ -16,3 +16,5 @@ export function buildDegreeList(Degrees) {
     return degree
   })
 }
+
+export default buildDegreeList
