@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/droyer/.nvm/versions/node/v8.7.0/bin/node /Users/droyer/.yarn/bin/yarn.js remove -D dog-names
+  /Users/droyer/.nvm/versions/node/v8.7.0/bin/node /Users/droyer/.yarn/bin/yarn.js buil
 
 PATH: 
   /Users/droyer/.yarn/bin:/Users/droyer/.nvm/versions/node/v8.7.0/bin:/users/droyer/go/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -16,7 +16,7 @@ Platform:
 npm manifest: 
   {
     "name": "vlh-library",
-    "version": "0.1.1",
+    "version": "0.1.5",
     "description": "Vue Components Library for Learning House Marketing Sites.",
     "main": "dist/vlh-library.js",
     "files": [
@@ -31,7 +31,8 @@ npm manifest:
       "release": "npm run build && npm publish",
       "prepublish": "npm run build",
       "docs": "vue-styleguidist server",
-      "build:docs": "vue-styleguidist build"
+      "build:docs": "vue-styleguidist build",
+      "deploy": "yarn build:example && netlify deploy"
     },
     "author": {
       "name": "David Royer",
@@ -46,7 +47,6 @@ npm manifest:
     "license": "ISC",
     "dependencies": {},
     "devDependencies": {
-      "dog-names": "^1.0.2",
       "node-sass": "^4.9.0",
       "poi": "^9.6.13",
       "sass-loader": "^7.0.1",
@@ -2405,13 +2405,6 @@ Lockfile:
     dependencies:
       esutils "^2.0.2"
   
-  dog-names@^1.0.2:
-    version "1.0.2"
-    resolved "https://registry.yarnpkg.com/dog-names/-/dog-names-1.0.2.tgz#b9da135e4c4096cc73709efbd0af55d3b605bf48"
-    dependencies:
-      meow "^3.0.0"
-      unique-random-array "^1.0.0"
-  
   dom-converter@~0.1:
     version "0.1.4"
     resolved "https://registry.yarnpkg.com/dom-converter/-/dom-converter-0.1.4.tgz#a45ef5727b890c9bffe6d7c876e7b19cb0e17f3b"
@@ -4626,7 +4619,7 @@ Lockfile:
       errno "^0.1.3"
       readable-stream "^2.0.1"
   
-  meow@^3.0.0, meow@^3.3.0, meow@^3.7.0:
+  meow@^3.3.0, meow@^3.7.0:
     version "3.7.0"
     resolved "https://registry.yarnpkg.com/meow/-/meow-3.7.0.tgz#72cb668b425228290abbfa856892587308a801fb"
     dependencies:
@@ -7505,16 +7498,6 @@ Lockfile:
     dependencies:
       unique-slug "^2.0.0"
   
-  unique-random-array@^1.0.0:
-    version "1.0.1"
-    resolved "https://registry.yarnpkg.com/unique-random-array/-/unique-random-array-1.0.1.tgz#f29bda2a62be8860a703c4739c8f4fdb4d722cc7"
-    dependencies:
-      unique-random "^1.0.0"
-  
-  unique-random@^1.0.0:
-    version "1.0.0"
-    resolved "https://registry.yarnpkg.com/unique-random/-/unique-random-1.0.0.tgz#ce3e224c8242cd33a0e77b0d7180d77e6b62d0c4"
-  
   unique-slug@^2.0.0:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/unique-slug/-/unique-slug-2.0.0.tgz#db6676e7c7cc0629878ff196097c78855ae9f4ab"
@@ -8305,14 +8288,14 @@ Lockfile:
       user-home "^2.0.0"
 
 Trace: 
-  Error: Not enough arguments, expected at least 1.
+  Error: Command "buil" not found. Did you mean "build"?
       at new MessageError (/Users/droyer/.yarn/lib/cli.js:186:110)
-      at Object.<anonymous> (/Users/droyer/.yarn/lib/cli.js:60368:13)
+      at /Users/droyer/.yarn/lib/cli.js:87307:17
       at Generator.next (<anonymous>)
       at step (/Users/droyer/.yarn/lib/cli.js:98:30)
       at /Users/droyer/.yarn/lib/cli.js:116:14
       at new Promise (<anonymous>)
       at new F (/Users/droyer/.yarn/lib/cli.js:23451:28)
-      at Object.<anonymous> (/Users/droyer/.yarn/lib/cli.js:95:12)
-      at Object.run (/Users/droyer/.yarn/lib/cli.js:60486:17)
-      at run (/Users/droyer/.yarn/lib/cli.js:89113:20)
+      at /Users/droyer/.yarn/lib/cli.js:95:12
+      at runCommand (/Users/droyer/.yarn/lib/cli.js:87312:22)
+      at Object.<anonymous> (/Users/droyer/.yarn/lib/cli.js:87412:14)
