@@ -43,10 +43,6 @@ export default {
       type: String,
       default: 'All'
     },
-
-    resetId: {
-      type: String
-    },
     /**
      * The HTML element to use
      */
@@ -57,10 +53,13 @@ export default {
   },
 
   computed: {
+
     filterListState() {
       return this.filterState
     },
-
+    /**
+     * The `id` to use for the `filter-reset`
+     */
     filterId() {
       return this.filterResetId
     },
@@ -76,8 +75,10 @@ export default {
 
   methods: {
     /**
-    * Gets called when filter reset is clicked.
-    */
+     * Remove all filters for a `filter-list`
+     * 
+     * @public
+     */
     updateSelected() {
       this.filterState.active = null
     }

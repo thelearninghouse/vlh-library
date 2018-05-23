@@ -61,6 +61,7 @@ export default {
   },
 
   watch: {
+
     'filterState.active': function (newFilter, oldFilter) {
       this.$emit('update:selectedFilter', newFilter)
       if (this.mobile) {
@@ -84,6 +85,12 @@ export default {
   },
 
   methods: {
+    /**
+     * Checks if at mobile size
+     * @event visible
+     * @type Boolean
+     * @return {Boolean} [description]
+     */
     handleMobile() {
       if (this.mobile) {
         this.$emit('update:visible', false)

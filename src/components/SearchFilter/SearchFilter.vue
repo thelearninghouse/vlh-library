@@ -16,6 +16,9 @@ export default {
   name: 'SearchFilter',
 
   props: {
+    /**
+     * @model
+     */    
     value: {
       type: String
     }
@@ -40,11 +43,34 @@ export default {
   },
 
   methods: {
+    /**
+     * Handles emitting input event to clear search
+     *
+     * @return {string} Emptry String
+     * @public
+     */
     clearSearch() {
+      /**
+      * Input Event Clear
+      *
+      * @event input
+      * @type {string}
+      */
       this.$emit('input', '')
 		},
-
+    /**
+     * Handles emitting input event
+     *
+     * @return {string} Emptry String
+     * @public
+     */
     updateSearch(value) {
+      /**
+      * Input event
+      *
+      * @event input
+      * @type {string}
+      */
       this.$emit('input', value)
     }
 

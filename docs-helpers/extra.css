@@ -31,7 +31,7 @@ table * {
   /* width: 250px !important; */
 }
 
-.filter {
+#rsg-root .filter-list {
   position: relative !important;
   left: initial !important;
   top: inherit !important;
