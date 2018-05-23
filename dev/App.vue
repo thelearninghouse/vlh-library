@@ -5,7 +5,10 @@
     <search-filter placeholder="Click here to search" v-model="currentDegreeSearchFilter"></search-filter>
 
     <div class="filter-list-wrapper">
-      <filter-list-heading :list-visibility="showDegreeLevelFilter" @toggle-filter-visibility="handleFilterHeadingClick('showDegreeLevelFilter', 'showDegreeAreaFilter')" :selectedFilter.sync="currentDegreeLevelFilter" icon-dropdown-color="#cc1f1b" icon-reset-color="gray"
+      <filter-list-heading
+        :list-visibility="showDegreeLevelFilter" @toggle-filter-visibility="handleFilterHeadingClick('showDegreeLevelFilter', 'showDegreeAreaFilter')" :selectedFilter.sync="currentDegreeLevelFilter"
+        icon-dropdown-color="#cc1f1b"
+        icon-reset-color="gray"
         heading="Degree Levels">
       </filter-list-heading>
 

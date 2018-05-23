@@ -114,6 +114,7 @@ export default {
       width: 100%;
       text-decoration: none;
       color: initial;
+      z-index: 1;
     }
 
     &-header {

@@ -4,9 +4,14 @@ import {buildDegreeList} from './dev/helpers.js'
 
 export default {
   mounted() {
-    this.degrees = buildDegreeList(wpData.degrees);
+    this.degrees = this.createDegreeList(wpData.degrees);
     this.degreeLevels = wpData.degreeLevels
     this.degreeAreas = wpData.degreeAreas
+    this.ready = true
+    // this.checkForUrlHash();
+    // this.degrees = buildDegreeList(wpData.degrees);
+    // this.degreeLevels = wpData.degreeLevels
+    // this.degreeAreas = wpData.degreeAreas
   }
   /* ... */
 }

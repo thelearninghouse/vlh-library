@@ -1,5 +1,5 @@
 Search Filter Info:
 
 ```
-<search-filter v-model="currentDegreeSearchFilter"></search-filter>
+<search-filter placeholder="Search For a Degree..." v-model="currentDegreeSearchFilter"></search-filter>
 ```
