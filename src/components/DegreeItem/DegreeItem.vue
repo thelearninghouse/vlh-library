@@ -152,6 +152,10 @@ export default {
 
       &.transition-complete {
         overflow: visible;
+
+        &.transition-leave-beginning {
+          overflow: hidden;
+        }
       }
       // display: flex;
       // flex-direction: row;

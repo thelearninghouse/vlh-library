@@ -28,6 +28,7 @@ export default {
     },
 
     beforeLeave: function(el) {
+      el.classList.add('transition-leave-beginning')
       el.style.height = el.scrollHeight + "px";
     },
 
