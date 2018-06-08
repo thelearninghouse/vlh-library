@@ -1,5 +1,12 @@
 <template>
-  <transition name="accordion" @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave" @leave="leave">
+  <transition
+    name="accordion"
+    @before-enter="beforeEnter"
+    @enter="enter"
+    @after-enter="afterEnter"
+    @before-leave="beforeLeave"
+    @leave="leave"
+    @after-leave="afterLeave">
     <slot></slot>
   </transition>
 </template>
@@ -13,16 +20,22 @@ export default {
     },
 
     enter: function(el) {
-      el.style.height = el.scrollHeight + 20 + "px";
+      el.style.height = el.scrollHeight + "px";
+    },
+
+    afterEnter: function(el) {
+      el.classList.add('transition-complete')
     },
 
     beforeLeave: function(el) {
-      el.style.height = el.scrollHeight + 20 + "px";
+      el.style.height = el.scrollHeight + "px";
     },
 
     leave: function(el) {
       el.style.height = "0";
-    }
+    },
+
+    afterLeave: function(el) {}
   }
 };
 </script>

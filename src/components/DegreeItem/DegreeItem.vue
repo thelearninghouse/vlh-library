@@ -14,8 +14,12 @@
         <accordion-transition>
           <div v-if="showContent" class="degree-item-content">
             <p>{{item.summary}}</p>
-            <div class="degree-item-cta">
-              View Info
+            <div
+              @keyup.enter="handleLink"
+              @click="handleLink"
+              class="degree-item-cta"
+              v-text="ctaText"
+              tabindex="0">
             </div>
           </div>
         </accordion-transition>
@@ -38,6 +42,11 @@ export default {
     item: {
       required: true,
       type: Object
+    },
+
+    ctaText: {
+      type: String,
+      default: 'View Info'
     },
     /**
      * The html element name used for the item
@@ -66,8 +75,8 @@ export default {
     }
   },
   methods: {
-    handleLink(event) {
-      console.log(event);
+    handleLink() {
+      window.location.href = this.item.url
     },
 
     getDegreeClasses(degree) {
@@ -139,15 +148,28 @@ export default {
       z-index: -1;
       position: relative;
       overflow: hidden;
+
+
+      &.transition-complete {
+        overflow: visible;
+      }
+      // display: flex;
+      // flex-direction: row;
+      // align-content: space-around;
+      // justify-content: flex-start;
+      // flex-flow: row wrap;
     }
 
     &-cta {
         margin-top: 1em;
+        display: inline-flex;
+        justify-content: flex-start;
     }
 
     &.open {
       .degree-item-content {
-        padding-top: 1em;;
+        padding-top: 1em;
+        // overflow: visible;
       }
     }
 

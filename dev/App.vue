@@ -1,5 +1,13 @@
 <template>
 <div id="vlh-filtering">
+  <div class="animations" :class="{expanded: showbox}">
+    <button @click="showbox = !showbox">Toggle Box</button>
+    <transition name="slide-in-left">
+      <div v-show="showbox" id="box1">
+        Box 1
+      </div>
+    </transition>
+  </div>
   <div class="degree-filters">
 
     <search-filter placeholder="Click here to search" v-model="currentDegreeSearchFilter"></search-filter>
@@ -61,7 +69,9 @@ import {
 
 export default {
   mixins: [degreeMixin],
-
+  data: () => ({
+    showbox: false
+  }),
   mounted() {
     this.degrees = this.createDegreeList(wpData.degrees);
     this.degreeLevels = wpData.degreeLevels
@@ -78,5 +88,30 @@ export default {
 
 
 <style lang="scss">
+#vlh-filtering {
+  flex-flow: row wrap;
+
+  .animations {
+    width: 100%;
+    padding: 3em 5em;
+    height: 145px;
+    transition: .5s ease;
+    // transition-delay: .15s;
+    overflow: hidden;
+    &.expanded {
+      height: 350px;
+    }
+    button {
+      margin: 1em .2em;
+    }
+  }
+
+  #box1 {
+    background: gray;
+    width: 200px;
+    height: 200px;
+    padding: 1em;
+  }
+}
 /* Temporary */
 </style>

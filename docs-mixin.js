@@ -8,10 +8,6 @@ export default {
     this.degreeLevels = wpData.degreeLevels
     this.degreeAreas = wpData.degreeAreas
     this.ready = true
-    // this.checkForUrlHash();
-    // this.degrees = buildDegreeList(wpData.degrees);
-    // this.degreeLevels = wpData.degreeLevels
-    // this.degreeAreas = wpData.degreeAreas
   }
   /* ... */
 }
