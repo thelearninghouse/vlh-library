@@ -2,6 +2,7 @@
 
 import buildDegreeList from '@/helpers/buildDegreeList.js'
 import delay from '@/helpers/delay'
+import {getUrlParameter} from '@/helpers/util'
 
 /**
  * @mixin
@@ -63,23 +64,73 @@ export default {
   },
 
   methods: {
+
+    checkUrl() {
+      if (location.hash) {
+        this.$nextTick()
+        .then(() => {
+          this.setInitialFilterFromHash();
+        })
+      }
+
+      if (location.hash) {
+        this.$nextTick()
+        .then(() => {
+          this.setInitialFilterFromHash();
+        })
+      }
+
+
+      // if (this.checkForUrlHash() === false && this.checkForUrlParams() === false) {
+      //   this.ready = true
+      // } else {
+      //   this.checkForUrlParams();
+      //   this.checkForUrlHash();
+      //   this.ready = true
+      // }
+    },
+    
     checkForUrlHash() {
       if (location.hash) {
         this.$nextTick()
         .then(() => {
-          this.setInitialFilter();
+          this.setInitialFilterFromHash();
         })
-      } else {
-        this.ready = true
       }
     },
 
-    setInitialFilter() {
+    checkForUrlParams() {
+      let paramFilters = []
+      if ( getUrlParameter('level') ) paramFilters.push( getUrlParameter('level') )
+      if ( getUrlParameter('area') ) paramFilters.push( getUrlParameter('area') )
+
+      if (  paramFilters.length > 0 ) {
+        this.$nextTick()
+        .then(() => {
+          this.setInitialFilterFromUrlParams(paramFilters)
+        })
+      } else {
+        return false
+      }
+    },
+
+    async setInitialFilterFromUrlParams(paramFilters) {
+ 
+      paramFilters.forEach(param => {
+        const initialFilterButton = document.getElementById(`button-${param}`)
+        initialFilterButton.click();
+      });
+      await delay(100).then(()=> {
+        this.ready = true
+      });
+    },
+
+    async setInitialFilterFromHash() {
       let filterId = location.hash.replace('#', '');
       let initialFilterButton = document.getElementById(`button-${filterId}`)
       initialFilterButton.click();
 
-      delay(100).then(()=> {
+      await delay(100).then(()=> {
         this.ready = true
       });
     },
