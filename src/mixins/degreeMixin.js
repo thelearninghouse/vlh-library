@@ -65,29 +65,10 @@ export default {
 
   methods: {
 
-    checkUrl() {
-      if (location.hash) {
-        this.$nextTick()
-        .then(() => {
-          this.setInitialFilterFromHash();
-        })
-      }
-
-      if (location.hash) {
-        this.$nextTick()
-        .then(() => {
-          this.setInitialFilterFromHash();
-        })
-      }
-
-
-      // if (this.checkForUrlHash() === false && this.checkForUrlParams() === false) {
-      //   this.ready = true
-      // } else {
-      //   this.checkForUrlParams();
-      //   this.checkForUrlHash();
-      //   this.ready = true
-      // }
+    checkUrlForInitialFilters() {
+      if (this.checkForUrlParams() === false && this.checkForUrlHash() === false) this.ready = true      
+      this.checkForUrlParams();
+      this.checkForUrlHash();
     },
     
     checkForUrlHash() {
@@ -96,6 +77,8 @@ export default {
         .then(() => {
           this.setInitialFilterFromHash();
         })
+      } else {
+        return false
       }
     },
 
@@ -107,32 +90,34 @@ export default {
       if (  paramFilters.length > 0 ) {
         this.$nextTick()
         .then(() => {
-          this.setInitialFilterFromUrlParams(paramFilters)
+          return this.setInitialFilterFromUrlParams(paramFilters)
         })
       } else {
         return false
       }
     },
 
-    async setInitialFilterFromUrlParams(paramFilters) {
+    setInitialFilterFromUrlParams(paramFilters) {
  
       paramFilters.forEach(param => {
         const initialFilterButton = document.getElementById(`button-${param}`)
         initialFilterButton.click();
       });
-      await delay(100).then(()=> {
+      delay(100).then(()=> {
         this.ready = true
       });
     },
 
-    async setInitialFilterFromHash() {
+    setInitialFilterFromHash() {
       let filterId = location.hash.replace('#', '');
       let initialFilterButton = document.getElementById(`button-${filterId}`)
-      initialFilterButton.click();
-
-      await delay(100).then(()=> {
-        this.ready = true
-      });
+      if (!initialFilterButton) this.ready = true
+      else {
+        initialFilterButton.click();
+        delay(100).then(()=> {
+          this.ready = true
+        });
+      }
     },
 
     createDegreeList(degreesArray) {

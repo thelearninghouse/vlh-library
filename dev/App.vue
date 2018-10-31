@@ -76,8 +76,7 @@ export default {
     this.degrees = this.createDegreeList(wpData.degrees);
     this.degreeLevels = wpData.degreeLevels
     this.degreeAreas = wpData.degreeAreas
-    this.checkForUrlParams();
-    this.checkForUrlHash();
+    this.checkUrlForInitialFilters()
   },
   methods: {
     testSlotMethod() {
